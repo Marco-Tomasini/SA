@@ -1,6 +1,5 @@
 <?php
-
-include 'public/db.php';
+include __DIR__ . '/public/db.php';
 
 session_start();
 
@@ -21,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
         $_SESSION['email'] = $dados['email'];
         header('Location: dashboard.php');
         exit;
-    } else{
+    } else {
         $msg = "Usuário ou senha incorretos!";
     }
 }
