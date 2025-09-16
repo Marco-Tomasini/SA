@@ -1,6 +1,6 @@
-CREATE DATABASE SmartCitiesV5;
+CREATE DATABASE SmartCitiesV7;
 
-USE SmartCitiesV5;
+USE SmartCitiesV7;
 ;
 
 -- Tabelas principais
@@ -38,8 +38,8 @@ CREATE TABLE rota (
     descricao TEXT
 );
 
-CREATE TABLE segmento_Rota (
-    id_segmento INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE segmento_rota (
+    id_segmento_rota INT AUTO_INCREMENT PRIMARY KEY,
     id_rota_fk INT,
     ordem INT,
     id_estacao_origem INT,
@@ -76,7 +76,7 @@ CREATE TABLE sensor_trilho (
     id_segmento_fk INT,
     tipo_sensor ENUM('Peso', 'Temperatura', 'Presenca'),
     FOREIGN KEY (id_sensor_fk) REFERENCES sensor(id_sensor),
-    FOREIGN KEY (id_segmento_fk) REFERENCES segmento(id_segmento)
+    FOREIGN KEY (id_segmento_fk) REFERENCES segmento_rota(id_segmento_rota)
 );
 
 CREATE TABLE sensor_trem (
