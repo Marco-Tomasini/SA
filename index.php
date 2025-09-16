@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     if ($dados){
         $_SESSION['user_id'] = $dados['id_usuario'];
         $_SESSION['email'] = $dados['email'];
-        header('Location: index.php');
+        header('Location: dashboard.php');
         exit;
     } else {
         $msg = "Usuário ou senha incorretos!";
