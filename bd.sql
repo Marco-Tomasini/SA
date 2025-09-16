@@ -1,6 +1,6 @@
 CREATE DATABASE SmartCitiesV5;
 
-USE SmartCitiesV4;
+USE SmartCitiesV5;
 ;
 
 -- Tabelas principais
