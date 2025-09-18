@@ -141,3 +141,15 @@ CREATE TABLE relatorios (
     causas_atraso TEXT,
     custo_medio_manutencao DECIMAL(10,2)
 );
+
+
+
+
+
+
+ALTER TABLE usuario
+ADD COLUMN CPF VARCHAR(14) NOT NULL,
+ADD COLUMN tipo_sanguineo ENUM('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-') NOT NULL,
+ADD COLUMN data_nascimento DATE NOT NULL,
+ADD COLUMN endereco VARCHAR(255) NOT NULL,
+ADD COLUMN contato VARCHAR(255) NOT NULL;
