@@ -12,11 +12,11 @@
             position: fixed;
             top: 0;
             right: 0;
-            width: 250px;
+            width: 20%;
             height: 100%;
             background: #fff;
-            border-left: 2px solid #000;
-            padding: 16px 16px 0 16px;
+            border-left: 0.185185em solid #000;
+            padding: 1.48% 1.48% 0 1.48%;
             display: flex;
             flex-direction: column;
         }
@@ -70,22 +70,31 @@
             <button type="submit" name="sair" class="bottom-btn">Sair</button>
         </form>
     </div>
+
     <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['gestao'])) {
-            echo "<script>alert('Gestão de Rotas clicado');</script>";
+            header('Location: gestao.php');
+            exit;
         } elseif (isset($_POST['manutencao'])) {
-            echo "<script>alert('Monit. de Manutenção clicado');</script>";
+            header('Location: manutencao.php');
+            exit;
         } elseif (isset($_POST['relatorios'])) {
-            echo "<script>alert('Relatórios e Análise clicado');</script>";
+            header('Location: relatorios.php');
+            exit;
         } elseif (isset($_POST['alertas'])) {
-            echo "<script>alert('Alertas e Notificações clicado');</script>";
+            header('Location: alertas.php');
+            exit;
         } elseif (isset($_POST['funcionarios'])) {
-            echo "<script>alert('Funcionários clicado');</script>";
+            header('Location: funcionarios.php');
+            exit;
         } elseif (isset($_POST['sair'])) {
-            echo "<script>alert('Saindo...');</script>";
+            session_destroy();
+            header('Location: ../index.php');
+            exit;
         }
     }
     ?>
+    
 </body>
 </html>
