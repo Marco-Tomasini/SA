@@ -1,7 +1,6 @@
 CREATE DATABASE SmartCitiesV7;
 
 USE SmartCitiesV7;
-;
 
 -- Tabelas principais
 
@@ -153,3 +152,7 @@ ADD COLUMN tipo_sanguineo ENUM('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-')
 ADD COLUMN data_nascimento DATE NOT NULL,
 ADD COLUMN endereco VARCHAR(255) NOT NULL,
 ADD COLUMN contato VARCHAR(255) NOT NULL;
+
+
+ALTER TABLE viagem
+    MODIFY COLUMN status_viagem ENUM('Ok', 'Revisão', 'Reparo', 'Atraso') NOT NULL DEFAULT 'Ok';
