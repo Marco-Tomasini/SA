@@ -10,6 +10,10 @@ body {
     margin: 0;
 }
 
+.main{
+    height: 65vh;
+}
+
 .loginInput {
     background-color: #683A91;
     height: 50px;

@@ -40,35 +40,40 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
 <body>
 
-    <div class="container-fluid content">
-        <div class="row h-20">
-            <div class="col">
-                <nav class="navbar navbar-expand-lg navbar-dark">
-                    <div class="container-fluid d-flex justify-content-center">
-                        <a class="navbar-brand fs-4" href="#"></a>
-                        <img src="assets/icon/logoSite.svg" width="auto" height="150" class="d-inline-block align-top" alt="">
-                    </div>
-                </nav>
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <nav class="navbar navbar-expand-lg navbar-dark">
+                        <div class="container-fluid d-flex justify-content-center">
+                            <a class="navbar-brand fs-4" href="#"></a>
+                            <img src="assets/icon/logoSite.svg" width="auto" height="150" class="d-inline-block align-top" alt="">
+                        </div>
+                    </nav>
+                </div>
             </div>
 
-            <div class="col d-flex align-items-center justify-content-center">
-                <form class="loginForm">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control loginInput" id="email" placeholder="Email" aria-describedby="email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Senha</label>
-                        <input type="password" class="form-control loginInput" id="senha" placeholder="Senha">
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn">Esqueci minha senha</button>
+            <div class="row main">
+                <div class="col d-flex align-items-center justify-content-center">
+                    <form class="loginForm">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control loginInput" id="email" placeholder="Email" aria-describedby="email">
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-light btnLogin">Entrar</button>
-                </form>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Senha</label>
+                            <input type="password" class="form-control loginInput" id="senha" placeholder="Senha">
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn">Esqueci minha senha</button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-light btnLogin mt-5">Entrar</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
