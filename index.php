@@ -55,14 +55,14 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
             <div class="row main">
                 <div class="col d-flex align-items-center justify-content-center">
-                    <form class="loginForm">
+                    <form class="loginForm" method="POST">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control loginInput" id="email" placeholder="Email" aria-describedby="email">
+                            <input type="email" class="form-control loginInput" name="email" id="email" placeholder="Email" aria-describedby="email">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Senha</label>
-                            <input type="password" class="form-control loginInput" id="senha" placeholder="Senha">
+                            <input type="password" class="form-control loginInput" name="password" id="senha" placeholder="Senha">
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn">Esqueci minha senha</button>
                             </div>

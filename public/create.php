@@ -3,7 +3,7 @@
 include 'db.php';
 
 if(empty($_SESSION["user_id"])){
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 };
 
