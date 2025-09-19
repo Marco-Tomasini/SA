@@ -31,3 +31,12 @@ body {
     height: 50px;
     width: 100%;
 }
+
+.headerDash {
+    background-color: #683A91;
+    height: 12vh;
+}
+
+.welcome {
+    color: #D9D9D9;
+}
