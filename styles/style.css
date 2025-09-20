@@ -40,3 +40,17 @@ body {
 .welcome {
     color: #D9D9D9;
 }
+
+.previsaoDash text {
+    border: none;
+}
+
+.tempoPrev {
+    color: rgb(65, 129, 2);
+}
+
+.alertasDash {
+    background-color: #683A91;
+    color: #D9D9D9;
+    height: 10vh;
+}

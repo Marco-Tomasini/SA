@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     if ($dados) {
         $_SESSION['user_id'] = $dados['id_usuario'];
         $_SESSION['email'] = $dados['email'];
+        $_SESSION['usuario'] = $dados['nome'];
         header('Location: public/dashboard.php');
         exit;
     } else {
