@@ -159,3 +159,6 @@ ALTER TABLE viagem
 
 ALTER TABLE usuario
     DROP COLUMN tipo_sanguineo;
+
+ALTER TABLE viagem
+    ADD COLUMN nome_viagem VARCHAR(100) NOT NULL;
