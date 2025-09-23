@@ -147,12 +147,15 @@ CREATE TABLE relatorios (
 
 
 ALTER TABLE usuario
-ADD COLUMN CPF VARCHAR(14) NOT NULL,
-ADD COLUMN tipo_sanguineo ENUM('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-') NOT NULL,
-ADD COLUMN data_nascimento DATE NOT NULL,
-ADD COLUMN endereco VARCHAR(255) NOT NULL,
-ADD COLUMN contato VARCHAR(255) NOT NULL;
+    ADD COLUMN CPF VARCHAR(14) NOT NULL,
+    ADD COLUMN tipo_sanguineo ENUM('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-') NOT NULL,
+    ADD COLUMN data_nascimento DATE NOT NULL,
+    ADD COLUMN endereco VARCHAR(255) NOT NULL,
+    ADD COLUMN contato VARCHAR(255) NOT NULL;
 
 
 ALTER TABLE viagem
     MODIFY COLUMN status_viagem ENUM('Ok', 'Revisão', 'Reparo', 'Atraso') NOT NULL DEFAULT 'Ok';
+
+ALTER TABLE usuario
+    DROP COLUMN tipo_sanguineo;
