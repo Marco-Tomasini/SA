@@ -162,3 +162,20 @@ ALTER TABLE usuario
 
 ALTER TABLE viagem
     ADD COLUMN nome_viagem VARCHAR(100) NOT NULL;
+
+ALTER TABLE usuario
+    MODIFY COLUMN contato VARCHAR(12) NOT NULL,
+    ADD COLUMN imagem_usuario VARCHAR(255) NOT NULL DEFAULT 'default.png';
+
+
+ALTER TABLE usuario
+    MODIFY COLUMN imagem_usuario VARCHAR(255) NULL;
+
+SET GLOBAL event_scheduler = ON;
+
+CREATE EVENT IF NOT EXISTS ev_populate_imagem_usuario
+ON SCHEDULE EVERY 15 SECOND
+DO
+  UPDATE usuario
+  SET imagem_usuario = CONCAT(id_usuario, '_', nome, '.png')
+  WHERE imagem_usuario IS NULL;
