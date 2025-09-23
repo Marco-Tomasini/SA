@@ -162,3 +162,10 @@ ALTER TABLE usuario
 
 ALTER TABLE viagem
     ADD COLUMN nome_viagem VARCHAR(100) NOT NULL;
+
+
+INSERT INTO alerta (mensagem,alerta) VALUES
+('Atraso', 'Tráfego em direção a rota R7-Ronaldo. Estou no meio de trânsito, existe uma grande possibilidade de a linha atrasar.', NOW(), 'Alta', NULL),
+('Segurança', 'Trem precisa de limpeza. Um passageiro teve uma situação complicada, o trem vai precisar ser enviado para a limpeza.', NOW(), 'Média', NULL),
+('Falha Técnica', 'O Trem da rota R3-tupy está fora de serviço. Em meio ao percurso o trem estragou, e será necessária uma revisão.', NOW(), 'Alta', NULL);
+
