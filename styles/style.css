@@ -55,6 +55,23 @@ body {
     height: 10vh;
 }
 
+.scrollAlertas {
+    height: 36vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.scrollViagens {
+    height: 42vh;
+    width: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sessaoViagens {
+    border: 10px;
+}
+
 .botaoCreate {
     background-color: #683A91;
     color: #D9D9D9;

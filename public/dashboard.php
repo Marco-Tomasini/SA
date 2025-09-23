@@ -26,82 +26,85 @@ $resultAlerta = $mysqli->query($sql);
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 
-<body>
+<body class="overflow-hidden">
     <main>
         <div class="container-fluid">
-                    <div class="row headerDash d-flex align-items-center">
-                        <div class="col-6 mt-4 ms-2 welcome lh-1">
-                            <p>Bem-vindo(a)</p>
-                            <p class="fw-bold fs-5"><?php echo htmlspecialchars($_SESSION['usuario']); ?></p>
-                        </div>
+            <div class="row headerDash d-flex align-items-center">
+                <div class="col-6 mt-4 ms-2 welcome lh-1">
+                    <p>Bem-vindo(a)</p>
+                    <p class="fw-bold fs-5"><?php echo htmlspecialchars($_SESSION['usuario']); ?></p>
+                </div>
 
-                        <div class="col-6">
-                            <?php include 'sidebar.php'; ?>
-                        </div>
-                    </div>
-                    <?php if ($resultViagem->num_rows > 0): ?>
-                        <?php while ($row = $resultViagem->fetch_assoc()): ?>
-
-                            <div class="row row-cols-1">
-                                <div class="col-12 d-flex justify-content-between align-items-center lh-1 mt-2 mb-1">
-                                    <div class="col-4 d-flex flex-column align-items-start">
-                                        <div class="d-flex">
-                                            <?php $partida = new DateTime($row['data_partida']); ?>
-                                            <p class="mb-1"><?php echo $partida->format('H:i'); ?></p>
-                                            <p class="mb-1"> ··· </p>
-                                            <?php $chegadaPrev = new DateTime($row['data_chegada_previsao']); ?>
-                                            <p class="mb-1"><?php echo $chegadaPrev->format('H:i'); ?></p>
-                                        </div>
-                                        <div class="d-flex flex-column align-items-center previsaoDash">
-                                            <?php
-                                            $intervalo = $partida->diff($chegadaPrev);
-                                            $minutos = ($intervalo->h * 60) + $intervalo->i;
-                                            ?>
-                                            <p class="mb-1">Chega em:</p>
-                                            <p class="mb-1 tempoPrev"><?php echo $minutos; ?> min</p>
-                                        </div>
+                <div class="col-6">
+                    <?php include 'sidebar.php'; ?>
+                </div>
+            </div>
+            <div class="scrollViagens">
+                <?php if ($resultViagem->num_rows > 0): ?>
+                    <?php while ($row = $resultViagem->fetch_assoc()): ?>
+                        <div class="row row-cols-1 border-bottom border-black">
+                            <div class="col-12 d-flex justify-content-between align-items-center lh-1 mt-3 mb-3">
+                                <div class="col-4 d-flex flex-column align-items-start">
+                                    <div class="d-flex">
+                                        <?php $partida = new DateTime($row['data_partida']); ?>
+                                        <p class="mb-1"><?php echo $partida->format('H:i'); ?></p>
+                                        <p class="mb-1"> ··· </p>
+                                        <?php $chegadaPrev = new DateTime($row['data_chegada_previsao']); ?>
+                                        <p class="mb-1"><?php echo $chegadaPrev->format('H:i'); ?></p>
                                     </div>
-
-                                    <div class="col-6 d-flex align-items-center justify-content-end">
-                                        <div class="d-flex flex-column align-items-center me-3">
-                                            <p class="mb-1">Status:</p>
-                                            <p class="mb-1"><?php echo htmlspecialchars($row['status_viagem']); ?></p>
-                                        </div>
-
-                                        <p class="mb-1"><?php echo htmlspecialchars($row['nome_viagem']); ?></p>
-
-                                        <img src="../assets/icon/train 1.svg" alt="" class="ms-3">
+                                    <div class="d-flex flex-column align-items-center previsaoDash">
+                                        <?php
+                                        $intervalo = $partida->diff($chegadaPrev);
+                                        $minutos = ($intervalo->h * 60) + $intervalo->i;
+                                        ?>
+                                        <p class="mb-1">Chega em:</p>
+                                        <p class="mb-1 tempoPrev"><?php echo $minutos; ?> min</p>
                                     </div>
                                 </div>
 
-                                <hr>
-                            </div>
-                        <?php endwhile; ?>
-                    <?php endif; ?>
-           
-
-                    <div class="row alertasDash d-flex align-items-center">
-                        <div class="col-6"><p class="mb-0 ms-1">Alertas e Notficações</p></div>
-                        <div class="col-6 d-flex justify-content-end"><img src="../assets/icon/seta-curva-esquerda 2.svg" alt="" height="32"></div>
-                    </div>
-                    <?php if ($resultAlerta->num_rows > 0): ?>
-                        <?php while ($row = $resultAlerta->fetch_assoc()): ?> 
-
-                            <div class="row row.cols-1">
-                                <div class="col-12 d-flex align-items-center mt-3">
-                                    <div class="col-1 d-flex justify-content-center align-items-center">
-                                        <img src="../assets/icon/Ellipse 16.svg" alt="">
+                                <div class="col-6 d-flex align-items-center justify-content-end">
+                                    <div class="d-flex flex-column align-items-center me-3">
+                                        <p class="mb-1">Status:</p>
+                                        <p class="mb-1"><?php echo htmlspecialchars($row['status_viagem']); ?></p>
                                     </div>
 
-                                    <div class="col-9">
-                                        <p class="mb-1"><?php echo htmlspecialchars($row['tipo']); ?></p>
-                                        <p class="mb-1"><?php echo htmlspecialchars($row['mensagem']); ?></p>
-                                    </div>
+                                    <p class="mb-1"><?php echo htmlspecialchars($row['nome_viagem']); ?></p>
+
+                                    <img src="../assets/icon/train 1.svg" alt="" class="ms-3">
                                 </div>
                             </div>
-                            <hr>
-                        <?php endwhile; ?>
-                    <?php endif; ?>
+                        </div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+            </div>
+
+
+
+            <div class="row alertasDash d-flex align-items-center">
+                <div class="col-6">
+                    <p class="mb-0 ms-1">Alertas e Notficações</p>
+                </div>
+                <div class="col-6 d-flex justify-content-end"><img src="../assets/icon/seta-curva-esquerda 2.svg" alt="" height="32"></div>
+            </div>
+            <div class="scrollAlertas">
+                <?php if ($resultAlerta->num_rows > 0): ?>
+                    <?php while ($row = $resultAlerta->fetch_assoc()): ?>
+
+                        <div class="row row.cols-1 border-bottom border-black">
+                            <div class="col-12 d-flex align-items-center mt-3 mb-3">
+                                <div class="col-1 d-flex justify-content-center align-items-center">
+                                    <img src="../assets/icon/Ellipse 16.svg" alt="">
+                                </div>
+
+                                <div class="col-9">
+                                    <p class="mb-1"><?php echo htmlspecialchars($row['tipo']); ?></p>
+                                    <p class="mb-1"><?php echo htmlspecialchars($row['mensagem']); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+            </div>
         </div>
     </main>
 
