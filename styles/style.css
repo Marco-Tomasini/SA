@@ -10,7 +10,7 @@ body {
     margin: 0;
 }
 
-.main{
+.main {
     height: 65vh;
 }
 
@@ -20,7 +20,7 @@ body {
 }
 
 .form-control::-webkit-input-placeholder {
-  color: #D9D9D9;
+    color: #D9D9D9;
 }
 
 .loginForm {
@@ -68,6 +68,13 @@ body {
     overflow-x: hidden;
 }
 
+.scrollERelatorios {
+    height: 90vh;
+    width: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .sessaoViagens {
     border: 10px;
 }
@@ -75,4 +82,14 @@ body {
 .botaoCreate {
     background-color: #683A91;
     color: #D9D9D9;
+}
+
+.navRelat {
+    background-color: #683A91;
+    height: 10vh;
+}
+
+.fullscreen {
+    height: 100vh;
+    width: 100vw;
 }
