@@ -28,7 +28,7 @@ $resultAlerta = $mysqli->query($sql);
 
 <body class="overflow-hidden">
     <main>
-        <div class="container-fluid">
+        <div class="container-fluid fullscreen">
             <div class="row headerDash d-flex align-items-center">
                 <div class="col-6 mt-4 ms-2 welcome lh-1">
                     <p>Bem-vindo(a)</p>
