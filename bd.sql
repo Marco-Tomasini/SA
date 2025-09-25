@@ -179,3 +179,6 @@ DO
   UPDATE usuario
   SET imagem_usuario = CONCAT(id_usuario, '_', nome, '.png')
   WHERE imagem_usuario IS NULL;
+
+ALTER TABLE usuario
+    MODIFY COLUMN imagem_usuario VARCHAR(255) DEFAULT 'default.png';
