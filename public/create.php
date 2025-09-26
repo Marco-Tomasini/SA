@@ -21,8 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['register'])) {
     $endereco = $_POST['endereco'] ?? "";
     $contato = $_POST['contato'] ?? "";
     if ($nome && $pass) {
-        $stmt = $mysqli->prepare("INSERT INTO usuario (nome, email, senha, perfil, CPF, data_nascimento, endereco, contato) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssssss", $nome, $email, $pass, $perfil, $cpf, $sangue, $nascimento, $endereco, $contato);
+        $stmt = $mysqli->prepare("INSERT INTO usuario (nome, email, senha, perfil, CPF, data_nascimento, endereco, contato) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssss", $nome, $email, $pass, $perfil, $cpf, $nascimento, $endereco, $contato);
 
         if ($stmt->execute()) {
             $register_msg = "Usuário cadastrado com sucesso!";
