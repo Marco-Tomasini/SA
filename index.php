@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $email = $_POST['email'] ?? "";
     $pass = $_POST['password'] ?? "";
 
-    $stmt = $mysqli->prepare("SELECT id_usuario, nome, email, senha FROM usuario WHERE email=? AND senha=?");
+    $stmt = $mysqli->prepare("SELECT id_usuario, nome, email, senha, perfil FROM usuario WHERE email=? AND senha=?");
     $stmt->bind_param("ss", $email, $pass);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -19,11 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         $_SESSION['user_id'] = $dados['id_usuario'];
         $_SESSION['email'] = $dados['email'];
         $_SESSION['usuario'] = $dados['nome'];
+        $_SESSION['perfil'] = $dados['perfil'];
         header('Location: public/dashboard.php');
         exit;
     } else {
         $msg = "Usuário ou senha incorretos!";
     }
+
 }
 ?>
 

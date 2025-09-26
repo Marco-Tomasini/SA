@@ -49,7 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" name="manutencao">Monit. de Manutenção</button>
         <button type="submit" name="relatorios">Relatórios e Análises</button>
         <button type="submit" name="alertas">Alertas e Notificações</button>
+    <?php if($_SESSION['perfil'] == "Gerente"): ?>
         <button type="submit" name="funcionarios" class="func-btn">Funcionários</button>
+    <?php endif; ?>
         <button type="submit" name="sair" class="bottom-btn">Sair da Conta</button>
     </form>
     

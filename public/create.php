@@ -17,12 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['register'])) {
     $pass = $_POST['senha'] ?? "";
     $perfil = $_POST['perfil'] ?? "";
     $cpf = $_POST['cpf'] ?? "";
-    $sangue = $_POST['sangue'] ?? "";
     $nascimento = $_POST['nascimento'] ?? "";
     $endereco = $_POST['endereco'] ?? "";
     $contato = $_POST['contato'] ?? "";
     if ($nome && $pass) {
-        $stmt = $mysqli->prepare("INSERT INTO usuario (nome, email, senha, perfil, CPF, tipo_sanguineo, data_nascimento, endereco, contato) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $mysqli->prepare("INSERT INTO usuario (nome, email, senha, perfil, CPF, data_nascimento, endereco, contato) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("sssssssss", $nome, $email, $pass, $perfil, $cpf, $sangue, $nascimento, $endereco, $contato);
 
         if ($stmt->execute()) {
