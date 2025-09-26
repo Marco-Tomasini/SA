@@ -171,14 +171,5 @@ ALTER TABLE usuario
 ALTER TABLE usuario
     MODIFY COLUMN imagem_usuario VARCHAR(255) NULL;
 
-SET GLOBAL event_scheduler = ON;
-
-CREATE EVENT IF NOT EXISTS ev_populate_imagem_usuario
-ON SCHEDULE EVERY 15 SECOND
-DO
-  UPDATE usuario
-  SET imagem_usuario = CONCAT(id_usuario, '_', nome, '.png')
-  WHERE imagem_usuario IS NULL;
-
 ALTER TABLE usuario
     MODIFY COLUMN imagem_usuario VARCHAR(255) DEFAULT 'default.png';
