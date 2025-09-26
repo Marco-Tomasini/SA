@@ -94,14 +94,6 @@ body {
     width: 100vw;
 }
 
-.gridFunc {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.625rem;
-    margin-top: 1.25rem;
-}
-
 .profile {
     background-color: rgb(176, 176, 176);
     border-radius: 10%;
@@ -134,4 +126,9 @@ body {
     margin-top: 3%;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.botaoAdd {
+    color: #683A91;
+    font-size: 2.3rem;
 }
