@@ -1,32 +1,25 @@
 <?php
-include __DIR__ . '/public/db.php';
 
-session_start();
+    include "public/db.php";
+    include "src/User.php";
+    include "src/Auth.php";
 
-$msg = '';
-if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-    $email = $_POST['email'] ?? "";
-    $pass = $_POST['password'] ?? "";
+    session_start();
 
-    $stmt = $mysqli->prepare("SELECT id_usuario, nome, email, senha, perfil FROM usuario WHERE email=? AND senha=?");
-    $stmt->bind_param("ss", $email, $pass);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $dados = $result->fetch_assoc();
-    $stmt->close();
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
 
-    if ($dados) {
-        $_SESSION['user_id'] = $dados['id_usuario'];
-        $_SESSION['email'] = $dados['email'];
-        $_SESSION['usuario'] = $dados['nome'];
-        $_SESSION['perfil'] = $dados['perfil'];
-        header('Location: public/dashboard.php');
-        exit;
-    } else {
-        $msg = "Usuário ou senha incorretos!";
+        $user = new User($conn);
+        $auth = new Auth();
+
+        $loggedInUser = $user -> login($_POST['email'], $_POST['password']);
+        if($loggedInUser){
+            $auth -> loginUser($loggedInUser);
+            header("Location: public/dashboard.php");
+        }else{
+            echo "Login Falhou";
+        }
     }
 
-}
 ?>
 
 <html lang="en">

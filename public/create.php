@@ -1,40 +1,20 @@
 <?php
 
 include 'db.php';
+include "../src/User.php";
 
 session_start();
 
 
-if (empty($_SESSION["user_id"])) {
-    header("Location: ../index.php");
-    exit;
-};
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        $user = new User($conn);
 
-$register_msg = "";
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['register'])) {
-    $nome = $_POST['nome'] ?? "";
-    $email = $_POST['email'] ?? "";
-    $pass = $_POST['senha'] ?? "";
-    $perfil = $_POST['perfil'] ?? "";
-    $cpf = $_POST['cpf'] ?? "";
-    $nascimento = $_POST['nascimento'] ?? "";
-    $endereco = $_POST['endereco'] ?? "";
-    $contato = $_POST['contato'] ?? "";
-    if ($nome && $pass) {
-        $stmt = $mysqli->prepare("INSERT INTO usuario (nome, email, senha, perfil, CPF, data_nascimento, endereco, contato) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssss", $nome, $email, $pass, $perfil, $cpf, $nascimento, $endereco, $contato);
+        $user -> register($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['perfil'], $_POST['cpf'], $_POST['nascimento'], $_POST['endereco'], $_POST['contato']);
+        header("Location: index.php");
+    }
 
-        if ($stmt->execute()) {
-            $register_msg = "Usuário cadastrado com sucesso!";
-        } else {
-            $register_msg = "Erro ao cadastrar novo usuário.";
-        };
-        $stmt->close();
-    } else {
-        $register = "Preencha todos os campos.";
-    };
-};
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

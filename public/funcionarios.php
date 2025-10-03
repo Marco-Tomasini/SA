@@ -4,7 +4,9 @@ session_start();
 include 'db.php';
 
 $sql = "SELECT id_usuario,imagem_usuario,nome,data_nascimento,cpf FROM usuario";
-$result = $mysqli->query($sql);
+
+$resultFuncionario = $conn->query($sql);
+$funcionarios = $resultFuncionario->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['dashboard'])) {
@@ -49,14 +51,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="row">
                 <div class="col d-flex flex-wrap justify-content-between mt-4 ms-5 me-5 gap-3">
-                    <?php while ($row = $result->fetch_assoc()) { ?>
+                    <?php foreach ($funcionarios as $row): ?>
                         <div class="profile">
                             <img src="../assets/img/<?php echo ($row['imagem_usuario']); ?>" alt="user-icon">
                             <h2><?php echo ($row['nome']); ?></h2>
                             <h3><?php echo ($row['data_nascimento']); ?></h3>
                             <h3><?php echo ($row['cpf']); ?></h3>
                         </div>
-                    <?php } ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
 

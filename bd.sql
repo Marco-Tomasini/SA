@@ -27,7 +27,7 @@ CREATE TABLE usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE,
-    senha VARCHAR(100),
+    senha VARCHAR(100) NOT NULL,
     perfil ENUM('Controlador', 'Engenheiro', 'Planejador', 'Maquinista', 'Gerente') NOT NULL
 );
 
@@ -173,3 +173,6 @@ ALTER TABLE usuario
 
 ALTER TABLE usuario
     MODIFY COLUMN imagem_usuario VARCHAR(255) DEFAULT 'default.png';
+
+ALTER TABLE usuario
+    MODIFY COLUMN senha VARCHAR(255);

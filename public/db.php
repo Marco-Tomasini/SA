@@ -1,13 +1,15 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "smartcitiesv7";
 
-// A variável aqui precisa ser $mysqli
-$mysqli = new mysqli($servername, $username, $password, $dbname);
+    $servername = "localhost";
+    $username = "root";
+    $password = "root";
+    $dbname = "smartcitiesv7";
 
-if ($mysqli->connect_error) {
-    die("Conexão falhou: " . $mysqli->connect_error);
-}
-?>
+    try{
+        $conn = new PDO("mysql: host=$servername; dbname=$dbname", $username, $password);
+
+        $conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }catch(PDOException $e){
+        echo "Coneção Falhou, erro: " . $e->getMessage();
+
+    }

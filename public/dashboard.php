@@ -6,11 +6,13 @@ include 'db.php';
 $sql = "SELECT id_viagem, nome_viagem, data_partida, data_chegada_previsao, data_chegada, status_viagem, nome_viagem 
         FROM viagem";
 
-$resultViagem = $mysqli->query($sql);
+$resultViagem = $conn->query($sql);
+$viagens = $resultViagem->fetchAll(PDO::FETCH_ASSOC);
 
 $sql = "SELECT * FROM alerta";
 
-$resultAlerta = $mysqli->query($sql);
+$resultAlerta = $conn->query($sql);
+$alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -32,7 +34,7 @@ $resultAlerta = $mysqli->query($sql);
             <div class="row headerDash d-flex align-items-center">
                 <div class="col-6 mt-4 ms-2 welcome lh-1">
                     <p>Bem-vindo(a)</p>
-                    <p class="fw-bold fs-5"><?php echo htmlspecialchars($_SESSION['usuario']); ?></p>
+                    <p class="fw-bold fs-5"><?php echo htmlspecialchars($_SESSION['nome']); ?></p>
                 </div>
 
                 <div class="col-6">
@@ -40,8 +42,8 @@ $resultAlerta = $mysqli->query($sql);
                 </div>
             </div>
             <div class="scrollViagens">
-                <?php if ($resultViagem->num_rows > 0): ?>
-                    <?php while ($row = $resultViagem->fetch_assoc()): ?>
+                <?php if (count($viagens) > 0): ?>
+                    <?php foreach ($viagens as $row): ?>
                         <div class="row row-cols-1 border-bottom border-black">
                             <div class="col-12 d-flex justify-content-between align-items-center lh-1 mt-3 mb-3">
                                 <div class="col-4 d-flex flex-column align-items-start">
@@ -74,7 +76,7 @@ $resultAlerta = $mysqli->query($sql);
                                 </div>
                             </div>
                         </div>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                 <?php endif; ?>
             </div>
 
@@ -87,10 +89,10 @@ $resultAlerta = $mysqli->query($sql);
                 <div class="col-6 d-flex justify-content-end"><img src="../assets/icon/seta-curva-esquerda 2.svg" alt="" height="32"></div>
             </div>
             <div class="scrollAlertas">
-                <?php if ($resultAlerta->num_rows > 0): ?>
-                    <?php while ($row = $resultAlerta->fetch_assoc()): ?>
+                <?php if (count($alertas) > 0): ?>
+                    <?php foreach ($alertas as $row): ?>
 
-                        <div class="row row.cols-1 border-bottom border-black">
+                        <div class="row row-cols-1 border-bottom border-black">
                             <div class="col-12 d-flex align-items-center mt-3 mb-3">
                                 <div class="col-1 d-flex justify-content-center align-items-center">
                                     <img src="../assets/icon/Ellipse 16.svg" alt="">
@@ -102,7 +104,7 @@ $resultAlerta = $mysqli->query($sql);
                                 </div>
                             </div>
                         </div>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                 <?php endif; ?>
             </div>
         </div>
