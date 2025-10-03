@@ -4,7 +4,8 @@ include 'db.php';
 
 $sql = "SELECT nome_viagem FROM viagem";
 
-$result = $mysqli->query($sql);
+$resultRelatorios = $conn->query($sql);
+$relatorios = $resultRelatorios->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['dashboard'])) {
@@ -43,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="row">
                 <div class="col">
                     <div class="">
-                        <?php if ($result->num_rows > 0): ?>
-                            <?php while ($row = $result->fetch_assoc()): ?>
+                        <?php if ($resultRelatorios->rowCount() > 0): ?>
+                            <?php foreach ($relatorios as $row): ?>
 
                                 <div class="row row.cols-1 border-bottom border-black">
                                     <div class="col-12 d-flex align-items-center mt-3 mb-3">
@@ -61,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </div>
                                     </div>
                                 </div>
-                            <?php endwhile; ?>
+                            <?php endforeach; ?>
                         <?php endif; ?>
                     </div>
                 </div>

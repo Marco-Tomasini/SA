@@ -10,7 +10,8 @@ session_start();
         $user = new User($conn);
 
         $user -> register($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['perfil'], $_POST['cpf'], $_POST['nascimento'], $_POST['endereco'], $_POST['contato']);
-        header("Location: index.php");
+        header("Location: dashboard.php");
+        exit();
     }
 
 ?>
@@ -50,11 +51,11 @@ session_start();
                 <div class="mb-3">
                     <label for="perfil" class="form-label">Perfil: </label>
                     <select class="form-select" name="perfil" id="perfil">
-                        <option value="controlador">Controlador</option>
-                        <option value="engenheiro">Engenheiro</option>
-                        <option value="planejador">Planejador</option>
-                        <option value="maquinista">Maquinista</option>
-                        <option value="gerente">Gerente</option>
+                        <option value="Controlador">Controlador</option>
+                        <option value="Engenheiro">Engenheiro</option>
+                        <option value="Planejador">Planejador</option>
+                        <option value="Maquinista">Maquinista</option>
+                        <option value="Gerente">Gerente</option>
                     </select>
                 </div>
 
