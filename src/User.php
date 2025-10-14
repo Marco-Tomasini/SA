@@ -44,14 +44,22 @@ class User{
         return false;
     }
 
+    public function getUserById($userId)
+    {
+        $sql = "SELECT * FROM usuario WHERE id_usuario = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
-    public function getUserById($userId){
-
-        $sql = "SELECT * FROM usuarios WHERE id = :id";
-        $stmt = $this -> conn->prepare($sql);
-        $stmt -> bindParam(':id', $userId);
-        $stmt -> execute();
-        return $stmt -> fetch(PDO::FETCH_ASSOC);
+    public function updateProfilePic(int $userId, string $filename): bool
+    {
+        $sql = "UPDATE usuario SET imagem_usuario = :filename WHERE id_usuario = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':filename', $filename, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
+        return $stmt->execute();
     }
 }
 ?>
