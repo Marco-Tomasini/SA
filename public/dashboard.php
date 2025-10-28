@@ -34,7 +34,7 @@ $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
             <div class="row headerDash d-flex align-items-center">
                 <div class="col-6 mt-4 ms-2 welcome lh-1">
                     <p>Bem-vindo(a)</p>
-                    <p class="fw-bold fs-5"><?php echo htmlspecialchars($_SESSION['nome']); ?></p>
+                    <p class="fw-bold fs-5" onclick="window.location.href='upload_foto.php'" style="cursor: pointer;"><?php echo htmlspecialchars($_SESSION['nome']);?></p>
                 </div>
 
                 <div class="col-6">
