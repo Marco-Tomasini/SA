@@ -19,10 +19,6 @@ body {
     height: 50px;
 }
 
-.form-control::-webkit-input-placeholder {
-    color: #D9D9D9;
-}
-
 .loginForm {
     width: 100vw;
 }
