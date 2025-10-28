@@ -2,6 +2,7 @@
 
 include 'db.php';
 include "../src/User.php";
+include "../src/Validarcpf.php";
 
 session_start();
 
