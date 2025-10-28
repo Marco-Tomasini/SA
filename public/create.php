@@ -3,17 +3,31 @@
 include 'db.php';
 include "../src/User.php";
 include "../src/Validarcpf.php";
+require "../src/Validarcpf.php";
 
 session_start();
 
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'validar_cpf') {
+    $cpf = $_POST['cpf'];
+    $nascimento = $_POST['nascimento'];
 
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $validador = new Validarcpf();
+    $resultado = $validador->validar($cpf, $nascimento);
+
+    header('Content-Type: application/json');
+    echo json_encode(['success' => $resultado]);
+    exit();
+    }
+
+    if($_SERVER['REQUEST_METHOD'] == "POST" && (!isset($_POST['action']) || $_POST['action'] != 'validar_cpf')){
         $user = new User($conn);
 
         $user -> register($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['perfil'], $_POST['cpf'], $_POST['nascimento'], $_POST['endereco'], $_POST['contato']);
         header("Location: dashboard.php");
         exit();
     }
+
+
 
 ?>
 
@@ -62,7 +76,8 @@ session_start();
 
                 <div class="mb-3">
                     <label for="cpf" class="form-label">CPF: </label>
-                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Insira...">
+                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Insira..." onblur="">
+                    <div id="cpfResult" class="text-danger mt-1"></div>
                 </div>
 
                 <div class="mb-3">
