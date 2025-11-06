@@ -2,7 +2,9 @@ CREATE DATABASE SmartCitiesV7;
 
 USE SmartCitiesV7;
 
--- Tabelas principais
+-- ===========================
+-- TABELAS PRINCIPAIS
+-- ===========================
 
 CREATE TABLE estacao (
     id_estacao INT AUTO_INCREMENT PRIMARY KEY,
@@ -27,8 +29,13 @@ CREATE TABLE usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE,
-    senha VARCHAR(100) NOT NULL,
-    perfil ENUM('Controlador', 'Engenheiro', 'Planejador', 'Maquinista', 'Gerente') NOT NULL
+    senha VARCHAR(255) NOT NULL,
+    perfil ENUM('Controlador', 'Engenheiro', 'Planejador', 'Maquinista', 'Gerente') NOT NULL,
+    CPF VARCHAR(14) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    endereco VARCHAR(255) NOT NULL,
+    contato VARCHAR(12) NOT NULL,
+    imagem_usuario VARCHAR(255) DEFAULT 'default.png'
 );
 
 CREATE TABLE rota (
@@ -56,12 +63,15 @@ CREATE TABLE viagem (
     data_partida DATETIME,
     data_chegada_previsao DATETIME,
     data_chegada DATETIME,
-    status_viagem VARCHAR(30),
+    status_viagem ENUM('Ok', 'Revisão', 'Reparo', 'Atraso') NOT NULL DEFAULT 'Ok',
+    nome_viagem VARCHAR(100) NOT NULL,
     FOREIGN KEY (id_trem_fk) REFERENCES trem(id_trem),
     FOREIGN KEY (id_rota_fk) REFERENCES rota(id_rota)
 );
 
--- Sensores
+-- ===========================
+-- SENSORES
+-- ===========================
 
 CREATE TABLE sensor (
     id_sensor INT AUTO_INCREMENT PRIMARY KEY,
@@ -96,7 +106,9 @@ CREATE TABLE leitura_sensor (
     FOREIGN KEY (id_sensor_fk) REFERENCES sensor(id_sensor)
 );
 
--- Manutenção
+-- ===========================
+-- MANUTENÇÃO
+-- ===========================
 
 CREATE TABLE ordem_manutencao (
     id_ordem INT AUTO_INCREMENT PRIMARY KEY,
@@ -109,7 +121,9 @@ CREATE TABLE ordem_manutencao (
     FOREIGN KEY (id_trem_fk) REFERENCES trem(id_trem)
 );
 
--- Alertas
+-- ===========================
+-- ALERTAS
+-- ===========================
 
 CREATE TABLE alerta (
     id_alerta INT AUTO_INCREMENT PRIMARY KEY,
@@ -130,7 +144,9 @@ CREATE TABLE alerta_usuario (
     FOREIGN KEY (id_usuario_fk) REFERENCES usuario(id_usuario)
 );
 
--- Relatórios
+-- ===========================
+-- RELATÓRIOS
+-- ===========================
 
 CREATE TABLE relatorios (
     id_relatorio INT AUTO_INCREMENT PRIMARY KEY,
@@ -140,39 +156,3 @@ CREATE TABLE relatorios (
     causas_atraso TEXT,
     custo_medio_manutencao DECIMAL(10,2)
 );
-
-
-
-
-
-
-ALTER TABLE usuario
-    ADD COLUMN CPF VARCHAR(14) NOT NULL,
-    ADD COLUMN tipo_sanguineo ENUM('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-') NOT NULL,
-    ADD COLUMN data_nascimento DATE NOT NULL,
-    ADD COLUMN endereco VARCHAR(255) NOT NULL,
-    ADD COLUMN contato VARCHAR(255) NOT NULL;
-
-
-ALTER TABLE viagem
-    MODIFY COLUMN status_viagem ENUM('Ok', 'Revisão', 'Reparo', 'Atraso') NOT NULL DEFAULT 'Ok';
-
-ALTER TABLE usuario
-    DROP COLUMN tipo_sanguineo;
-
-ALTER TABLE viagem
-    ADD COLUMN nome_viagem VARCHAR(100) NOT NULL;
-
-ALTER TABLE usuario
-    MODIFY COLUMN contato VARCHAR(12) NOT NULL,
-    ADD COLUMN imagem_usuario VARCHAR(255) NOT NULL DEFAULT 'default.png';
-
-
-ALTER TABLE usuario
-    MODIFY COLUMN imagem_usuario VARCHAR(255) NULL;
-
-ALTER TABLE usuario
-    MODIFY COLUMN imagem_usuario VARCHAR(255) DEFAULT 'default.png';
-
-ALTER TABLE usuario
-    MODIFY COLUMN senha VARCHAR(255);

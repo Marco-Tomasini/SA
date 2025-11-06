@@ -36,12 +36,13 @@ INSERT INTO trem (id_trem, identificador, modelo, capacidade_passageiros, capaci
 
 -- Usuários
 INSERT INTO usuario (id_usuario, nome, email, senha, perfil, CPF, data_nascimento, endereco, contato, imagem_usuario) VALUES
-(1, 'Ana Costa', 'ana.costa@smartcity.com', 'pbkdf2$10000$exemplohash1', 'Controlador', '123.456.789-09', '1985-03-12', 'Av. Central, 123, Centro', '554799900001', 'default.png'),
-(2, 'Bruno Lima', 'bruno.lima@smartcity.com', 'pbkdf2$10000$exemplohash2', 'Engenheiro', '987.654.321-00', '1979-07-22', 'R. das Acácias, 45, Norte', '554799900002', 'default.png'),
-(3, 'Carla Souza', 'carla.souza@smartcity.com', 'pbkdf2$10000$exemplohash3', 'Planejador', '111.222.333-44', '1990-01-05', 'Praça Azul, 10, Sul', '554799900003', 'default.png'),
-(4, 'Diego Pereira', 'diego.pereira@smartcity.com', 'pbkdf2$10000$exemplohash4', 'Maquinista', '222.333.444-55', '1988-11-30', 'Av. do Trabalho, 210, Oeste', '554799900004', 'default.png'),
-(5, 'Elisa Ramos', 'elisa.ramos@smartcity.com', 'pbkdf2$10000$exemplohash5', 'Gerente', '333.444.555-66', '1975-06-15', 'R. Nova, 78, Leste', '554799900005', 'default.png'),
-(6, 'Felipe Nunes', 'felipe.nunes@smartcity.com', 'pbkdf2$10000$exemplohash6', 'Engenheiro', '444.555.666-77', '1992-12-02', 'Alameda Verde, 12, Centro', '554799900006', 'default.png');
+(1, 'Admin', 'admin@admin.admin', 'admin', 'Gerente', '13105311963', '2008-02-19', 'Av. Central, 123, Centro', '554791097470', 'default.png'),
+(2, 'Icaro Botelho', 'icaro.botelho@edu.sc.senai.br', 'dandomoles', 'Gerente', '13105311963', '2002-05-06', 'Av. Central, 123, Centro', '47992214358', 'default.png'),
+(3, 'Enzo Caetano', 'enzo_caetano@estudante.sesisenai.org.br', '123', 'Gerente', '13105311963', '1979-07-22', 'R. das Acácias, 45, Norte', '554791097470', 'default.png'),
+(4, 'Marco Tomasini', 'marco_tomasini@estudante.sesisenai.org.br', '123', 'Gerente', '10486527930', '1990-01-05', 'Praça Azul, 10, Sul', '554799900003', 'default.png'),
+(5, 'Carlos Bittencourt', 'carlos_bittencourt2@estudante.sesisenai.org.br', '123', 'Gerente', '08564946904', '1988-11-30', 'Av. do Trabalho, 210, Oeste', '554799900004', 'default.png'),
+(6, 'Brayan Godoy', 'brayan_godoy@estudante.sesisenai.org.br', '123', 'Gerente', '333.444.555-66', '1975-06-15', 'R. Nova, 78, Leste', '554799900005', 'default.png'),
+(7, 'Felipe Nunes', 'felipe.nunes@smartcity.com', '123', 'Engenheiro', '444.555.666-77', '1992-12-02', 'Alameda Verde, 12, Centro', '554799900006', 'default.png');
 
 -- Sensores (tipo = 'Trilho' ou 'Trem')
 INSERT INTO sensor (id_sensor, tipo, descricao) VALUES
