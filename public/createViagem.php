@@ -77,13 +77,33 @@ if (!isset($_SESSION['id_usuario'])) {
                                 ?>
                             </select>
                         </div>
+
                         <div>
-                            <label for="localizacao" class="form-label">Rota Pertencente:</label>
-                            <textarea class="form-control" id="localizacao" name="localizacao" rows="4" placeholder="Insira a localização da estação"></textarea>
+                            <label for="id_rota_fk" class="form-label">Rota Pertencente:</label>
+                            <select class="form-control" id="id_rota_fk" name="id_rota_fk">
+                                <option value="">Selecione a Rota</option>
+                                <?php
+                                $sql = "SELECT id_rota, nome FROM rota";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->execute();
+                                $rotas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                foreach ($rotas as $rota) {
+                                    echo "<option value=\"{$rota['id_rota']}\">{$rota['nome']}</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
+
+                        <div>
+                            <label for="data_partida" class="form-label">Data de Partida:</label>
+                            <input type="datetime-local" class="form-control" id="data_partida" name="data_partida">
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Cadastrar Estação</button>
                     </form>
                 </div>
+
+
             </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
