@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" name="dashboard" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt=""></button>
+                    <button type="button" name="dashboard" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
                     <div class="d-flex flex-column">
                         <p class="mb-0">Gerenciamento de</p>
                         <p class="mb-0 fs-3 fw-bold">Funcionários</p>
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="row">
                 <div class="col d-flex justify-content-center fixed-bottom mb-3">
-                    <i class="bi bi-person-fill-add botaoAdd"></i>
+                    <i class="bi bi-person-fill-add botaoAdd" onclick="location.href='create.php'"></i>
                 </div>
             </div>
         </div>

@@ -7,10 +7,18 @@ session_start();
 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
 
-        $sql = "INSERT INTO rota (nome,descricao) VALUES (:nome,:descricao)";
+        $sql = "INSERT INTO trem (identificador,modelo,capacidade_passageiros,capacidade_carga_kg,status_trem,quilometragem,tempo_uso,ultima_manutencao,consumo_kwh) VALUES (:identificador,:modelo,:capacidade_passageiros,:capacidade_carga_kg,:status_trem,:quilometragem,:tempo_uso,:ultima_manutencao,:consumo_kwh)";
+        
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':nome', $_POST['nome']);
-        $stmt->bindParam(':descricao', $_POST['descricao']);
+        $stmt->bindParam(':identificador', $_POST['identificador']);
+        $stmt->bindParam(':modelo', $_POST['modelo']);
+        $stmt->bindParam(':capacidade_passageiros', $_POST['capacidade_passageiros']);
+        $stmt->bindParam(':capacidade_carga_kg', $_POST['capacidade_carga_kg']);
+        $stmt->bindParam(':status_trem', $_POST['status_trem']);
+        $stmt->bindParam(':quilometragem', $_POST['quilometragem']);
+        $stmt->bindParam(':tempo_uso', $_POST['tempo_uso']);
+        $stmt->bindParam(':ultima_manutencao', $_POST['ultima_manutencao']);
+        $stmt->bindParam(':consumo_kwh', $_POST['consumo_kwh']);
         $stmt->execute();
 
     }
@@ -21,7 +29,7 @@ session_start();
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Rotas</title>
+    <title>Cadastro de Trem</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../styles/style.css">
@@ -38,7 +46,7 @@ session_start();
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
                     <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
                     <div class="d-flex flex-column">
-                        <p>Cadastro de Rotas</p>
+                        <p>Cadastro de Trens</p>
                     </div>
                 </div>
 
@@ -51,14 +59,14 @@ session_start();
                 <div>
                     <form method="POST">
                         <div>
-                            <label for="nome" class="form-label">Nome da Rota:</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da rota">
+                            <label for="nome" class="form-label">Nome da Estação:</label>
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da estação">
                         </div>
                         <div>
-                            <label for="descricao" class="form-label">Descrição:</label>
-                            <textarea class="form-control" id="descricao" name="descricao" rows="4" placeholder="Insira a descrição da rota"></textarea>
+                            <label for="localizacao" class="form-label">Localização:</label>
+                            <textarea class="form-control" id="localizacao" name="localizacao" rows="4" placeholder="Insira a localização da estação"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Cadastrar Rota</button>
+                        <button type="submit" class="btn btn-primary">Cadastrar Estação</button>
                     </form>
                 </div>
             </div>

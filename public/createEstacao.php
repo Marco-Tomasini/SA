@@ -7,10 +7,10 @@ session_start();
 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
 
-        $sql = "INSERT INTO rota (nome,descricao) VALUES (:nome,:descricao)";
+        $sql = "INSERT INTO estacao (nome,localizacao) VALUES (:nome,:localizacao)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':nome', $_POST['nome']);
-        $stmt->bindParam(':descricao', $_POST['descricao']);
+        $stmt->bindParam(':localizacao', $_POST['localizacao']);
         $stmt->execute();
 
     }
@@ -21,7 +21,7 @@ session_start();
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Rotas</title>
+    <title>Cadastro de Estações</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../styles/style.css">
@@ -38,7 +38,7 @@ session_start();
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
                     <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
                     <div class="d-flex flex-column">
-                        <p>Cadastro de Rotas</p>
+                        <p>Cadastro de Estações</p>
                     </div>
                 </div>
 
@@ -51,14 +51,14 @@ session_start();
                 <div>
                     <form method="POST">
                         <div>
-                            <label for="nome" class="form-label">Nome da Rota:</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da rota">
+                            <label for="nome" class="form-label">Nome da Estação:</label>
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da estação">
                         </div>
                         <div>
-                            <label for="descricao" class="form-label">Descrição:</label>
-                            <textarea class="form-control" id="descricao" name="descricao" rows="4" placeholder="Insira a descrição da rota"></textarea>
+                            <label for="localizacao" class="form-label">Localização:</label>
+                            <textarea class="form-control" id="localizacao" name="localizacao" rows="4" placeholder="Insira a localização da estação"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Cadastrar Rota</button>
+                        <button type="submit" class="btn btn-primary">Cadastrar Estação</button>
                     </form>
                 </div>
             </div>

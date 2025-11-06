@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['gestao'])) {
-        header('Location: gestao.php');
+        header('Location: gestaoDeRotas.php');
         exit;
     } elseif (isset($_POST['manutencao'])) {
         header('Location: manutencao.php');
