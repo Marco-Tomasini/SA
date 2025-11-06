@@ -1,6 +1,6 @@
-CREATE DATABASE SmartCitiesV8;
+CREATE DATABASE SmartCitiesV9;
 
-USE SmartCitiesV8;
+USE SmartCitiesV9;
 
 -- ===========================
 -- TABELAS PRINCIPAIS
@@ -18,7 +18,7 @@ CREATE TABLE trem (
     modelo VARCHAR(50),
     capacidade_passageiros INT,
     capacidade_carga_kg INT,
-    status_trem VARCHAR(30),
+    status_trem ENUM ('Operacional', 'Manutenção', 'Fora de Serviço') DEFAULT 'Operacional',
     quilometragem DECIMAL(10,2) DEFAULT 0,
     ultima_manutencao DATETIME
 );
