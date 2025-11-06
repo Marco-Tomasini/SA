@@ -8,6 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['gestao'])) {
         header('Location: gestaoDeRotas.php');
         exit;
+    } elseif (isset($_POST['listaCadastros'])) {
+        header('Location: listaCadastros.php');
+        exit;
     } elseif (isset($_POST['manutencao'])) {
         header('Location: manutencao.php');
         exit;
@@ -55,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" name="relatorios">Relatórios e Análises</button>
         <button type="submit" name="alertas">Alertas e Notificações</button>
         <?php if (isset($_SESSION['perfil']) && strcasecmp(trim($_SESSION['perfil']), 'Gerente') === 0): ?>
+            <button type="submit" name="listaCadastros" class="func-btn">Lista Cadastros</button>
             <button type="submit" name="funcionarios" class="func-btn">Funcionários</button>
         <?php endif; ?>
         <button type="submit" name="sair" class="bottom-btn">Sair da Conta</button>

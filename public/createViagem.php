@@ -78,7 +78,7 @@ if (!isset($_SESSION['id_usuario'])) {
                             </select>
                         </div>
                         <div>
-                            <label for="localizacao" class="form-label">Localização:</label>
+                            <label for="localizacao" class="form-label">Rota Pertencente:</label>
                             <textarea class="form-control" id="localizacao" name="localizacao" rows="4" placeholder="Insira a localização da estação"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Cadastrar Estação</button>
