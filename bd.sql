@@ -20,7 +20,7 @@ CREATE TABLE trem (
     capacidade_carga_kg INT,
     status_trem VARCHAR(30),
     quilometragem DECIMAL(10,2) DEFAULT 0,
-    ultima_manutencao DATETIME,
+    ultima_manutencao DATETIME
 );
 
 CREATE TABLE usuario (
