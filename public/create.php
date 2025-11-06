@@ -2,22 +2,13 @@
 
 include 'db.php';
 include "../src/User.php";
-include "../src/Validarcpf.php";
-require "../src/Validarcpf.php";
 
 session_start();
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'validar_cpf') {
-    $cpf = $_POST['cpf'];
-    $nascimento = $_POST['nascimento'];
-
-    $validador = new Validarcpf();
-    $resultado = $validador->validar($cpf, $nascimento);
-
-    header('Content-Type: application/json');
-    echo json_encode(['success' => $resultado]);
+if (!isset($_SESSION['id_usuario'])) {
+    header('Location: ../index.php');
     exit();
-    }
+}
+
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && (!isset($_POST['action']) || $_POST['action'] != 'validar_cpf')){
         $user = new User($conn);

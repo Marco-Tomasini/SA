@@ -4,10 +4,16 @@ include 'db.php';
 include "../src/User.php";
 
 session_start();
+if (!isset($_SESSION['id_usuario'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
+session_start();
 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
 
-        $sql = "INSERT INTO trem (identificador,modelo,capacidade_passageiros,capacidade_carga_kg,status_trem,quilometragem,tempo_uso,ultima_manutencao,consumo_kwh) VALUES (:identificador,:modelo,:capacidade_passageiros,:capacidade_carga_kg,:status_trem,:quilometragem,:tempo_uso,:ultima_manutencao,:consumo_kwh)";
+        $sql = "INSERT INTO trem (identificador,modelo,capacidade_passageiros,capacidade_carga_kg,status_trem,quilometragem,ultima_manutencao) VALUES (:identificador,:modelo,:capacidade_passageiros,:capacidade_carga_kg,:status_trem,:quilometragem,:ultima_manutencao)";
         
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':identificador', $_POST['identificador']);
@@ -16,9 +22,7 @@ session_start();
         $stmt->bindParam(':capacidade_carga_kg', $_POST['capacidade_carga_kg']);
         $stmt->bindParam(':status_trem', $_POST['status_trem']);
         $stmt->bindParam(':quilometragem', $_POST['quilometragem']);
-        $stmt->bindParam(':tempo_uso', $_POST['tempo_uso']);
         $stmt->bindParam(':ultima_manutencao', $_POST['ultima_manutencao']);
-        $stmt->bindParam(':consumo_kwh', $_POST['consumo_kwh']);
         $stmt->execute();
 
     }
@@ -76,7 +80,11 @@ session_start();
                         </div>
                         <div>
                             <label for="status_trem" class="form-label">Status do Trem:</label>
-                            <input type="text" class="form-control" id="status_trem" name="status_trem" placeholder="Insira o status do trem">
+                            <select class="form-control" id="status_trem" name="status_trem">
+                                <option value="Operacional">Operacional</option>
+                                <option value="Manutenção">Manutenção</option>
+                                <option value="Fora de Serviço">Fora de Serviço</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Cadastrar Trem</button>
                     </form>

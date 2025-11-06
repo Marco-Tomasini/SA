@@ -2,7 +2,11 @@
 
 include 'db.php';
 include "../src/User.php";
-
+session_start();
+if (!isset($_SESSION['id_usuario'])) {
+    header('Location: ../index.php');
+    exit();
+}
 session_start();
 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
