@@ -59,14 +59,26 @@ session_start();
                 <div>
                     <form method="POST">
                         <div>
-                            <label for="nome" class="form-label">Nome da Estação:</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da estação">
+                            <label for="identificador" class="form-label">Identificador:</label>
+                            <input type="text" class="form-control" id="identificador" name="identificador" placeholder="Insira o identificador do trem">
                         </div>
                         <div>
-                            <label for="localizacao" class="form-label">Localização:</label>
-                            <textarea class="form-control" id="localizacao" name="localizacao" rows="4" placeholder="Insira a localização da estação"></textarea>
+                            <label for="modelo" class="form-label">Modelo:</label>
+                            <textarea class="form-control" id="modelo" name="modelo" rows="4" placeholder="Insira o modelo do trem"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Cadastrar Estação</button>
+                        <div>
+                            <label for="capacidade_passageiros" class="form-label">Capacidade de Passageiros:</label>
+                            <input type="number" class="form-control" id="capacidade_passageiros" name="capacidade_passageiros" placeholder="Insira a capacidade de passageiros">
+                        </div>
+                        <div>
+                            <label for="capacidade_carga_kg" class="form-label">Capacidade de Carga (kg):</label>
+                            <input type="number" class="form-control" id="capacidade_carga_kg" name="capacidade_carga_kg" placeholder="Insira a capacidade de carga em kg">
+                        </div>
+                        <div>
+                            <label for="status_trem" class="form-label">Status do Trem:</label>
+                            <input type="text" class="form-control" id="status_trem" name="status_trem" placeholder="Insira o status do trem">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cadastrar Trem</button>
                     </form>
                 </div>
             </div>
