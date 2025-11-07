@@ -46,10 +46,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="offcanvas-body">
                 <div class="col d-flex flex-column gap-5 ms-4 me-4" role="group" aria-label="Vertical button group">
-                    <button type="button" class="btn btn-dark">Gestão de Rotas</button>
-                    <button type="button" class="btn btn-dark btn-lg">Monit. de Manutenção</button>
-                    <button type="button" class="btn btn-dark btn-lg">Relatórios e Análises</button>
-                    <button type="button" class="btn btn-dark btn-lg">Alertas e Notficações</button>
+                    <div class="d-flex">
+                        <div class="col">
+                            <button type="button" class="btn btn-dark custom-height-btn">Gestão de Rotas</button>
+                            <button type="button" class="btn btn-dark custom-height-btn">Monit. de Manutenção</button>
+                            <button type="button" class="btn btn-dark custom-height-btn">Relatórios e Análises</button>
+                            <button type="button" class="btn btn-dark custom-height-btn">Alertas e Notficações</button>
+
+                            <button type="button" class="btn admin-btn btn-dark custom-height-btn">Funcionários</button>
+                            <button type="button" class="btn admin-btn btn-dark custom-height-btn">Lista de Cadastros</button>
+                        </div>
+
+                        <div class="col">
+                            <button type="button" class="btn btn-danger custom-height-btn bottom-0">Sair</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -24,9 +24,9 @@ session_start();
     <title>Cadastro de Rotas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../styles/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../styles/style.css">
 
 
 </head>
@@ -50,15 +50,15 @@ session_start();
             <div >
                 <div>
                     <form method="POST">
-                        <div>
+                        <div class="mb-3">
                             <label for="nome" class="form-label">Nome da Rota:</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da rota">
+                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Insira o nome da rota" aria-describedby="Nome da Rota">
                         </div>
-                        <div>
+                        <div class="mb-3">
                             <label for="descricao" class="form-label">Descrição:</label>
                             <textarea class="form-control" id="descricao" name="descricao" rows="4" placeholder="Insira a descrição da rota"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Cadastrar Rota</button>
+                        <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Rota</button>
                     </form>
                 </div>
             </div>
