@@ -29,7 +29,7 @@ if (!isset($_SESSION['id_usuario'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Criar Usuário</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
@@ -41,6 +41,18 @@ if (!isset($_SESSION['id_usuario'])) {
 <body>
     <main>
         <div class="container-fluid">
+            <div class="row navRelat d-flex align-items-center sticky-top">
+                <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <div class="d-flex flex-column">
+                        <p>Cadastro de Trens</p>
+                    </div>
+                </div>
+
+                <div>
+                    <?php include 'sidebar.php'; ?>
+                </div>
+            </div>
             <form method="POST" class="p-5">
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome: </label>
