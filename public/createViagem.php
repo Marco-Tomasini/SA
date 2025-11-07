@@ -99,6 +99,31 @@ if (!isset($_SESSION['id_usuario'])) {
                             <input type="datetime-local" class="form-control" id="data_partida" name="data_partida">
                         </div>
 
+                        <div>
+                            <label for="data_chegada_previsao" class="form-label">Data de Chegada Prevista:</label>
+                            <input type="datetime-local" class="form-control" id="data_chegada_previsao" name="data_chegada_previsao">
+                        </div>
+
+                        <div>
+                            <label for="data_chegada" class="form-label">Data de Chegada:</label>
+                            <input type="datetime-local" class="form-control" id="data_chegada" name="data_chegada">
+                        </div>
+
+                        <div>
+                            <label for="status_viagem" class="form-label">Status da Viagem:</label>
+                            <select class="form-control" id="status_viagem" name="status_viagem">
+                                <option value="Ok">Ok</option>
+                                <option value="Revisão">Revisão</option>
+                                <option value="Reparo">Reparo</option>
+                                <option value="Atraso">Atraso</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="nome_viagem" class="form-label">Nome da Viagem:</label>
+                            <input type="text" class="form-control" id="nome_viagem" name="nome_viagem">
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Cadastrar Estação</button>
                     </form>
                 </div>
