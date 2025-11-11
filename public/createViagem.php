@@ -36,10 +36,9 @@ if (!isset($_SESSION['id_usuario'])) {
     <title>Cadastro de Viagem</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../styles/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
+    <link rel="stylesheet" href="../styles/style.css">
 
 </head>
 <body>
@@ -50,7 +49,7 @@ if (!isset($_SESSION['id_usuario'])) {
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
                     <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
                     <div class="d-flex flex-column">
-                        <p>Cadastro de Viagem</p>
+                        <p class="mb-0">Cadastro de Viagem</p>
                     </div>
                 </div>
 
@@ -59,10 +58,10 @@ if (!isset($_SESSION['id_usuario'])) {
                 </div>
             </div>
 
-            <div >
-                <div>
+            <div class="row justify-content-center p-5">
+                <div class="col">
                     <form method="POST">
-                        <div>
+                        <div class="mb-3">
                             <label for="id_trem_fk" class="form-label">Trem Responsável:</label>
                             <select class="form-control" id="id_trem_fk" name="id_trem_fk">
                                 <option value="">Selecione o Trem</option>
@@ -78,7 +77,7 @@ if (!isset($_SESSION['id_usuario'])) {
                             </select>
                         </div>
 
-                        <div>
+                        <div class="mb-3">
                             <label for="id_rota_fk" class="form-label">Rota Pertencente:</label>
                             <select class="form-control" id="id_rota_fk" name="id_rota_fk">
                                 <option value="">Selecione a Rota</option>
@@ -94,22 +93,22 @@ if (!isset($_SESSION['id_usuario'])) {
                             </select>
                         </div>
 
-                        <div>
+                        <div class="mb-3">
                             <label for="data_partida" class="form-label">Data de Partida:</label>
                             <input type="datetime-local" class="form-control" id="data_partida" name="data_partida">
                         </div>
 
-                        <div>
+                        <div class="mb-3">
                             <label for="data_chegada_previsao" class="form-label">Data de Chegada Prevista:</label>
                             <input type="datetime-local" class="form-control" id="data_chegada_previsao" name="data_chegada_previsao">
                         </div>
 
-                        <div>
+                        <div class="mb-3">
                             <label for="data_chegada" class="form-label">Data de Chegada:</label>
                             <input type="datetime-local" class="form-control" id="data_chegada" name="data_chegada">
                         </div>
 
-                        <div>
+                        <div class="mb-3">
                             <label for="status_viagem" class="form-label">Status da Viagem:</label>
                             <select class="form-control" id="status_viagem" name="status_viagem">
                                 <option value="Ok">Ok</option>
@@ -124,7 +123,7 @@ if (!isset($_SESSION['id_usuario'])) {
                             <input type="text" class="form-control" id="nome_viagem" name="nome_viagem">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Cadastrar Estação</button>
+                        <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Viagem</button>
                     </form>
                 </div>
 
