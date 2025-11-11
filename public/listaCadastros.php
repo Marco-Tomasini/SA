@@ -16,8 +16,9 @@
     <Button onclick="location.href='createEstacao.php'">Cadastro de Estações</Button>
     <Button onclick="location.href='createTrem.php'">Cadastro de Trem</Button>
     <Button onclick="location.href='createViagem.php'">Cadastro de Viagem</Button>
-    
     <Button onclick="location.href='createSegmentoRota.php'">Cadastro de Segmento de Rota</Button>
+    <Button onclick="location.href='createAlerta.php'">Cadastro de Alerta</Button>
+    <Button onclick="location.href='createOrdemM.php'">Cadastro de Ordem de Manutenção</Button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
