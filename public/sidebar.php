@@ -60,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if (isset($_SESSION['perfil']) && strcasecmp(trim($_SESSION['perfil']), 'Gerente') === 0): ?>
             <button type="submit" name="listaCadastros" class="func-btn">Lista Cadastros</button>
             <button type="submit" name="funcionarios" class="func-btn">Funcionários</button>
-            <button type="submit" name="funcionarios" class="func-btn">Lista de Cadastros</button>
         <?php endif; ?>
         <button type="submit" name="sair" class="bottom-btn">Sair da Conta</button>
     </form>

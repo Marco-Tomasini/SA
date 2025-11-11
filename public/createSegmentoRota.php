@@ -18,14 +18,6 @@ if (isset($_GET['id'])) {
     $stmt->execute();
     $segmento_rota_row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($segmento_rota_row) {
-        $nome = $segmento_rota_row['nome'];
-        $localizacao = $segmento_rota_row['localizacao'];
-    } else {
-        $nome = '';
-        $localizacao = '';
-    }
-
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         $sql2 = "UPDATE segmento_rota SET id_rota_fk = :id_rota_fk, ordem = :ordem, id_estacao_origem = :id_estacao_origem, id_estacao_destino = :id_estacao_destino, distancia_km = :distancia_km WHERE id_segmento_rota = :id_segmento_rota";
@@ -38,7 +30,7 @@ if (isset($_GET['id'])) {
         $stmt->bindParam(':distancia_km', $_POST['distancia_km']);
         $stmt->bindParam(':id_segmento_rota', $segmento_rota, PDO::PARAM_INT);
 
-        if ($stmt->execute()) {
+        if ($stmt !== false) {
             echo "<script>alert('Segmento de Rota Atualizado com sucesso.');</script>";
             header('Location: dashboard.php');
             exit();
@@ -151,7 +143,15 @@ if (isset($_GET['id'])) {
                             </select>                        
                         </div>
 
-                        
+                        <div>
+                            <label for="ordem" class="form-label">Ordem:</label>
+                            <select class="form-select" id="ordem" name="ordem">
+                                <?php for ($i = 1; $i <= 5; $i++): ?>
+                                    <option value="<?= $i ?>" <?= (isset($segmento_rota_row['ordem']) && $segmento_rota_row['ordem'] == $i) ? 'selected' : '' ?>><?= $i ?></option>
+                                <?php endfor; ?>
+                            </select>
+                        </div>
+
                         <div>
                             <label for="distancia_km" class="form-label">Distância (km):</label>
                             <input type="number" class="form-control" id="distancia_km" name="distancia_km" value="<?php echo isset($segmento_rota_row['distancia_km']) ? htmlspecialchars($segmento_rota_row['distancia_km']) : ''; ?>">
@@ -173,15 +173,33 @@ if (isset($_GET['id'])) {
 <?php
 }else{
     if($_SERVER['REQUEST_METHOD'] == "POST"){
+        if (
+            !empty($_POST['id_rota_fk']) &&
+            !empty($_POST['ordem']) &&
+            !empty($_POST['id_estacao_origem']) &&
+            !empty($_POST['id_estacao_destino']) &&
+            isset($_POST['distancia_km'])
+        ) {
+            $sql = "INSERT INTO segmento_rota (id_rota_fk, ordem, id_estacao_origem, id_estacao_destino, distancia_km) VALUES (:id_rota_fk, :ordem, :id_estacao_origem, :id_estacao_destino, :distancia_km)";
 
-        $sql = "INSERT INTO segmento_rota (id_rota_fk, ordem, id_estacao_origem, id_estacao_destino, distancia_km) VALUES (:id_rota_fk, :ordem, :id_estacao_origem, :id_estacao_destino, :distancia_km)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id_rota_fk', $_POST['id_rota_fk']);
+            $stmt->bindParam(':ordem', $_POST['ordem']);
+            $stmt->bindParam(':id_estacao_origem', $_POST['id_estacao_origem']);
+            $stmt->bindParam(':id_estacao_destino', $_POST['id_estacao_destino']);
+            $stmt->bindParam(':distancia_km', $_POST['distancia_km']);
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id_rota_fk', $_POST['id_rota_fk']);
-        $stmt->bindParam(':ordem', $_POST['ordem']);
-        $stmt->bindParam(':id_estacao_origem', $_POST['id_estacao_origem']);
-        $stmt->bindParam(':id_estacao_destino', $_POST['id_estacao_destino']);
-        $stmt->bindParam(':distancia_km', $_POST['distancia_km']);
+            if ($stmt->execute()) {
+                echo "<script>alert('Segmento de Rota cadastrado com sucesso.');</script>";
+                header('Location: dashboard.php');
+                exit();
+            } else {
+                $error = $stmt->errorInfo();
+                echo "Erro na consulta: " . $error[2];
+            }
+        } else {
+            echo "<script>alert('Preencha todos os campos obrigatórios.');</script>";
+        }
     }
 
 ?>
