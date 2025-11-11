@@ -154,3 +154,5 @@ CREATE TABLE relatorios (
     causas_atraso TEXT,
     custo_medio_manutencao DECIMAL(10,2)
 );
+
+ALTER TABLE alerta modify data_hora DATETIME DEFAULT CURRENT_TIMESTAMP;
