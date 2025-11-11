@@ -5,7 +5,7 @@ include "../src/User.php";
 session_start();
 
 if (!isset($_SESSION['id_usuario'])) {
-    header('Location: public/login.php');
+    header('Location: ../index.php');
     exit();
 }
 
@@ -207,10 +207,21 @@ if (isset($_GET['id'])) {
                         </div>
 
                         <div>
-                            <label for="id_viagem_fk" class="form-label">Viagem:</label>
-                            <select class="form-control" id="id_viagem_fk" name="id_viagem_fk">
+                            <label for="id_viagem_fk" class="form-label">Viagem Referente:</label>
+                            <?php
+                            $viagens = [];
+                            try {
+                                $stmtViagens = $conn->query("SELECT id_viagem, nome_viagem FROM viagem");
+                                $viagens = $stmtViagens->fetchAll(PDO::FETCH_ASSOC);
+                            } catch (Exception $e) {
+                                echo "Erro ao buscar viagens: " . $e->getMessage();
+                            }
+                            ?>
+                            <select class="form-select" id="id_viagem_fk" name="id_viagem_fk">
+                                <option value="">Selecione a viagem</option>
                                 <?php foreach ($viagens as $viagem): ?>
-                                    <option value="<?= htmlspecialchars($viagem['id_viagem']) ?>">
+                                    <option value="<?= htmlspecialchars($viagem['id_viagem']) ?>" 
+                                        <?= (isset($id_viagem_fk) && $id_viagem_fk == $viagem['id_viagem']) ? 'selected' : '' ?>>
                                         <?= htmlspecialchars($viagem['nome_viagem']) ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -218,7 +229,7 @@ if (isset($_GET['id'])) {
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary">Cadastrar Trem</button>
+                        <button type="submit" class="btn btn-primary">Cadastrar Alerta</button>
                     </form>
                 </div>
             </div>

@@ -15,9 +15,6 @@ $sql2 = "SELECT * FROM alerta_usuario WHERE id_usuario = " . $_SESSION['id_usuar
 $resultAlerta = $conn->query($sql);
 $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
 
-$resultAlertaUsuario = $conn->query($sql2);
-$alertasUsuario = $resultAlertaUsuario->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <html lang="en">
@@ -93,22 +90,31 @@ $alertasUsuario = $resultAlertaUsuario->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-6 d-flex justify-content-end"><img src="../assets/icon/seta-curva-esquerda 2.svg" alt="" height="32"></div>
             </div>
             <div class="scrollAlertas">
+                <?php
+                $alertas = array_filter($alertas, function ($row) {
+                    return !empty($row['tipo']) || !empty($row['mensagem']);
+                });
+                ?>
+
                 <?php if (count($alertas) > 0): ?>
                     <?php foreach ($alertas as $row): ?>
-
                         <div class="row row-cols-1 border-bottom border-black">
                             <div class="col-12 d-flex align-items-center mt-3 mb-3">
                                 <div class="col-1 d-flex justify-content-center align-items-center">
                                     <img src="../assets/icon/Ellipse 16.svg" alt="">
                                 </div>
 
-                                <div class="col-9">
+                                <div class="col-9" onclick="location.href='alertas.php?id=<?php echo $row['id_alerta']; ?>'" style="cursor: pointer;">
                                     <p class="mb-1"><?php echo htmlspecialchars($row['tipo']); ?></p>
                                     <p class="mb-1"><?php echo htmlspecialchars($row['mensagem']); ?></p>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="text-center mt-3 mb-3 text-muted">
+                        <p>Nenhum alerta disponível.</p>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
