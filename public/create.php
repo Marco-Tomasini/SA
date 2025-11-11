@@ -2,7 +2,15 @@
 
 include 'db.php';
 include "../src/User.php";
-    if($_SERVER['REQUEST_METHOD'] == "POST" && (!isset($_POST['action']) || $_POST['action'] != 'validar_cpf')){
+
+session_start();
+if (!isset($_SESSION['id_usuario'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
+
+    if($_SERVER['REQUEST_METHOD']){
         $user = new User($conn);
 
         $user -> register($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['perfil'], $_POST['cpf'], $_POST['nascimento'], $_POST['endereco'], $_POST['contato']);
