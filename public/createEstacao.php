@@ -45,10 +45,9 @@ if (isset($_GET['id'])) {
         <title>Atualização de Estações</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="../styles/style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
+        <link rel="stylesheet" href="../styles/style.css">
 
     </head>
 
@@ -60,7 +59,7 @@ if (isset($_GET['id'])) {
                     <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
                         <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
                         <div class="d-flex flex-column">
-                            <p>Atualização de Estações</p>
+                            <p class="mb-0">Atualização de Estações</p>
                         </div>
                     </div>
 
@@ -69,10 +68,10 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div>
-                    <div>
+                <div class="row justify-content-center p-5">
+                    <div class="col">
                         <form method="POST">
-                            <div>
+                            <div class="mb-3">
                                 <label for="nome" class="form-label">Nome da Estação:</label>
                                 <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da estação" value="<?php echo isset($nome) ? $nome : ''; ?>">
                             </div>
@@ -80,7 +79,7 @@ if (isset($_GET['id'])) {
                                 <label for="localizacao" class="form-label">Localização:</label>
                                 <textarea class="form-control" id="localizacao" name="localizacao" rows="4" placeholder="Insira a localização da estação"><?php echo isset($localizacao) ? $localizacao : ''; ?></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Atualizar Estação</button>
+                            <button type="submit" class="btn btn-light btnLogin mt-5">Atualizar Estação</button>
                         </form>
                     </div>
                 </div>
@@ -112,10 +111,9 @@ if (isset($_GET['id'])) {
         <title>Cadastro de Estações</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="../styles/style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
+        <link rel="stylesheet" href="../styles/style.css">
 
     </head>
 
@@ -127,7 +125,7 @@ if (isset($_GET['id'])) {
                     <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
                         <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
                         <div class="d-flex flex-column">
-                            <p>Cadastro de Estações</p>
+                            <p class="mb-0">Cadastro de Estações</p>
                         </div>
                     </div>
 
@@ -136,10 +134,10 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div>
-                    <div>
+                <div class="row justify-content-center p-5">
+                    <div class="col">
                         <form method="POST">
-                            <div>
+                            <div class="mb-3">
                                 <label for="nome" class="form-label">Nome da Estação:</label>
                                 <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da estação">
                             </div>
@@ -147,7 +145,7 @@ if (isset($_GET['id'])) {
                                 <label for="localizacao" class="form-label">Localização:</label>
                                 <textarea class="form-control" id="localizacao" name="localizacao" rows="4" placeholder="Insira a localização da estação"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Cadastrar Estação</button>
+                            <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Estação</button>
                         </form>
                     </div>
                 </div>

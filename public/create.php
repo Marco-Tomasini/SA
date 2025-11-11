@@ -10,10 +10,10 @@ if (!isset($_SESSION['id_usuario'])) {
 }
 
 
-    if($_SERVER['REQUEST_METHOD']){
+    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['perfil'], $_POST['cpf'], $_POST['nascimento'], $_POST['endereco'], $_POST['contato'])){
         $user = new User($conn);
 
-        $user -> register($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['perfil'], $_POST['cpf'], $_POST['nascimento'], $_POST['endereco'], $_POST['contato']);
+        $user->register($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['perfil'], $_POST['cpf'], $_POST['nascimento'], $_POST['endereco'], $_POST['contato']);
         header("Location: dashboard.php");
         exit();
     }

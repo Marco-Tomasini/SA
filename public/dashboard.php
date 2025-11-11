@@ -10,9 +10,13 @@ $resultViagem = $conn->query($sql);
 $viagens = $resultViagem->fetchAll(PDO::FETCH_ASSOC);
 
 $sql = "SELECT * FROM alerta";
+$sql2 = "SELECT * FROM alerta_usuario WHERE id_usuario = " . $_SESSION['id_usuario'];
 
 $resultAlerta = $conn->query($sql);
 $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
+
+$resultAlertaUsuario = $conn->query($sql2);
+$alertasUsuario = $resultAlertaUsuario->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
