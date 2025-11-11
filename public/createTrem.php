@@ -9,8 +9,6 @@ if (!isset($_SESSION['id_usuario'])) {
     exit();
 }
 
-session_start();
-
     if($_SERVER['REQUEST_METHOD'] == "POST"){
 
         $sql = "INSERT INTO trem (identificador,modelo,capacidade_passageiros,capacidade_carga_kg,status_trem,quilometragem,ultima_manutencao) VALUES (:identificador,:modelo,:capacidade_passageiros,:capacidade_carga_kg,:status_trem,:quilometragem,:ultima_manutencao)";

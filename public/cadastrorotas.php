@@ -25,17 +25,18 @@ if (isset($_GET['id'])) {
 
         $sql2 = "UPDATE rota SET nome='$nome', descricao='$descricao' WHERE id_rota='$id_rota'";
 
-        if($conn->query($sql2) === true) {
-            echo "<script>alert('Rota Atualizada com sucesso.');</script>";
-            header('Location: ../index.php');
+        if ($stmt !== false) {
+            echo "<script>alert('Estação Atualizada com sucesso.');</script>";
+            header('Location: dashboard.php');
             exit();
         } else {
-            $errorInfo = $conn->errorInfo();
-            echo "Erro " . $sql2 . '<br>' . $errorInfo[2];
+            $error = $conn->errorInfo();
+            echo "Erro na consulta: " . $error[2];
         }
         $conn = null;
+    }
     
-}
+
 ?>
 
 <html lang="pt-br">
