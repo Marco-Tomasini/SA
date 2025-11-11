@@ -139,10 +139,9 @@ if (isset($_GET['id'])) {
     <title>Cadastro de Trem</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../styles/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
+    <link rel="stylesheet" href="../styles/style.css">
 
 </head>
 <body>
@@ -153,7 +152,7 @@ if (isset($_GET['id'])) {
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
                     <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
                     <div class="d-flex flex-column">
-                        <p>Cadastro de Trens</p>
+                        <p class="mb-0">Cadastro de Trens</p>
                     </div>
                 </div>
 
@@ -162,22 +161,22 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
 
-            <div >
-                <div>
+            <div class="row justify-content-center p-5">
+                <div class="col">
                     <form method="POST">
-                        <div>
+                        <div class="mb-3">
                             <label for="identificador" class="form-label">Identificador:</label>
                             <input type="text" class="form-control" id="identificador" name="identificador" placeholder="Insira o identificador do trem">
                         </div>
-                        <div>
+                        <div class="mb-3">
                             <label for="modelo" class="form-label">Modelo:</label>
-                            <textarea class="form-control" id="modelo" name="modelo" rows="4" placeholder="Insira o modelo do trem"></textarea>
+                            <input type="text" class="form-control" id="modelo" name="modelo" rows="4" placeholder="Insira o modelo do trem"></input>
                         </div>
-                        <div>
+                        <div class="mb-3">
                             <label for="capacidade_passageiros" class="form-label">Capacidade de Passageiros:</label>
                             <input type="number" class="form-control" id="capacidade_passageiros" name="capacidade_passageiros" placeholder="Insira a capacidade de passageiros">
                         </div>
-                        <div>
+                        <div class="mb-3">
                             <label for="capacidade_carga_kg" class="form-label">Capacidade de Carga (kg):</label>
                             <input type="number" class="form-control" id="capacidade_carga_kg" name="capacidade_carga_kg" placeholder="Insira a capacidade de carga em kg">
                         </div>
@@ -189,7 +188,7 @@ if (isset($_GET['id'])) {
                                 <option value="Fora de Serviço">Fora de Serviço</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Cadastrar Trem</button>
+                        <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Trem</button>
                     </form>
                 </div>
             </div>

@@ -45,10 +45,9 @@ if (isset($_GET['id'])) {
     <title>Atualização de Rotas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../styles/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
+    <link rel="stylesheet" href="../styles/style.css">
 
 </head>
 <body>
@@ -59,7 +58,7 @@ if (isset($_GET['id'])) {
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
                     <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
                     <div class="d-flex flex-column">
-                        <p>Atualização de Rotas</p>
+                        <p class="mb-0">Atualização de Rotas</p>
                     </div>
                 </div>
 
@@ -68,10 +67,10 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
 
-            <div >
-                <div>
+            <div class="row justify-content-center p-5">
+                <div class="col">
                     <form method="POST">
-                        <div>
+                        <div class="mb-3">
                             <label for="nome" class="form-label">Nome da Rota:</label>
                             <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da rota" value="<?php echo isset($nome) ? $nome : ''; ?>">
                         </div>
@@ -79,7 +78,7 @@ if (isset($_GET['id'])) {
                             <label for="descricao" class="form-label">Descrição:</label>
                             <textarea class="form-control" id="descricao" name="descricao" rows="4" placeholder="Insira a descrição da rota"><?php echo isset($descricao) ? $descricao : ''; ?></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Atualizar Rota</button>
+                        <button type="submit" class="btn btn-light btnLogin mt-5">Atualizar Rota</button>
                     </form>
                 </div>
             </div>
@@ -123,8 +122,8 @@ if (isset($_GET['id'])) {
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
                     <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
-                    <div class="d-flex flex-column">
-                        <p>Cadastro de Rotas</p>
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <p class="mb-0">Cadastro de Rotas</p>
                     </div>
                 </div>
 
@@ -133,16 +132,16 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
 
-            <div >
-                <div>
+            <div class="row justify-content-center p-5">
+                <div class="col">
                     <form method="POST">
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome da Rota:</label>
                             <input type="text" class="form-control" name="nome" id="nome" placeholder="Insira o nome da rota" aria-describedby="Nome da Rota">
                         </div>
-                        <div class="mb-3">
+                        <div>
                             <label for="descricao" class="form-label">Descrição:</label>
-                            <textarea class="form-control" id="descricao" name="descricao" rows="4" placeholder="Insira a descrição da rota"></textarea>
+                            <textarea class="form-control" id="descricao" name="descricao" placeholder="Insira a descrição da rota"></textarea>
                         </div>
                         <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Rota</button>
                     </form>
