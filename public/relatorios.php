@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                                 <div class="row row.cols-1 border-bottom border-black">
                                     <div class="col-12 d-flex align-items-center mt-3 mb-3">
-                                        <div class="col-4">
+                                        <div class="col-4" onclick="location.href='relatorioDetalhado.php?nome_viagem=<?php echo urlencode($row['nome_viagem']); ?>'">
                                             <p class="mb-0"><?php echo htmlspecialchars($row['nome_viagem']); ?></p>
                                         </div>
 

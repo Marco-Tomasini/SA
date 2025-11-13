@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="row navGestaoRotas">
                 <div class="col-8 welcome d-flex flex-column justify-content-center align-items-start ms-4">
-                    <button type="button" href="../public/dashboard.php" class="btn btnNav p-0 mb-2"><img src="../assets/icon/seta-curva-esquerda 1.png" alt=""></button>
+                    <button type="button" href="../public/dashboard.php" class="btn btnNav p-0 mb-2"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
                     <p class="fs-5 fw-semibold">Gestão de Rotas</p>
                 </div>
 
