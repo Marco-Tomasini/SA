@@ -34,14 +34,12 @@ if (isset($_GET['id'])) {
 
         $stmt = $conn->query($sql2);
         if ($stmt !== false) {
-            echo "<script>alert('Alerta Atualizado com sucesso.');</script>";
-            header('Location: dashboard.php');
-            exit();
+            echo "<script>alert('Alerta Atualizada com sucesso.');</script>";
+            echo "<script>window.location.href = 'dashboard.php';</script>";
         } else {
             $error = $conn->errorInfo();
             echo "Erro na consulta: " . $error[2];
         }
-        $conn = null;
     }
 ?>
 
@@ -79,7 +77,7 @@ if (isset($_GET['id'])) {
                     <form method="POST">
                         <div>
                             <label for="tipo" class="form-label">Tipo:</label>
-                            <select class="form-control" id="tipo" name="tipo">
+                            <select class="form-control" id="tipo" name="tipo" required>
                                 <option value="Atraso" <?= (isset($tipo) && $tipo == 'Atraso') ? 'selected' : '' ?>>Atraso</option>
                                 <option value="Falha Técnica" <?= (isset($tipo) && $tipo == 'Falha Técnica') ? 'selected' : '' ?>>Falha Técnica</option>
                                 <option value="Segurança" <?= (isset($tipo) && $tipo == 'Segurança') ? 'selected' : '' ?>>Segurança</option>
@@ -87,12 +85,12 @@ if (isset($_GET['id'])) {
                         </div>
                         <div>
                             <label for="modelo" class="form-label">Modelo:</label>
-                            <textarea class="form-control" id="mensagem" name="mensagem" rows="4" placeholder="Insira a mensagem do alerta"><?= htmlspecialchars($mensagem) ?></textarea>
+                            <textarea class="form-control" id="mensagem" name="mensagem" rows="4" placeholder="Insira a mensagem do alerta" required><?= htmlspecialchars($mensagem) ?></textarea>
                         </div>
                     
                         <div>
                             <label for="criticidade" class="form-label">Criticidade:</label>
-                            <select class="form-control" id="criticidade" name="criticidade">
+                            <select class="form-control" id="criticidade" name="criticidade" required>
                                 <option value="Baixa" <?= (isset($criticidade) && $criticidade == 'Baixa') ? 'selected' : '' ?>>Baixa</option>
                                 <option value="Média" <?= (isset($criticidade) && $criticidade == 'Média') ? 'selected' : '' ?>>Média</option>
                                 <option value="Alta" <?= (isset($criticidade) && $criticidade == 'Alta') ? 'selected' : '' ?>>Alta</option>
@@ -109,7 +107,7 @@ if (isset($_GET['id'])) {
                                 echo "Erro ao buscar viagens: " . $e->getMessage();
                             }
                             ?>
-                            <select class="form-select" id="id_viagem_fk" name="id_viagem_fk">
+                            <select class="form-select" id="id_viagem_fk" name="id_viagem_fk" required>
                                 <option value="">Selecione a viagem</option>
                                 <?php foreach ($viagens as $viagem): ?>
                                     <option value="<?= htmlspecialchars($viagem['id_viagem']) ?>" 
@@ -146,7 +144,15 @@ if (isset($_GET['id'])) {
         $stmt->execute();
     }
 
-
+        $stmt = $conn->query($sql2);
+        if ($stmt !== false) {
+            echo "<script>alert('Alerta Criado com sucesso.');</script>";
+            echo "<script>window.location.href = 'dashboard.php';</script>";
+        } else {
+            $error = $conn->errorInfo();
+            echo "Erro na consulta: " . $error[2];
+        }
+    
 ?>
 
 
@@ -185,7 +191,7 @@ if (isset($_GET['id'])) {
 
                         <div>
                             <label for="tipo" class="form-label">Tipo:</label>
-                            <select type="text" class="form-control" id="tipo" name="tipo" placeholder="Insira o tipo do alerta">
+                            <select type="text" class="form-control" id="tipo" name="tipo" placeholder="Insira o tipo do alerta" required>
                                 <option value="Atraso">Atraso</option>
                                 <option value="Falha Técnica">Falha Técnica</option>
                                 <option value="Segurança">Segurança</option>
@@ -194,12 +200,12 @@ if (isset($_GET['id'])) {
 
                         <div>
                             <label for="mensagem" class="form-label">Mensagem:</label>
-                            <textarea class="form-control" id="mensagem" name="mensagem" rows="4" placeholder="Insira a mensagem do alerta"></textarea>
+                            <textarea class="form-control" id="mensagem" name="mensagem" rows="4" placeholder="Insira a mensagem do alerta" required></textarea>
                         </div>
 
                         <div>
                             <label for="criticidade" class="form-label">Criticidade:</label>
-                            <select class="form-control" id="criticidade" name="criticidade" placeholder="Insira a criticidade">
+                            <select class="form-control" id="criticidade" name="criticidade" placeholder="Insira a criticidade" required>
                                 <option value="Baixa">Baixa</option>
                                 <option value="Média">Média</option>
                                 <option value="Alta">Alta</option>
@@ -217,7 +223,7 @@ if (isset($_GET['id'])) {
                                 echo "Erro ao buscar viagens: " . $e->getMessage();
                             }
                             ?>
-                            <select class="form-select" id="id_viagem_fk" name="id_viagem_fk">
+                            <select class="form-select" id="id_viagem_fk" name="id_viagem_fk" required>
                                 <option value="">Selecione a viagem</option>
                                 <?php foreach ($viagens as $viagem): ?>
                                     <option value="<?= htmlspecialchars($viagem['id_viagem']) ?>" 

@@ -32,18 +32,16 @@ if (isset($_GET['id'])) {
         $status_manutencao = $_POST['status_manutencao'];
 
         $sql2 = "UPDATE ordem_manutencao SET id_trem_fk='$id_trem_fk', data_fechamento='$data_fechamento', tipo='$tipo', descricao='$descricao', status_manutencao='$status_manutencao' WHERE id_ordem='$id_ordem'";
-
+        
         $stmt = $conn->query($sql2);
         if ($stmt !== false) {
-            echo "<script>alert('Ordem Atualizada com sucesso.');</script>";
-            header('Location: dashboard.php');
-            exit();
+            echo "<script>alert('Ordem de Manutenção Atualizada com sucesso.');</script>";
+            echo "<script>window.location.href = 'dashboard.php';</script>";
         } else {
             $error = $conn->errorInfo();
             echo "Erro na consulta: " . $error[2];
         }
-        $conn = null;
-    }
+    
 ?>
 
 <html lang="pt-br">
@@ -144,6 +142,16 @@ if (isset($_GET['id'])) {
         $stmt->bindParam(':descricao', $_POST['descricao']);
         $stmt->bindParam(':status_manutencao', $_POST['status_manutencao']);
         $stmt->execute();
+
+        $stmt = $conn->query($sql2);
+        if ($stmt !== false) {
+            echo "<script>alert('Ordem de Manutenção Criada com sucesso.');</script>";
+            echo "<script>window.location.href = 'dashboard.php';</script>";
+        } else {
+            $error = $conn->errorInfo();
+            echo "Erro na consulta: " . $error[2];
+        }
+    }
 
     }
 

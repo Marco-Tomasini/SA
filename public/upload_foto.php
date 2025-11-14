@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto_perfil'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" href="../public/dashboard.php" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt=""></button>
+                    <button type="button" href="../public/dashboard.php" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
                     <p class="mb-0 fs-4 fw-semibold">Upload de Fotos</p>
                 </div>
 

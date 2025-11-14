@@ -72,12 +72,14 @@ if (isset($_GET['id'])) {
                     <form method="POST">
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome da Rota:</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da rota" value="<?php echo isset($nome) ? $nome : ''; ?>">
+                            <input required type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da rota" value="<?php echo isset($nome) ? $nome : ''; ?>">
                         </div>
+
                         <div>
                             <label for="descricao" class="form-label">Descrição:</label>
-                            <textarea class="form-control" id="descricao" name="descricao" rows="4" placeholder="Insira a descrição da rota"><?php echo isset($descricao) ? $descricao : ''; ?></textarea>
+                            <textarea required class="form-control" id="descricao" name="descricao" rows="4" placeholder="Insira a descrição da rota"><?php echo isset($descricao) ? $descricao : ''; ?></textarea>
                         </div>
+
                         <button type="submit" class="btn btn-light btnLogin mt-5">Atualizar Rota</button>
                     </form>
                 </div>
@@ -137,11 +139,11 @@ if (isset($_GET['id'])) {
                     <form method="POST">
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome da Rota:</label>
-                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Insira o nome da rota" aria-describedby="Nome da Rota">
+                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Insira o nome da rota" aria-describedby="Nome da Rota" required>
                         </div>
                         <div>
                             <label for="descricao" class="form-label">Descrição:</label>
-                            <textarea class="form-control" id="descricao" name="descricao" placeholder="Insira a descrição da rota"></textarea>
+                            <textarea class="form-control" id="descricao" name="descricao" placeholder="Insira a descrição da rota" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Rota</button>
                     </form>
