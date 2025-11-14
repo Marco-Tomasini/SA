@@ -38,7 +38,6 @@
                 $error = $conn->errorInfo();
                 echo "Erro na consulta: " . $error[2];
             }
-            $conn = null;
         }
 
 ?>
