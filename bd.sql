@@ -156,3 +156,6 @@ CREATE TABLE relatorios (
 );
 
 ALTER TABLE alerta modify data_hora DATETIME DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE ordem_manutencao modify data_abertura DATETIME DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE ordem_manutencao modify data_fechamento DATETIME DEFAULT NULL;

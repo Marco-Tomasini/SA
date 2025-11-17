@@ -10,7 +10,7 @@ if (!isset($_SESSION['id_usuario'])) {
 }
 
 if (isset($_GET['id'])) {
-    $id_ordem = $_GET['id']; // <-- Aqui estava faltando
+    $id_ordem = $_GET['id'];
     $sql2 = "SELECT * FROM ordem_manutencao WHERE id_ordem = :id_ordem";
     $stmt = $conn->prepare($sql2);
     $stmt->bindParam(':id_ordem', $id_ordem);
@@ -31,17 +31,30 @@ if (isset($_GET['id'])) {
         $descricao = $_POST['descricao'];
         $status_manutencao = $_POST['status_manutencao'];
 
-        $sql2 = "UPDATE ordem_manutencao SET id_trem_fk='$id_trem_fk', data_fechamento='$data_fechamento', tipo='$tipo', descricao='$descricao', status_manutencao='$status_manutencao' WHERE id_ordem='$id_ordem'";
+        $sql2 = "UPDATE ordem_manutencao SET id_trem_fk=:id_trem_fk, data_fechamento=:data_fechamento, tipo=:tipo, descricao=:descricao, status_manutencao=:status_manutencao WHERE id_ordem=:id_ordem";
         
-        $stmt = $conn->query($sql2);
-        if ($stmt !== false) {
+        $stmt = $conn->prepare($sql2);
+        $stmt->bindParam(':id_trem_fk', $id_trem_fk);
+        $stmt->bindParam(':data_fechamento', $data_fechamento);
+        $stmt->bindParam(':tipo', $tipo);
+        $stmt->bindParam(':descricao', $descricao);
+        $stmt->bindParam(':status_manutencao', $status_manutencao);
+        $stmt->bindParam(':id_ordem', $id_ordem);
+
+        if (!empty($data_fechamento)) {
+        $data_fechamento = date('Y-m-d', strtotime(str_replace('/', '-', $data_fechamento)));
+        } else {
+            $data_fechamento = null;
+        }
+        if ($stmt->execute() !== false) {
             echo "<script>alert('Ordem de Manutenção Atualizada com sucesso.');</script>";
             echo "<script>window.location.href = 'dashboard.php';</script>";
         } else {
-            $error = $conn->errorInfo();
+            $error = $stmt->errorInfo();
             echo "Erro na consulta: " . $error[2];
         }
-    
+    }
+
 ?>
 
 <html lang="pt-br">
@@ -143,7 +156,7 @@ if (isset($_GET['id'])) {
         $stmt->bindParam(':status_manutencao', $_POST['status_manutencao']);
         $stmt->execute();
 
-        $stmt = $conn->query($sql2);
+        $stmt = $conn->query($sql);
         if ($stmt !== false) {
             echo "<script>alert('Ordem de Manutenção Criada com sucesso.');</script>";
             echo "<script>window.location.href = 'dashboard.php';</script>";
@@ -153,8 +166,7 @@ if (isset($_GET['id'])) {
         }
     }
 
-    }
-
+ 
 
 ?>
 
@@ -248,5 +260,5 @@ if (isset($_GET['id'])) {
 
 <?php
     $conn = null;
-}
+    }
 ?>
