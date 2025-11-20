@@ -31,11 +31,9 @@ if (isset($_GET['id'])) {
 
         $sql2 = "UPDATE trem SET identificador='$identificador', modelo='$modelo', capacidade_passageiros='$capacidade_passageiros', capacidade_carga_kg='$capacidade_carga_kg', status_trem='$status_trem' WHERE id_trem='$id_trem'";
 
-        $stmt = $conn->query($sql2);
         if ($stmt !== false) {
             echo "<script>alert('Estação Atualizada com sucesso.');</script>";
-            header('Location: dashboard.php');
-            exit();
+            echo "<script>window.location.href = 'dashboard.php';</script>";
         } else {
             $error = $conn->errorInfo();
             echo "Erro na consulta: " . $error[2];
@@ -62,7 +60,7 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p>Atualização de Trens</p>
                     </div>
@@ -127,6 +125,13 @@ if (isset($_GET['id'])) {
         $stmt->bindParam(':ultima_manutencao', $_POST['ultima_manutencao']);
         $stmt->execute();
 
+            if ($stmt !== false) {
+                echo "<script>alert('Trem Cadastrado com sucesso.');</script>";
+                echo "<script>window.location.href = 'dashboard.php';</script>";
+            } else {
+                $error = $conn->errorInfo();
+                echo "Erro na consulta: " . $error[2];
+            }
     }
 
 
@@ -150,7 +155,7 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p class="mb-0">Cadastro de Trens</p>
                     </div>

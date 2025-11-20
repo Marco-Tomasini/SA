@@ -10,6 +10,9 @@
 
 </head>
 <body>
+
+    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+
     <h1>Lista de Cadastros</h1>
 
     <Button onclick="location.href='cadastrorotas.php'">Cadastro de Rotas</Button>

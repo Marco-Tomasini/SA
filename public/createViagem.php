@@ -50,11 +50,11 @@ if (isset($_GET['id'])) {
         if ($stmt->execute()) {
             echo "<script>alert('Viagem Atualizada com sucesso.');</script>";
             echo "<script>window.location.href = 'dashboard.php';</script>";
-            exit();
         } else {
             $error = $stmt->errorInfo();
             echo "Erro na consulta: " . $error[2];
         }
+        
     }
 
 
@@ -78,7 +78,7 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p class="mb-0">Atualização de Viagem</p>
                     </div>
@@ -177,7 +177,14 @@ if (isset($_GET['id'])) {
             $stmt->bindParam(':id_rota_fk', $_POST['id_rota_fk']);
             $stmt->bindParam(':data_partida', $_POST['data_partida']);
             $stmt->bindParam(':data_chegada_previsao', $_POST['data_chegada_previsao']);
-            $stmt->bindParam(':data_chegada', $_POST['data_chegada']);
+
+            $data_chegada = !empty($_POST['data_chegada']) ? $_POST['data_chegada'] : null;
+            if (is_null($data_chegada)) {
+                $stmt->bindValue(':data_chegada', null, PDO::PARAM_NULL);
+            } else {
+                $stmt->bindParam(':data_chegada', $data_chegada);
+            }
+            
             $stmt->bindParam(':status_viagem', $_POST['status_viagem']);
             $stmt->bindParam(':nome_viagem', $_POST['nome_viagem']);
             $stmt->execute();
@@ -185,7 +192,6 @@ if (isset($_GET['id'])) {
             if ($stmt->execute()) {
                 echo "<script>alert('Viagem cadastrada com sucesso.');</script>";
                 echo "<script>window.location.href = 'dashboard.php';</script>";
-                exit();
             } else {
                 $error = $stmt->errorInfo();
                 echo "Erro na consulta: " . $error[2];
@@ -212,7 +218,7 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p class="mb-0">Cadastro de Viagem</p>
                     </div>
@@ -270,7 +276,7 @@ if (isset($_GET['id'])) {
 
                         <div class="mb-3">
                             <label for="data_chegada" class="form-label">Data de Chegada:</label>
-                            <input type="datetime-local" class="form-control" id="data_chegada" name="data_chegada" required>
+                            <input type="datetime-local" class="form-control" id="data_chegada" name="data_chegada">
                         </div>
 
                         <div class="mb-3">

@@ -29,10 +29,17 @@ if (isset($_GET['id'])) {
         $mensagem = $_POST['mensagem'];
         $criticidade = $_POST['criticidade'];
         $id_viagem_fk = $_POST['id_viagem_fk'];
+        $data_hora = date('Y-m-d H:i:s');
 
-        $sql2 = "UPDATE alerta SET tipo='$tipo', mensagem='$mensagem', data_hora=CURRENT_TIMESTAMP, criticidade='$criticidade', id_viagem_fk='$id_viagem_fk' WHERE id_alerta='$id_alerta'";
+        $sql2 = "UPDATE alerta SET tipo=:tipo, mensagem=:mensagem, data_hora=CURRENT_TIMESTAMP, criticidade=:criticidade, id_viagem_fk=:id_viagem_fk WHERE id_alerta=:id_alerta";
+        $stmt = $conn->prepare($sql2);
+        $stmt->bindParam(':tipo', $tipo);
+        $stmt->bindParam(':mensagem', $mensagem);
+        $stmt->bindParam(':criticidade', $criticidade);
+        $stmt->bindParam(':id_viagem_fk', $id_viagem_fk);
+        $stmt->bindParam(':id_alerta', $id_alerta, PDO::PARAM_INT);
+        $stmt->execute();
 
-        $stmt = $conn->query($sql2);
         if ($stmt !== false) {
             echo "<script>alert('Alerta Atualizada com sucesso.');</script>";
             echo "<script>window.location.href = 'dashboard.php';</script>";
@@ -61,7 +68,7 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p>Atualização de Alertas</p>
                     </div>
@@ -133,18 +140,15 @@ if (isset($_GET['id'])) {
 }else{
     if($_SERVER['REQUEST_METHOD'] == "POST"){
 
-        $sql = "INSERT INTO alerta (tipo,mensagem,data_hora,criticidade,id_viagem_fk) VALUES (:tipo,:mensagem,:data_hora,:criticidade,:id_viagem_fk)";
+        $sql2 = "INSERT INTO alerta (tipo,mensagem,data_hora,criticidade,id_viagem_fk) VALUES (:tipo,:mensagem,CURRENT_TIMESTAMP,:criticidade,:id_viagem_fk)";
 
-        $stmt = $conn->prepare($sql);
+        $stmt = $conn->prepare($sql2);
         $stmt->bindParam(':tipo', $_POST['tipo']);
         $stmt->bindParam(':mensagem', $_POST['mensagem']);
-        $stmt->bindParam(':data_hora', $_POST['data_hora']);
         $stmt->bindParam(':criticidade', $_POST['criticidade']);
         $stmt->bindParam(':id_viagem_fk', $_POST['id_viagem_fk']);
         $stmt->execute();
-    }
 
-        $stmt = $conn->query($sql2);
         if ($stmt !== false) {
             echo "<script>alert('Alerta Criado com sucesso.');</script>";
             echo "<script>window.location.href = 'dashboard.php';</script>";
@@ -152,6 +156,8 @@ if (isset($_GET['id'])) {
             $error = $conn->errorInfo();
             echo "Erro na consulta: " . $error[2];
         }
+    }
+
     
 ?>
 
@@ -174,7 +180,7 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p>Cadastro de Alerta</p>
                     </div>

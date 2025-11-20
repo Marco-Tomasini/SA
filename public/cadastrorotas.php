@@ -27,8 +27,7 @@ if (isset($_GET['id'])) {
 
         if ($stmt !== false) {
             echo "<script>alert('Estação Atualizada com sucesso.');</script>";
-            header('Location: dashboard.php');
-            exit();
+            echo "<script>window.location.href = 'dashboard.php';</script>";
         } else {
             $error = $conn->errorInfo();
             echo "Erro na consulta: " . $error[2];
@@ -56,7 +55,7 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p class="mb-0">Atualização de Rotas</p>
                     </div>
@@ -102,6 +101,15 @@ if (isset($_GET['id'])) {
         $stmt->bindParam(':descricao', $_POST['descricao']);
         $stmt->execute();
 
+            if ($stmt !== false) {
+                echo "<script>alert('Rota Cadastrada com sucesso.');</script>";
+                echo "<script>window.location.href = 'dashboard.php';</script>";
+            } else {
+                $error = $conn->errorInfo();
+                echo "Erro na consulta: " . $error[2];
+            }
+
+
     }
 ?>
 
@@ -123,7 +131,7 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <p class="mb-0">Cadastro de Rotas</p>
                     </div>

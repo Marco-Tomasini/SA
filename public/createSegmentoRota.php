@@ -32,8 +32,7 @@
 
             if ($stmt !== false) {
                 echo "<script>alert('Segmento de Rota Atualizado com sucesso.');</script>";
-                header('Location: dashboard.php');
-                exit();
+                echo "<script>window.location.href = 'dashboard.php';</script>";
             } else {
                 $error = $conn->errorInfo();
                 echo "Erro na consulta: " . $error[2];
@@ -60,7 +59,7 @@
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p class="mb-0">Atualização de Segmento de Rota</p>
                     </div>
@@ -190,8 +189,7 @@
 
             if ($stmt->execute()) {
                 echo "<script>alert('Segmento de Rota cadastrado com sucesso.');</script>";
-                header('Location: dashboard.php');
-                exit();
+                echo "<script>window.location.href = 'dashboard.php';</script>";
             } else {
                 $error = $stmt->errorInfo();
                 echo "Erro na consulta: " . $error[2];
@@ -221,7 +219,7 @@
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p class="mb-0">Cadastro de Segmento de Rota</p>
                     </div>

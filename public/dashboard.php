@@ -15,6 +15,12 @@ $sql2 = "SELECT * FROM alerta_usuario WHERE id_usuario = " . $_SESSION['id_usuar
 $resultAlerta = $conn->query($sql);
 $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
 
+if (!isset($_SESSION['id_usuario'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
+
 ?>
 
 <html lang="en">
@@ -45,7 +51,7 @@ $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
             <div class="scrollViagens">
                 <?php if (count($viagens) > 0): ?>
                     <?php foreach ($viagens as $row): ?>
-                        <div class="row row-cols-1 border-bottom border-black">
+                        <div class="row row-cols-1 border-bottom border-black" onclick="window.location.href='createViagem.php?id=<?php echo $row['id_viagem']; ?>'">
                             <div class="col-12 d-flex justify-content-between align-items-center lh-1 mt-3 mb-3">
                                 <div class="col-4 d-flex flex-column align-items-start">
                                     <div class="d-flex">
@@ -98,7 +104,7 @@ $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
 
                 <?php if (count($alertas) > 0): ?>
                     <?php foreach ($alertas as $row): ?>
-                        <div class="row row-cols-1 border-bottom border-black">
+                        <div class="row row-cols-1 border-bottom border-black" onclick="window.location='alertas.php?id=<?php echo $row['id_alerta']; ?>'">
                             <div class="col-12 d-flex align-items-center mt-3 mb-3">
                                 <div class="col-1 d-flex justify-content-center align-items-center">
                                     <img src="../assets/icon/Ellipse 16.svg" alt="">

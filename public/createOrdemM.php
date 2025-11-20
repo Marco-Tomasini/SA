@@ -75,7 +75,7 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p>Atualização de Ordens de Manutenção</p>
                     </div>
@@ -156,7 +156,6 @@ if (isset($_GET['id'])) {
         $stmt->bindParam(':status_manutencao', $_POST['status_manutencao']);
         $stmt->execute();
 
-        $stmt = $conn->query($sql);
         if ($stmt !== false) {
             echo "<script>alert('Ordem de Manutenção Criada com sucesso.');</script>";
             echo "<script>window.location.href = 'dashboard.php';</script>";
@@ -188,7 +187,7 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p class="mb-0">Cadastro de Ordens de Manutenção</p>
                     </div>

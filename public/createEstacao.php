@@ -25,7 +25,6 @@ if (isset($_GET['id'])) {
 
         $sql2 = "UPDATE estacao SET nome='$nome', localizacao='$localizacao' WHERE id_estacao='$id_estacao'";
 
-        $stmt = $conn->query($sql2);
         if ($stmt !== false) {
             echo "<script>alert('Estação Atualizada com sucesso.');</script>";
             echo "<script>window.location.href = 'dashboard.php';</script>";
@@ -55,7 +54,7 @@ if (isset($_GET['id'])) {
             <div class="container-fluid">
                 <div class="row navRelat d-flex align-items-center sticky-top">
                     <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                        <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                         <div class="d-flex flex-column">
                             <p class="mb-0">Atualização de Estações</p>
                         </div>
@@ -98,7 +97,6 @@ if (isset($_GET['id'])) {
         $stmt->bindParam(':localizacao', $_POST['localizacao']);
         $stmt->execute();
 
-        $stmt = $conn->query($sql2);
         if ($stmt !== false) {
             echo "<script>alert('Estação Criada com sucesso.');</script>";
             echo "<script>window.location.href = 'dashboard.php';</script>";
@@ -131,7 +129,7 @@ if (isset($_GET['id'])) {
             <div class="container-fluid">
                 <div class="row navRelat d-flex align-items-center sticky-top">
                     <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                        <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                         <div class="d-flex flex-column">
                             <p class="mb-0">Cadastro de Estações</p>
                         </div>

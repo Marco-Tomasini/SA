@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="row">
                 <div class="col d-flex flex-wrap justify-content-between mt-4 ms-5 me-5 gap-3">
                     <?php foreach ($funcionarios as $row): ?>
-                        <div class="profile">
+                        <div class="profile" onclick="window.location='upload_foto.php?id=<?php echo urlencode($row['id_usuario']); ?>'">
                             <img src="../assets/img/<?php echo ($row['imagem_usuario']); ?>" alt="user-icon">
                             <h2><?php echo ($row['nome']); ?></h2>
                             <h3><?php echo ($row['data_nascimento']); ?></h3>
