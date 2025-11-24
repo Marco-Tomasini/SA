@@ -1,27 +1,28 @@
 <?php
 
-    include "public/db.php";
-    include "src/User.php";
-    include "src/Auth.php";
+include "public/db.php";
+include "src/User.php";
+include "src/Auth.php";
 
-    session_start();
+session_start();
 
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-        $user = new User($conn);
-        $auth = new Auth();
+    $user = new User($conn);
+    $auth = new Auth();
 
-        $loggedInUser = $user -> login($_POST['email'], $_POST['password']);
-        if($loggedInUser){
-            $auth -> loginUser($loggedInUser);
-            header("Location: public/dashboard.php");
-        }else{
-            echo "Login Falhou";
-        }
+    $loggedInUser = $user->login($_POST['email'], $_POST['password']);
+    if ($loggedInUser) {
+        $auth->loginUser($loggedInUser);
+        header("Location: public/dashboard.php");
+    } else {
+        echo "Login Falhou";
     }
+}
 
 ?>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -34,41 +35,37 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
-<body>
+<body class="bodyLogin">
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center h-100">
 
-    <main>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col">
-                    <nav class="navbar navbar-expand-lg navbar-dark">
-                        <div class="container-fluid d-flex justify-content-center">
-                            <a class="navbar-brand fs-4" href="#"></a>
-                            <img src="assets/icon/logoSite.svg" width="auto" height="150" class="d-inline-block align-top" alt="">
-                        </div>
-                    </nav>
-                </div>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container-fluid d-flex justify-content-center">
+                <a class="navbar-brand fs-4" href="#"></a>
+                <img src="assets/icon/logoSite.svg" width="auto" height="150" class="d-inline-block align-top" alt="">
             </div>
+        </nav>
 
-            <div class="row main">
-                <div class="col d-flex align-items-center justify-content-center">
-                    <form class="loginForm" method="POST">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control loginInput" name="email" id="email" placeholder="Email" aria-describedby="email">
+
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                <form method="POST">
+                    <p class=" text-center tituloLight fs-1 fw-medium mb-5">Login</p>
+                    <div class="mb-3">
+                        <label for="email" class="form-label tituloLight fs-5 fw-light">Email</label>
+                        <input type="email" class="form-control" name="email" id="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label tituloLight fs-5 fw-light">Senha</label>
+                        <input type="password" class="form-control" name="password" id="senha">
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn esqueci">Esqueci minha senha</button>
                         </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Senha</label>
-                            <input type="password" class="form-control loginInput" name="password" id="senha" placeholder="Senha">
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn">Esqueci minha senha</button>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-light btnLogin mt-5">Entrar</button>
-                    </form>
-                </div>
+                    </div>
+                    <button type="submit" class="btn btn-light btnLogin fs-5 fw-semibold rounded-4">Entrar</button>
+                </form>
             </div>
         </div>
-    </main>
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

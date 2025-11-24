@@ -28,51 +28,53 @@ $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 
-<body class="overflow-hidden">
+<body class="overflow-y-hidden">
     <main>
-        <div class="container-fluid fullscreen">
+        <div class="container-fluid fullscreen p-0">
             <div class="row headerDash d-flex align-items-center">
-                <div class="col-6 mt-4 ms-2 welcome lh-1">
+                <div class="col-8 mt-4 ms-5 welcome lh-1">
                     <p>Bem-vindo(a)</p>
-                    <p class="fw-bold fs-5" onclick="window.location.href='upload_foto.php'" style="cursor: pointer;"><?php echo htmlspecialchars($_SESSION['nome']);?></p>
+                    <p class="fw-bold fs-5" onclick="window.location.href='upload_foto.php'" style="cursor: pointer;"><?php echo htmlspecialchars($_SESSION['nome']); ?></p>
                 </div>
 
-                <div class="col-6">
+                <div class="col-4 me-4">
                     <?php include 'sidebar.php'; ?>
                 </div>
             </div>
             <div class="scrollViagens">
                 <?php if (count($viagens) > 0): ?>
                     <?php foreach ($viagens as $row): ?>
-                        <div class="row row-cols-1 border-bottom border-black">
-                            <div class="col-12 d-flex justify-content-between align-items-center lh-1 mt-3 mb-3">
-                                <div class="col-4 d-flex flex-column align-items-start">
-                                    <div class="d-flex">
-                                        <?php $partida = new DateTime($row['data_partida']); ?>
-                                        <p class="mb-1"><?php echo $partida->format('H:i'); ?></p>
-                                        <p class="mb-1"> ··· </p>
-                                        <?php $chegadaPrev = new DateTime($row['data_chegada_previsao']); ?>
-                                        <p class="mb-1"><?php echo $chegadaPrev->format('H:i'); ?></p>
-                                    </div>
-                                    <div class="d-flex flex-column align-items-center previsaoDash">
-                                        <?php
-                                        $intervalo = $partida->diff($chegadaPrev);
-                                        $minutos = ($intervalo->h * 60) + $intervalo->i;
-                                        ?>
-                                        <p class="mb-1">Chega em:</p>
-                                        <p class="mb-1 tempoPrev"><?php echo $minutos; ?> min</p>
-                                    </div>
+                        <div class="row d-flex justify-content-between border-bottom border-black mt-2">
+                            <div class="col-4 d-flex flex-column justify-items-between align-items-start ms-3 ms-md-5">
+                                <div class="d-flex">
+                                    <?php $partida = new DateTime($row['data_partida']); ?>
+                                    <p class="mb-1"><?php echo $partida->format('H:i'); ?></p>
+                                    <p class="mb-1"> ··· </p>
+                                    <?php $chegadaPrev = new DateTime($row['data_chegada_previsao']); ?>
+                                    <p class="mb-1"><?php echo $chegadaPrev->format('H:i'); ?></p>
+                                </div>
+                                <div class="d-flex flex-column align-items-center previsaoDash">
+                                    <?php
+                                    $intervalo = $partida->diff($chegadaPrev);
+                                    $minutos = ($intervalo->h * 60) + $intervalo->i;
+                                    ?>
+                                    <p class="mb-1">Chega em:</p>
+                                    <p class="mb-1 tempoPrev"><?php echo $minutos; ?> min</p>
+                                </div>
+                            </div>
+
+                            <div class="col-7 col- col-md-6 d-flex align-items-center justify-content-center me-3 me-md-5">
+                                <div class=" col-4 col-md-2 d-flex flex-column align-items-center justify-content-center">
+                                    <p class="mb-0">Status:</p>
+                                    <p class="mb-0"><?php echo htmlspecialchars($row['status_viagem']); ?></p>
                                 </div>
 
-                                <div class="col-6 d-flex align-items-center justify-content-end">
-                                    <div class="d-flex flex-column align-items-center me-3">
-                                        <p class="mb-1">Status:</p>
-                                        <p class="mb-1"><?php echo htmlspecialchars($row['status_viagem']); ?></p>
-                                    </div>
+                                <div class="col d-flex align-items-center justify-content-center text-center">
+                                    <p class="mb-0"><?php echo htmlspecialchars($row['nome_viagem']); ?></p>
+                                </div>
 
-                                    <p class="mb-1"><?php echo htmlspecialchars($row['nome_viagem']); ?></p>
-
-                                    <img src="../assets/icon/train 1.svg" alt="" class="ms-3">
+                                <div class="col-2 d-flex align-items-center justify-content-center">
+                                    <img src="../assets/icon/train 1.svg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -82,26 +84,25 @@ $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-            <div class="row alertasDash d-flex align-items-center">
-                <div class="col-6">
-                    <p class="mb-0 ms-1">Alertas e Notficações</p>
+            <div class="row alertasDash d-flex align-items-center justify-content-between">
+                <div class="col-6 d-flex align-items-center justify-content-start ms-5">
+                    <p class="mb-0">Alertas e Notficações</p>
                 </div>
-                <div class="col-6 d-flex justify-content-end"><img src="../assets/icon/seta-curva-esquerda 2.svg" alt="" height="32"></div>
+                <div class="col-1 d-flex justify-content-center me-5">
+                    <img src="../assets/icon/seta-curva-esquerda 2.svg" alt="" height="32">
+                </div>
             </div>
             <div class="scrollAlertas">
                 <?php if (count($alertas) > 0): ?>
                     <?php foreach ($alertas as $row): ?>
+                        <div class="row d-flex justify-content-start align-items-center border-bottom border-black">
+                            <div class="col-1 d-flex justify-content-center align-items-center ms-4 mt-2 mb-2 p-0">
+                                <img src="../assets/icon/Ellipse 16.svg" alt="">
+                            </div>
 
-                        <div class="row row-cols-1 border-bottom border-black">
-                            <div class="col-12 d-flex align-items-center mt-3 mb-3">
-                                <div class="col-1 d-flex justify-content-center align-items-center">
-                                    <img src="../assets/icon/Ellipse 16.svg" alt="">
-                                </div>
-
-                                <div class="col-9">
-                                    <p class="mb-1"><?php echo htmlspecialchars($row['tipo']); ?></p>
-                                    <p class="mb-1"><?php echo htmlspecialchars($row['mensagem']); ?></p>
-                                </div>
+                            <div class="col d-flex flex-column justify-content-center align-items-start mt-2 mb-2">
+                                <p class="mb-1"><?php echo htmlspecialchars($row['tipo']); ?></p>
+                                <p class="mb-1"><?php echo htmlspecialchars($row['mensagem']); ?></p>
                             </div>
                         </div>
                     <?php endforeach; ?>
