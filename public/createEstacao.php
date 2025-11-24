@@ -5,7 +5,7 @@ include "../src/User.php";
 session_start();
 
 if (!isset($_SESSION['id_usuario'])) {
-    header('Location: public/login.php');
+    header('Location: ../index.php');
     exit();
 }
 
@@ -25,17 +25,14 @@ if (isset($_GET['id'])) {
 
         $sql2 = "UPDATE estacao SET nome='$nome', localizacao='$localizacao' WHERE id_estacao='$id_estacao'";
 
-        $stmt = $conn->query($sql2);
         if ($stmt !== false) {
             echo "<script>alert('Estação Atualizada com sucesso.');</script>";
-            header('Location: dashboard.php');
-            exit();
+            echo "<script>window.location.href = 'dashboard.php';</script>";
         } else {
             $error = $conn->errorInfo();
             echo "Erro na consulta: " . $error[2];
         }
-        $conn = null;
-    }
+        }
 ?>
 
     <html lang="pt-br">
@@ -57,7 +54,7 @@ if (isset($_GET['id'])) {
             <div class="container-fluid">
                 <div class="row navRelat d-flex align-items-center sticky-top">
                     <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                        <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                         <div class="d-flex flex-column">
                             <p class="mb-0">Atualização de Estações</p>
                         </div>
@@ -73,11 +70,11 @@ if (isset($_GET['id'])) {
                         <form method="POST">
                             <div class="mb-3">
                                 <label for="nome" class="form-label">Nome da Estação:</label>
-                                <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da estação" value="<?php echo isset($nome) ? $nome : ''; ?>">
+                                <input required type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da estação" value="<?php echo isset($nome) ? $nome : ''; ?>">
                             </div>
                             <div>
                                 <label for="localizacao" class="form-label">Localização:</label>
-                                <textarea class="form-control" id="localizacao" name="localizacao" rows="4" placeholder="Insira a localização da estação"><?php echo isset($localizacao) ? $localizacao : ''; ?></textarea>
+                                <textarea required class="form-control" id="localizacao" name="localizacao" rows="4" placeholder="Insira a localização da estação"><?php echo isset($localizacao) ? $localizacao : ''; ?></textarea>
                             </div>
                             <button type="submit" class="btn btn-light btnLogin mt-5">Atualizar Estação</button>
                         </form>
@@ -99,6 +96,15 @@ if (isset($_GET['id'])) {
         $stmt->bindParam(':nome', $_POST['nome']);
         $stmt->bindParam(':localizacao', $_POST['localizacao']);
         $stmt->execute();
+
+        if ($stmt !== false) {
+            echo "<script>alert('Estação Criada com sucesso.');</script>";
+            echo "<script>window.location.href = 'dashboard.php';</script>";
+        } else {
+            $error = $conn->errorInfo();
+            echo "Erro na consulta: " . $error[2];
+        }
+        $conn = null;
     }
 
 ?>
@@ -123,7 +129,7 @@ if (isset($_GET['id'])) {
             <div class="container-fluid">
                 <div class="row navRelat d-flex align-items-center sticky-top">
                     <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                        <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                         <div class="d-flex flex-column">
                             <p class="mb-0">Cadastro de Estações</p>
                         </div>
@@ -139,11 +145,11 @@ if (isset($_GET['id'])) {
                         <form method="POST">
                             <div class="mb-3">
                                 <label for="nome" class="form-label">Nome da Estação:</label>
-                                <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da estação">
+                                <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da estação" required>
                             </div>
                             <div>
                                 <label for="localizacao" class="form-label">Localização:</label>
-                                <textarea class="form-control" id="localizacao" name="localizacao" rows="4" placeholder="Insira a localização da estação"></textarea>
+                                <textarea required class="form-control" id="localizacao" name="localizacao" rows="4" placeholder="Insira a localização da estação"></textarea>
                             </div>
                             <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Estação</button>
                         </form>

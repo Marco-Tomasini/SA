@@ -10,9 +10,16 @@ $resultViagem = $conn->query($sql);
 $viagens = $resultViagem->fetchAll(PDO::FETCH_ASSOC);
 
 $sql = "SELECT * FROM alerta";
+$sql2 = "SELECT * FROM alerta_usuario WHERE id_usuario = " . $_SESSION['id_usuario'];
 
 $resultAlerta = $conn->query($sql);
 $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
+
+if (!isset($_SESSION['id_usuario'])) {
+    header('Location: ../index.php');
+    exit();
+}
+
 
 ?>
 
@@ -44,7 +51,7 @@ $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
             <div class="scrollViagens">
                 <?php if (count($viagens) > 0): ?>
                     <?php foreach ($viagens as $row): ?>
-                        <div class="row d-flex justify-content-between border-bottom border-black mt-2">
+                        <div class="row d-flex justify-content-between border-bottom border-black mt-2" onclick="window.location.href='createViagem.php?id=<?php echo $row['id_viagem']; ?>'">
                             <div class="col-4 d-flex flex-column justify-items-between align-items-start ms-3 ms-md-5">
                                 <div class="d-flex">
                                     <?php $partida = new DateTime($row['data_partida']); ?>
@@ -93,6 +100,12 @@ $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
             <div class="scrollAlertas">
+                <?php
+                $alertas = array_filter($alertas, function ($row) {
+                    return !empty($row['tipo']) || !empty($row['mensagem']);
+                });
+                ?>
+
                 <?php if (count($alertas) > 0): ?>
                     <?php foreach ($alertas as $row): ?>
                         <div class="row d-flex justify-content-start align-items-center border-bottom border-black">
@@ -100,12 +113,16 @@ $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
                                 <img src="../assets/icon/Ellipse 16.svg" alt="">
                             </div>
 
-                            <div class="col d-flex flex-column justify-content-center align-items-start mt-2 mb-2">
+                            <div class="col d-flex flex-column justify-content-center align-items-start mt-2 mb-2" onclick="location.href='alertas.php?id=<?php echo $row['id_alerta']; ?>'" style="cursor: pointer;">
                                 <p class="mb-1"><?php echo htmlspecialchars($row['tipo']); ?></p>
                                 <p class="mb-1"><?php echo htmlspecialchars($row['mensagem']); ?></p>
                             </div>
                         </div>
                     <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="text-center mt-3 mb-3 text-muted">
+                        <p>Nenhum alerta disponível.</p>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

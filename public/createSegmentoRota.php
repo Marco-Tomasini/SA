@@ -5,7 +5,7 @@
     session_start();
 
     if (!isset($_SESSION['id_usuario'])) {
-        header('Location: public/login.php');
+        header('Location: ../index.php');
         exit();
     }
 
@@ -32,13 +32,11 @@
 
             if ($stmt !== false) {
                 echo "<script>alert('Segmento de Rota Atualizado com sucesso.');</script>";
-                header('Location: dashboard.php');
-                exit();
+                echo "<script>window.location.href = 'dashboard.php';</script>";
             } else {
                 $error = $conn->errorInfo();
                 echo "Erro na consulta: " . $error[2];
             }
-            $conn = null;
         }
 
 ?>
@@ -61,7 +59,7 @@
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p class="mb-0">Atualização de Segmento de Rota</p>
                     </div>
@@ -86,7 +84,7 @@
                                 echo "Erro ao buscar rotas: " . $e->getMessage();
                             }
                             ?>
-                            <select class="form-select" id="id_rota_fk" name="id_rota_fk">
+                            <select class="form-select" id="id_rota_fk" name="id_rota_fk" required>
                                 <option value="">Selecione a rota</option>
                                 <?php foreach ($rotas as $rota): ?>
                                     <option value="<?= htmlspecialchars($rota['id_rota']) ?>" 
@@ -109,7 +107,7 @@
                                 echo "Erro ao buscar estações: " . $e->getMessage();
                             }
                             ?>
-                            <select class="form-select" id="id_estacao_origem" name="id_estacao_origem">
+                            <select class="form-select" id="id_estacao_origem" name="id_estacao_origem" required>
                                 <option value="">Selecione a estação de origem</option>
                                 <?php foreach ($estacoes as $estacao): ?>
                                     <option value="<?= htmlspecialchars($estacao['id_estacao']) ?>" 
@@ -132,7 +130,7 @@
                                 echo "Erro ao buscar estações: " . $e->getMessage();
                             }
                             ?>
-                            <select class="form-select" id="id_estacao_destino" name="id_estacao_destino">
+                            <select class="form-select" id="id_estacao_destino" name="id_estacao_destino" required>
                                 <option value="">Selecione a estação de destino</option>
                                 <?php foreach ($estacoes as $estacao): ?>
                                     <option value="<?= htmlspecialchars($estacao['id_estacao']) ?>" 
@@ -145,7 +143,7 @@
 
                         <div class="mb-3">
                             <label for="ordem" class="form-label">Ordem:</label>
-                            <select class="form-select" id="ordem" name="ordem">
+                            <select class="form-select" id="ordem" name="ordem" required>
                                 <?php for ($i = 1; $i <= 5; $i++): ?>
                                     <option value="<?= $i ?>" <?= (isset($segmento_rota_row['ordem']) && $segmento_rota_row['ordem'] == $i) ? 'selected' : '' ?>><?= $i ?></option>
                                 <?php endfor; ?>
@@ -154,7 +152,7 @@
 
                         <div>
                             <label for="distancia_km" class="form-label">Distância (km):</label>
-                            <input type="number" class="form-control" id="distancia_km" name="distancia_km" value="<?php echo isset($segmento_rota_row['distancia_km']) ? htmlspecialchars($segmento_rota_row['distancia_km']) : ''; ?>">
+                            <input type="number" class="form-control" id="distancia_km" name="distancia_km" required value="<?php echo isset($segmento_rota_row['distancia_km']) ? htmlspecialchars($segmento_rota_row['distancia_km']) : ''; ?>">
                         </div>
 
                         <button type="submit" class="btn btn-light btnLogin mt-5">Atualizar Segmento de Rota</button>
@@ -191,8 +189,7 @@
 
             if ($stmt->execute()) {
                 echo "<script>alert('Segmento de Rota cadastrado com sucesso.');</script>";
-                header('Location: dashboard.php');
-                exit();
+                echo "<script>window.location.href = 'dashboard.php';</script>";
             } else {
                 $error = $stmt->errorInfo();
                 echo "Erro na consulta: " . $error[2];
@@ -222,7 +219,7 @@
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p class="mb-0">Cadastro de Segmento de Rota</p>
                     </div>

@@ -5,7 +5,7 @@ include "../src/User.php";
 session_start();
 
 if (!isset($_SESSION['id_usuario'])) {
-    header('Location: public/login.php');
+    header('Location: ../index.php');
     exit();
 }
 
@@ -27,8 +27,7 @@ if (isset($_GET['id'])) {
 
         if ($stmt !== false) {
             echo "<script>alert('Estação Atualizada com sucesso.');</script>";
-            header('Location: dashboard.php');
-            exit();
+            echo "<script>window.location.href = 'dashboard.php';</script>";
         } else {
             $error = $conn->errorInfo();
             echo "Erro na consulta: " . $error[2];
@@ -56,7 +55,7 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column">
                         <p class="mb-0">Atualização de Rotas</p>
                     </div>
@@ -72,12 +71,14 @@ if (isset($_GET['id'])) {
                     <form method="POST">
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome da Rota:</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da rota" value="<?php echo isset($nome) ? $nome : ''; ?>">
+                            <input required type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da rota" value="<?php echo isset($nome) ? $nome : ''; ?>">
                         </div>
+
                         <div>
                             <label for="descricao" class="form-label">Descrição:</label>
-                            <textarea class="form-control" id="descricao" name="descricao" rows="4" placeholder="Insira a descrição da rota"><?php echo isset($descricao) ? $descricao : ''; ?></textarea>
+                            <textarea required class="form-control" id="descricao" name="descricao" rows="4" placeholder="Insira a descrição da rota"><?php echo isset($descricao) ? $descricao : ''; ?></textarea>
                         </div>
+
                         <button type="submit" class="btn btn-light btnLogin mt-5">Atualizar Rota</button>
                     </form>
                 </div>
@@ -100,6 +101,15 @@ if (isset($_GET['id'])) {
         $stmt->bindParam(':descricao', $_POST['descricao']);
         $stmt->execute();
 
+            if ($stmt !== false) {
+                echo "<script>alert('Rota Cadastrada com sucesso.');</script>";
+                echo "<script>window.location.href = 'dashboard.php';</script>";
+            } else {
+                $error = $conn->errorInfo();
+                echo "Erro na consulta: " . $error[2];
+            }
+
+
     }
 ?>
 
@@ -121,7 +131,7 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <p class="mb-0">Cadastro de Rotas</p>
                     </div>
@@ -137,11 +147,11 @@ if (isset($_GET['id'])) {
                     <form method="POST">
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome da Rota:</label>
-                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Insira o nome da rota" aria-describedby="Nome da Rota">
+                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Insira o nome da rota" aria-describedby="Nome da Rota" required>
                         </div>
                         <div>
                             <label for="descricao" class="form-label">Descrição:</label>
-                            <textarea class="form-control" id="descricao" name="descricao" placeholder="Insira a descrição da rota"></textarea>
+                            <textarea class="form-control" id="descricao" name="descricao" placeholder="Insira a descrição da rota" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Rota</button>
                     </form>

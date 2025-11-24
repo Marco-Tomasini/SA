@@ -1,73 +1,97 @@
-<html lang="en">
+<?php
 
+session_start();
+include 'db.php';
+
+$sql = "SELECT * FROM segmento_rota";
+
+$result_segmentorota = $conn->query($sql);
+$segmentos = $result_segmentorota->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
+
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Rotas</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 
-<body class="overflow-y-hidden">
+<body>
+
     <main>
         <div class="container-fluid">
-            <div class="row navGestaoRotas">
-                <div class="col-8 welcome d-flex flex-column justify-content-center align-items-start ms-4">
-                    <button type="button" href="../public/dashboard.php" class="btn btnNav p-0 mb-2"><img src="../assets/icon/seta-curva-esquerda 1.png" alt=""></button>
-                    <p class="fs-5 fw-semibold">Gestão de Rotas</p>
+            <div class="row navRelat d-flex align-items-center sticky-top">
+                <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <div class="d-flex flex-column">
+                        <p class="mb-0">Atualização de Viagem</p>
+                    </div>
                 </div>
 
-                <div class="col d-flex flex-column justify-content-center align-items-end me-4">
-                    <div class="col d-flex flex-column justify-content-center align-items-center">
-                        <p class="welcome">67%</p>
-
-                        <img src="../assets/icon/train 1.svg" alt="" class=" " width="70vw">
-                    </div>
+                <div>
+                    <?php include 'sidebar.php'; ?>
                 </div>
             </div>
 
-            <div class="row row-cols-1">
-                <div class="col d-flex justify-content-center align-items-center status">
-                    <p class=" mb-0 fs-2 p-1">Status</p>
-                </div>
+            <div class="scrollViagens">
+                <?php if (count($segmentos) > 0): ?>
+                    <?php foreach ($segmentos as $row): ?>
+                        <div style="cursor: pointer;" class="row row-cols-1 border-bottom border-black">
+                            <div class="col-12 d-flex justify-content-between align-items-center lh-1 mt-3 mb-3">
+                                <div class="col-4 d-flex flex-column align-items-start">
 
-                <div class="col d-flex mt-3">
-                    <div class="col d-flex flex-column justify-content-center align-items-center">
-                        <img src="../assets/icon/bolaVerde.png" alt="">
 
-                        <p>Ok</p>
-                    </div>
+                                    <div class="d-flex">
+                                        <?php
+                                            $rota = $conn->prepare("SELECT nome FROM rota WHERE id_rota = :id_rota");
+                                            $rota->bindParam(':id_rota', $row['id_rota_fk'], PDO::PARAM_INT);
+                                            $rota->execute();
+                                            $nomeRota = $rota->fetch(PDO::FETCH_ASSOC)['nome'];
+                                        ?>
+                                        <p style="cursor: pointer;" class="mb-1" onclick="window.location='cadastrorotas.php?id=<?php echo htmlspecialchars($row['id_rota_fk']); ?>'">Rota Pertencente: <?php echo htmlspecialchars($nomeRota); ?></p>
+                                    </div>
 
-                    <div class="col d-flex flex-column justify-content-center align-items-center">
-                        <img src="../assets/icon/bolaAmarela.png" alt="">
 
-                        <p>Revisão</p>
-                    </div>
+                                </div>
 
-                    <div class="col d-flex flex-column justify-content-center align-items-center">
-                        <img src="../assets/icon/bolaVermelha.png" alt="">
+                                <div class="col-4 d-flex flex-column align-items-center">
+                                        <p class="mb-1">
+                                            <?php
+                                                $estacaoOrigem = $conn->prepare("SELECT nome FROM estacao WHERE id_estacao = :id_estacao");
+                                                $estacaoOrigem->bindParam(':id_estacao', $row['id_estacao_origem'], PDO::PARAM_INT);
+                                                $estacaoOrigem->execute();
+                                                $nomeOrigem = $estacaoOrigem->fetch(PDO::FETCH_ASSOC)['nome'];
 
-                        <p>Reparo</p>
-                    </div>
-                </div>
-            </div>
+                                                $estacaoDestino = $conn->prepare("SELECT nome FROM estacao WHERE id_estacao = :id_estacao");
+                                                $estacaoDestino->bindParam(':id_estacao', $row['id_estacao_destino'], PDO::PARAM_INT);
+                                                $estacaoDestino->execute();
+                                                $nomeDestino = $estacaoDestino->fetch(PDO::FETCH_ASSOC)['nome'];
 
-            <div class="row emergencyMessage fixed-bottom">
-                <div class="col welcome btn d-flex align-items-center justify-content-end p-3 me-3">
-                        <p class="mb-0">Emergency Message</p>
-                        <i class="bi bi-arrow-right-square-fill ms-3 mb-0 h2"></i>
-                </div>
+                                                echo '<p style="cursor: pointer; hover: " class="mb-1" onclick="window.location=\'createEstacao.php?id=' . htmlspecialchars($row['id_estacao_origem']) . '\'">Estação Origem: ' . htmlspecialchars($nomeOrigem) . '</p>';
+                                                echo '<p style="cursor: pointer;" class="mb-1" onclick="window.location=\'createEstacao.php?id=' . htmlspecialchars($row['id_estacao_destino']) . '\'">Estação Destino: ' . htmlspecialchars($nomeDestino) . '</p>';
+                                            ?>
+                                        </p>
+                                </div>
+
+                                
+                                <div class="col-4 d-flex flex-column align-items-end">
+                                    <p class="mb-1">Distância: <?php echo htmlspecialchars($row['distancia_km']); ?> km</p>
+                                    <button onclick="window.location='createSegmentoRota.php?id=<?php echo htmlspecialchars($row['id_segmento_rota']); ?>'" class="mb-1 btn btn-primary">Editar</button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>Nenhum segmento de rota encontrado.</p>
+                <?php endif; ?>
             </div>
         </div>
-
-
-
     </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
-
 </html>
