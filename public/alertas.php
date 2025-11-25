@@ -38,16 +38,17 @@ if (isset($_GET['id'])) {
     <body>
         <main>
             <div class="container-fluid">
-                <div class="row navRelat d-flex align-items-center sticky-top">
-                    <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                        <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="window.location='dashboard.php'"></button>
-                        <div class="d-flex flex-column">
+                <div class="row headerDash d-flex align-items-center">
+                    <div class="col-8  welcome lh-1">
+                        <div class="col ms-4 fw-bold fs-5">
                             <p class="mb-0">Detalhes do Alerta</p>
                         </div>
                     </div>
 
-                    <div>
-                        <?php include 'sidebar.php'; ?>
+                    <div class="col-4">
+                        <div class="col d-flex align-items-center justify-content-end">
+                            <?php include 'partials/sidebar.php'; ?>
+                        </div>
                     </div>
                 </div>
 
