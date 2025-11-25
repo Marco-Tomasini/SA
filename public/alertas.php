@@ -23,82 +23,88 @@ if (isset($_GET['id'])) {
 ?>
 
 
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Detalhes do Alerta</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <html lang="pt-br">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../styles/style.css">
-</head>
-<body>
-    <main>
-        <div class="container-fluid">
-            <div class="row navRelat d-flex align-items-center sticky-top">
-                <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="window.location='dashboard.php'"></button>
-                    <div class="d-flex flex-column">
-                        <p class="mb-0">Detalhes do Alerta</p>
+    <head>
+        <meta charset="UTF-8">
+        <title>Detalhes do Alerta</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="../styles/style.css">
+    </head>
+
+    <body>
+        <main>
+            <div class="container-fluid">
+                <div class="row navRelat d-flex align-items-center sticky-top">
+                    <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
+                        <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="window.location='dashboard.php'"></button>
+                        <div class="d-flex flex-column">
+                            <p class="mb-0">Detalhes do Alerta</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <?php include 'sidebar.php'; ?>
                     </div>
                 </div>
 
-                <div>
-                    <?php include 'sidebar.php'; ?>
+                <div class="mt-4 mb-4">
+                    <h3>Tipo: <?php echo htmlspecialchars($tipo); ?></h3>
+                    <p><strong>Mensagem:</strong> <?php echo htmlspecialchars($mensagem); ?></p>
+                    <p><strong>Criticidade:</strong> <?php echo htmlspecialchars($criticidade); ?></p>
+                    <p><strong>Data e Hora:</strong> <?php echo htmlspecialchars($data_hora); ?></p>
                 </div>
             </div>
+        </main>
+    </body>
 
-            <div class="mt-4 mb-4">
-                <h3>Tipo: <?php echo htmlspecialchars($tipo); ?></h3>
-                <p><strong>Mensagem:</strong> <?php echo htmlspecialchars($mensagem); ?></p>
-                <p><strong>Criticidade:</strong> <?php echo htmlspecialchars($criticidade); ?></p>
-                <p><strong>Data e Hora:</strong> <?php echo htmlspecialchars($data_hora); ?></p>
-            </div>
-        </div>
-    </main>
-</body>
-</html>
+    </html>
 
 <?php
-}else{
+} else {
 
 
-$sql = "SELECT * FROM alerta";
-$sql2 = "SELECT * FROM alerta_usuario WHERE id_usuario = " . $_SESSION['id_usuario'];
+    $sql = "SELECT * FROM alerta";
+    $sql2 = "SELECT * FROM alerta_usuario WHERE id_usuario = " . $_SESSION['id_usuario'];
 
-$resultAlerta = $conn->query($sql);
-$alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
+    $resultAlerta = $conn->query($sql);
+    $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
 
 
 
 ?>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alertas e Notificações</title>
+    <html lang="en">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Alertas e Notificações</title>
 
-    <link rel="stylesheet" href="../styles/style.css">
-</head>
-<body>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="../styles/style.css">
+    </head>
+
+    <body>
         <main>
-        <div class="container-fluid">
-            <div class="row navRelat d-flex align-items-center sticky-top">
-                <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="window.location='dashboard.php'"></button>
-                    <div class="d-flex flex-column">
-                        <p class="mb-0">Alertas e Notificações</p>
+            <div class="container-fluid">
+                <div class="row headerDash d-flex align-items-center">
+                    <div class="col-8  welcome lh-1">
+                        <div class="col ms-4 fw-bold fs-5">
+                            <p class="mb-0">Alertas e Manutenção</p>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="col d-flex align-items-center justify-content-end">
+                            <?php include 'partials/sidebar.php'; ?>
+                        </div>
                     </div>
                 </div>
-
-                <div>
-                    <?php include 'sidebar.php'; ?>
-                </div>
-            </div>
 
                 <div class="scrollAlertas">
                     <?php
@@ -129,9 +135,10 @@ $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
                     <?php endif; ?>
                 </div>
             </div>
-    </main>
-</body>
-</html>
+        </main>
+    </body>
+
+    </html>
 
 <?php
 }

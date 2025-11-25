@@ -23,6 +23,11 @@ body {
     overflow-x: hidden;
 }
 
+.bodyGeral {
+    background-color: #D9D9D9;
+    width: 100vw;
+}
+
 .main {
     background-color: #D9D9D9;
     width: 70vw;

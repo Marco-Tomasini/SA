@@ -9,15 +9,13 @@ if (!isset($_SESSION['id_usuario'])) {
     exit();
 }
 
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['perfil'], $_POST['cpf'], $_POST['nascimento'], $_POST['endereco'], $_POST['contato'])){
-        $user = new User($conn);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['perfil'], $_POST['cpf'], $_POST['nascimento'], $_POST['endereco'], $_POST['contato'])) {
+    $user = new User($conn);
 
-        $user->register($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['perfil'], $_POST['cpf'], $_POST['nascimento'], $_POST['endereco'], $_POST['contato']);
-            echo "<script>alert('Usuário Criado com sucesso.');</script>";
-            echo "<script>window.location.href = 'dashboard.php';</script>";
-
-
-    }
+    $user->register($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['perfil'], $_POST['cpf'], $_POST['nascimento'], $_POST['endereco'], $_POST['contato']);
+    echo "<script>alert('Usuário Criado com sucesso.');</script>";
+    echo "<script>window.location.href = 'dashboard.php';</script>";
+}
 
 ?>
 
@@ -40,16 +38,17 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['email'
 <body>
     <main>
         <div class="container-fluid">
-            <div class="row navRelat d-flex align-items-center sticky-top">
-                <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
-                    <div class="d-flex flex-column">
-                        <p>Cadastro de Usuário</p>
+            <div class="row headerDash d-flex align-items-center">
+                <div class="col-8  welcome lh-1">
+                    <div class="col ms-4 fw-bold fs-5">
+                        <p class="mb-0">Cadastro de Usuário</p>
                     </div>
                 </div>
 
-                <div>
-                    <?php include 'sidebar.php'; ?>
+                <div class="col-4">
+                    <div class="col d-flex align-items-center justify-content-end">
+                        <?php include 'partials/sidebar.php'; ?>
+                    </div>
                 </div>
             </div>
             <form method="POST" class="p-5">
@@ -89,7 +88,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['email'
 
                 <div class="mb-3">
                     <label for="endereco" class="form-label">Endereço: </label>
-                    <input required type="text" class="form-control" id="endereco" name="endereco" placeholder="Insira...">  
+                    <input required type="text" class="form-control" id="endereco" name="endereco" placeholder="Insira...">
                 </div>
 
                 <div class="mb-3">
@@ -103,6 +102,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['email'
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
+
 </html>
 
 <?php

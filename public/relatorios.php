@@ -27,19 +27,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 
-<body class="overflow-y-hidden">
+<body class="overflow-y-hidden bodyGeral">
     <main>
         <div class="container-fluid">
-            <div class="row navRelat d-flex align-items-center">
-                <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" onclick="window.location='dashboard.php'" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt=""></button>
-                    <p class="mb-0">Relatórios e Análises</p>
-                </div>
+            <div class="row headerDash d-flex align-items-center">
+                    <div class="col-8  welcome lh-1">
+                        <div class="col ms-4 fw-bold fs-5">
+                            <p class="mb-0">Relatórios e Análises</p>
+                        </div>
+                    </div>
 
-                <div class="col-4">
-                    <?php include 'sidebar.php'; ?>
+                    <div class="col-4">
+                        <div class="col d-flex align-items-center justify-content-end">
+                            <?php include 'partials/sidebar.php'; ?>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
             <div class="row">
                 <div class="col">
