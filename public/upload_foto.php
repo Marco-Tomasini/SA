@@ -115,6 +115,7 @@ if (isset($_GET['id'])) {
                                     <option value="maquinista" <?php if ($dadosusuario['perfil'] === 'Maquinista') echo 'selected'; ?>>Maquinista</option>
                                 </select>
 
+                                <button type="button" class="btn btn-danger" onclick="location.href='delete_usuario.php?id=<?php echo $dadosusuario['id_usuario']; ?>'">Demitir</button>
                                 <button type="submit" class="btn btn-primary">Salvar</button>
                             </div>
                             </div>
