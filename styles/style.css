@@ -16,6 +16,13 @@ body {
     background: linear-gradient(161deg, rgba(104, 58, 145, 1) 30%, rgba(52, 38, 56, 1) 100%);
 }
 
+.bodyDashboard {
+    background-color: #D9D9D9;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
 .main {
     background-color: #D9D9D9;
     width: 70vw;
@@ -65,9 +72,19 @@ body {
     background: linear-gradient(161deg, rgba(40, 24, 59, 1) 30%, rgba(67, 35, 79, 1) 100%);
 }
 
+.btnSidebar:hover {
+    background: #281638;
+    background: linear-gradient(161deg, rgba(40, 22, 56, 1) 30%, rgba(47, 22, 56, 1) 100%);
+}
+
 .btnAdminSidebar {
     background: #523142;
     background: linear-gradient(161deg, rgba(82, 49, 66, 1) 7%, rgba(31, 19, 25, 1) 100%);
+}
+
+.btnAdminSidebar:hover {
+    background: #402734;
+    background: linear-gradient(161deg, rgba(64, 39, 52, 1) 7%, rgba(20, 12, 16, 1) 100%);
 }
 
 .esqueci {

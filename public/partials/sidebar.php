@@ -6,26 +6,26 @@ if (session_status() === PHP_SESSION_NONE) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['gestao'])) {
-        header('Location: gestaoDeRotas.php');
+        header('Location: ');
         exit;
     } elseif (isset($_POST['listaCadastros'])) {
-        header('Location: listaCadastros.php');
+        header('Location: ../listaCadastros.php');
         exit;
     } elseif (isset($_POST['manutencao'])) {
-        header('Location: manutencao.php');
+        header('Location: ../manutencao.php');
         exit;
     } elseif (isset($_POST['relatorios'])) {
-        header('Location: relatorios.php');
+        header('Location: ../relatorios.php');
         exit;
     } elseif (isset($_POST['alertas'])) {
-        header('Location: alertas.php');
+        header('Location: ../alertas.php');
         exit;
     } elseif (isset($_POST['funcionarios'])) {
-        header('Location: funcionarios.php');
+        header('Location: ../funcionarios.php');
         exit;
     } elseif (isset($_POST['sair'])) {
         session_destroy();
-        header('Location: ../index.php');
+        header('Location: ../../index.php');
         exit;
     }
 }
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../../styles/style.css">
 </head>
 
-<body>
+<body class="bodyDashboard">
     <div class="container-fluid p-0">
         <div class="row">
             <div class="col d-flex align-items-between justify-content-end p-0 me-md-4 me-3">
@@ -56,19 +56,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <div class="col d-flex flex-column gap-3 ms-5 me-5">
-                        <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold">Gestão de Rotas</button>
-                        <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold">Monit. de Manutenção</button>
-                        <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold">Relatórios e Análises</button>
-                        <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold">Alertas e Notficações</button>
+                        <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold" onclick="window.location.href='gestaoDeRotas.php'">Gestão de Rotas</button>
+                        <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold" onclick="window.location.href='manutencao.php'">Monit. de Manutenção</button>
+                        <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold" onclick="window.location.href='relatorios.php'">Relatórios e Análises</button>
+                        <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold" onclick="window.location.href='alertas.php'">Alertas e Notficações</button>
 
                         <?php if (isset($_SESSION['perfil']) && strcasecmp(trim($_SESSION['perfil']), 'Gerente') === 0): ?>
-                            <button type="button" class="btn btnAdminSidebar btn-dark custom-height-btn fw-semibold">Funcionários</button>
-                            <button type="button" class="btn btnAdminSidebar btn-dark custom-height-btn mb-5 fw-semibold">Lista de Cadastros</button>
+                            <button type="button" class="btn btnAdminSidebar btn-dark custom-height-btn fw-semibold" onclick="window.location.href='funcionarios.php'">Funcionários</button>
+                            <button type="button" class="btn btnAdminSidebar btn-dark custom-height-btn mb-5 fw-semibold" onclick="window.location.href='listaCadastros.php'">Lista de Cadastros</button>
                         <?php endif; ?>
                     </div>
 
                     <div class="col d-flex flex-column p-5 mt-5">
-                        <button type="button" class="btn btn-danger custom-height-btn fw-semibold">Sair</button>
+                        <button type="button" class="btn btn-danger custom-height-btn fw-semibold" onclick="window.location.href='../src/logout.php?logout'">Sair</button>
                     </div>
                 </div>
             </div>
