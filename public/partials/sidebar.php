@@ -3,32 +3,6 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['gestao'])) {
-        header('Location: ');
-        exit;
-    } elseif (isset($_POST['listaCadastros'])) {
-        header('Location: ../listaCadastros.php');
-        exit;
-    } elseif (isset($_POST['manutencao'])) {
-        header('Location: ../manutencao.php');
-        exit;
-    } elseif (isset($_POST['relatorios'])) {
-        header('Location: ../relatorios.php');
-        exit;
-    } elseif (isset($_POST['alertas'])) {
-        header('Location: ../alertas.php');
-        exit;
-    } elseif (isset($_POST['funcionarios'])) {
-        header('Location: ../funcionarios.php');
-        exit;
-    } elseif (isset($_POST['sair'])) {
-        session_destroy();
-        header('Location: ../../index.php');
-        exit;
-    }
-}
 ?>
 
 <html lang="pt-br">
@@ -56,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <div class="col d-flex flex-column gap-3 ms-5 me-5">
+                        <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold" onclick="window.location.href='dashboard.php'">Dashboard</button>
                         <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold" onclick="window.location.href='gestaoDeRotas.php'">Gestão de Rotas</button>
                         <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold" onclick="window.location.href='manutencao.php'">Monit. de Manutenção</button>
                         <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold" onclick="window.location.href='relatorios.php'">Relatórios e Análises</button>
