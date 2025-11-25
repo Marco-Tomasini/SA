@@ -23,6 +23,13 @@ SA/
 ├── assets/
 │   ├── icon/ (SVG/PNG)
 │   └── img/ (fotos de perfil)
+├── documentacao/
+│   ├── DER.png
+│   ├── Diagrama Caso de Uso SmartCities.png
+│   ├── SA - Implantação de Sistemas.md
+│   ├── SA - MANUAL DO SISTEMA SMART-CITIES.md
+│   ├── SA - MANUAL DO SISTEMA SMART-CITIES.pdf
+│   └── SA - Regras de Negocio e Requisitos.md
 ├── public/
 │   ├── alertas.php
 │   ├── cadastrorotas.php
