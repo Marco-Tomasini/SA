@@ -39,19 +39,23 @@ if (!isset($_SESSION['id_usuario'])) {
     <main>
         <div class="container-fluid fullscreen p-0">
             <div class="row headerDash d-flex align-items-center">
-                <div class="col-8 mt-4 ms-5 welcome lh-1">
-                    <p>Bem-vindo(a)</p>
-                    <p class="fw-bold fs-5" onclick="window.location.href='upload_foto.php'" style="cursor: pointer;"><?php echo htmlspecialchars($_SESSION['nome']); ?></p>
+                <div class="col-8  welcome lh-1">
+                    <div class="col ms-5">
+                        <p>Bem-vindo(a)</p>
+                        <p class="fw-bold fs-5 mb-0" onclick="window.location.href='upload_foto.php'" style="cursor: pointer;"><?php echo htmlspecialchars($_SESSION['nome']); ?></p>
+                    </div>
                 </div>
 
-                <div class="col-4 me-4">
-                    <?php include 'sidebar.php'; ?>
+                <div class="col-4">
+                    <div class="col d-flex align-items-center justify-content-end">
+                        <?php include 'partials/sidebar.php'; ?>
+                    </div>
                 </div>
             </div>
             <div class="scrollViagens">
                 <?php if (count($viagens) > 0): ?>
                     <?php foreach ($viagens as $row): ?>
-                        <div class="row d-flex justify-content-between border-bottom border-black mt-2" onclick="window.location.href='createViagem.php?id=<?php echo $row['id_viagem']; ?>'">
+                        <div class="row d-flex justify-content-between border-bottom border-black mt-2" onclick="window.location.href='createViagem.php?id=<?php echo $row['id_viagem']; ?>'" style="cursor: pointer;">
                             <div class="col-4 d-flex flex-column justify-items-between align-items-start ms-3 ms-md-5">
                                 <div class="d-flex">
                                     <?php $partida = new DateTime($row['data_partida']); ?>
@@ -108,7 +112,7 @@ if (!isset($_SESSION['id_usuario'])) {
 
                 <?php if (count($alertas) > 0): ?>
                     <?php foreach ($alertas as $row): ?>
-                        <div class="row d-flex justify-content-start align-items-center border-bottom border-black">
+                        <div class="row d-flex justify-content-start align-items-center border-bottom border-black" onclick="window.location='alertas.php?id=<?php echo $row['id_alerta']; ?>'">
                             <div class="col-1 d-flex justify-content-center align-items-center ms-4 mt-2 mb-2 p-0">
                                 <img src="../assets/icon/Ellipse 16.svg" alt="">
                             </div>

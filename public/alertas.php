@@ -38,7 +38,7 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="window.location='dashboard.php'"></button>
                     <div class="d-flex flex-column">
                         <p class="mb-0">Detalhes do Alerta</p>
                     </div>
@@ -89,7 +89,7 @@ $alertas = $resultAlerta->fetchAll(PDO::FETCH_ASSOC);
         <div class="container-fluid">
             <div class="row navRelat d-flex align-items-center sticky-top">
                 <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='dashboard.php'"></button>
+                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="window.location='dashboard.php'"></button>
                     <div class="d-flex flex-column">
                         <p class="mb-0">Alertas e Notificações</p>
                     </div>

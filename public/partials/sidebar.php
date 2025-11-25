@@ -1,7 +1,15 @@
 <?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['gestao'])) {
         header('Location: gestaoDeRotas.php');
+        exit;
+    } elseif (isset($_POST['listaCadastros'])) {
+        header('Location: listaCadastros.php');
         exit;
     } elseif (isset($_POST['manutencao'])) {
         header('Location: manutencao.php');
@@ -23,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -37,35 +45,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <main>
-        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-list"></i></button>
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col d-flex align-items-between justify-content-end p-0 me-md-4 me-3">
+                <i class="btn bi bi-list mb-0 fs-3" type="button" data-bs-theme="dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
 
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-            <div class="offcanvas-header">
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <div class="col d-flex flex-column gap-5 ms-4 me-4" role="group" aria-label="Vertical button group">
-                    <div class="d-flex">
-                        <div class="col">
-                            <button type="button" class="btn btn-dark custom-height-btn">Gestão de Rotas</button>
-                            <button type="button" class="btn btn-dark custom-height-btn">Monit. de Manutenção</button>
-                            <button type="button" class="btn btn-dark custom-height-btn">Relatórios e Análises</button>
-                            <button type="button" class="btn btn-dark custom-height-btn">Alertas e Notficações</button>
+                <div class="col d-flex flex-column offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                    <div class="col d-flex align-items-center justify-content-between ms-5">
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
 
-                            <button type="button" class="btn admin-btn btn-dark custom-height-btn">Funcionários</button>
-                            <button type="button" class="btn admin-btn btn-dark custom-height-btn">Lista de Cadastros</button>
-                        </div>
+                    <div class="col d-flex flex-column gap-3 ms-5 me-5">
+                        <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold">Gestão de Rotas</button>
+                        <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold">Monit. de Manutenção</button>
+                        <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold">Relatórios e Análises</button>
+                        <button type="button" class="btn btn-dark btnSidebar custom-height-btn fw-semibold">Alertas e Notficações</button>
 
-                        <div class="col">
-                            <button type="button" class="btn btn-danger custom-height-btn bottom-0">Sair</button>
-                        </div>
+                        <?php if (isset($_SESSION['perfil']) && strcasecmp(trim($_SESSION['perfil']), 'Gerente') === 0): ?>
+                            <button type="button" class="btn btnAdminSidebar btn-dark custom-height-btn fw-semibold">Funcionários</button>
+                            <button type="button" class="btn btnAdminSidebar btn-dark custom-height-btn mb-5 fw-semibold">Lista de Cadastros</button>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="col d-flex flex-column p-5 mt-5">
+                        <button type="button" class="btn btn-danger custom-height-btn fw-semibold">Sair</button>
                     </div>
                 </div>
             </div>
         </div>
-
-    </main>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
