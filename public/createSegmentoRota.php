@@ -158,7 +158,7 @@ if (isset($_GET['id'])) {
                                 <input type="number" class="form-control" id="distancia_km" name="distancia_km" required value="<?php echo isset($segmento_rota_row['distancia_km']) ? htmlspecialchars($segmento_rota_row['distancia_km']) : ''; ?>">
                             </div>
 
-                            <button type="submit" class="btn btn-light btnLogin mt-5">Atualizar Segmento de Rota</button>
+                            <button type="submit" class="btn btn-dark btnLogin mt-5">Atualizar Segmento de Rota</button>
                         </form>
                     </div>
                 </div>
