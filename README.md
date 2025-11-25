@@ -1,132 +1,142 @@
 # Projeto SA
 
 ## Descrição
+MVP web em PHP para gestão ferroviária (rotas, viagens, trens, manutenção, alertas e usuários). O sistema evoluiu de mockups para um conjunto de telas funcionais com autenticação, gestão de cadastros e painel dinâmico.
 
-Este projeto consiste no desenvolvimento de um MVP (Produto Mínimo Viável) web em PHP, focado em gestão ferroviária. O objetivo é transformar mockups e um esquema de banco de dados pré-existentes em um sistema navegável e funcional, com autenticação de usuário, proteção de rotas e um dashboard inicial que exibe dados reais do banco de dados. A interface é desenvolvida com uma abordagem Mobile First, adaptada para ser responsiva em diferentes dispositivos.
+## Status (Novembro/2025)
+Versão inicial navegável concluída. CRUD básico para principais entidades, autenticação com sessão, hash de senha, upload de foto de perfil e integração de validação de CPF via API externa. Interface em Bootstrap + CSS próprio com abordagem mobile first.
 
-## Funcionalidades
-
-*   **Autenticação de Usuário:** Tela de login funcional com validação no back-end, criação e encerramento de sessão.
-*   **Proteção de Abas:** Páginas internas específicas são protegidas, exigindo cargos maiores para acesso.
-*   **Dashboard:** Painel inicial que exibe informações reais do banco de dados relacionadas à gestão ferroviária (ex: quantidade de trens em operação, próximas partidas, alertas de manutenção).
-*   **Estrutura Organizada:** Projeto organizado em pastas claras (assets, public, scripts, styles).
-*   **Conexão ao Banco de Dados:** Conexão única e reutilizável ao banco de dados, com tratamento de erros.
-*   **Navegação:** Fluxo de usuário intuitivo: login -> dashboard -> sidebar -> logout.
-*   **Mobile First e Responsividade:** Interface adaptada para dispositivos móveis e será responsiva para outros dispositivos.
+## Funcionalidades Implementadas
+- Autenticação e sessão (login/logout) com hash de senha (password_hash / password_verify).
+- Controle de acesso simples por perfil (armazenado em sessão).
+- Dashboard com listagem de viagens e alertas dinâmicos.
+- Gestão de Usuários: cadastro, edição (dados), upload de foto de perfil.
+- CRUDs parciais: Estação, Trem, Rota, Segmento de Rota, Viagem, Ordem de Manutenção, Alerta.
+- Upload seguro (valida tipo, tamanho e extensão).
+- Integração API CPFHub (validação de CPF) via Guzzle + script front (`validar_cpf.js`).
+- Estrutura de componentes reutilizáveis (sidebar, header, footer).
+- Banco relacional modelado conforme `bd.sql` + popularização opcional via `bdpopular.sql`.
 
 ## Estrutura do Projeto
-
-A estrutura de diretórios do projeto é organizada da seguinte forma:
-
 ```
 SA/
 ├── assets/
-│   └── icon/
-│       ├── logoSite.svg
-│       └── speak.svg
+│   ├── icon/ (SVG/PNG)
+│   └── img/ (fotos de perfil)
 ├── public/
-│   ├── partials/
-│   │   ├── footer.php
-│   │   └── header.php
-│   ├── create.php
-│   ├── sidebar.php
+│   ├── alertas.php
+│   ├── cadastrorotas.php
+│   ├── create.php (usuário)
+│   ├── createAlerta.php
+│   ├── createEstacao.php
+│   ├── createOrdemM.php
+│   ├── createSegmentoRota.php
+│   ├── createTrem.php
+│   ├── createViagem.php
 │   ├── dashboard.php
-│   └── db.php
+│   ├── funcionarios.php
+│   ├── gestaoDeRotas.php
+│   ├── listaCadastros.php
+│   ├── relatorios.php
+│   ├── testeAPI.php
+│   ├── upload_foto.php
+│   ├── db.php (conexão)
+│   └── partials/
+│       ├── footer.php
+│       ├── header.php
+│       └── sidebar.php
 ├── scripts/
+│   ├── script.js
 │   ├── script_sidebar.js
-│   └── script.js
+│   └── validar_cpf.js
+├── src/
+│   ├── Auth.php
+│   ├── User.php
+│   └── codigoAPI.php (exemplo de chamada API)
 ├── styles/
-│   ├── style_sidebar.css
-│   └── style.css
-├── index.php
+│   ├── style.css
+│   └── style_sidebar.css
+├── vendor/ (Composer - Guzzle)
 ├── bd.sql
+├── bdpopular.sql
+├── composer.json
+├── index.php (login)
 ├── LICENSE
 └── README.md
 ```
 
-*   `assets/`: Contém recursos estáticos como imagens e ícones.
-*   `public/`: Contém os arquivos PHP que compõem as páginas da aplicação, incluindo parciais (cabeçalho, rodapé, barra lateral).
-*   `scripts/`: Armazena arquivos JavaScript para interatividade no front-end.
-*   `styles/`: Contém arquivos CSS para estilização da aplicação.
-*   `bd.sql`: Script SQL para criação da estrutura do banco de dados e inserção de dados de teste.
-*   `index.php`: Arquivo principal que inicializa a aplicação e gerencia o fluxo inicial do usuário, sendo essa a tela de login.
-*   `README.md`: Este arquivo, com informações sobre o projeto.
+## Stack Tecnológica
+- PHP 8+ (PDO para MySQL)
+- MySQL
+- Composer (GuzzleHTTP)
+- Bootstrap 5 + CSS
+- JavaScript (validações e interações básicas)
 
-## Tecnologias Utilizadas
+## Instalação
+1. Clonar repositório:
+   ```bash
+   git clone https://github.com/Marco-Tomasini/SA.git
+   cd SA
+   ```
+2. Instalar dependências Composer:
+   ```bash
+   composer install
+   ```
+3. Criar banco de dados (MySQL). Atenção ao nome: em `db.php` está `smartcitiesv9` (minúsculo). Ajuste para o mesmo padrão usado ao criar o BD.
+4. Executar script base:
+   - Importar `bd.sql` no phpMyAdmin.
+   - Opcional: importar `bdpopular.sql` para dados de demonstração.
+5. Configurar credenciais em `public/db.php` (host, usuário, senha, nome do BD).
+6. Mover pasta para `htdocs` (XAMPP) ou apontar DocumentRoot equivalente.
+7. Acessar: `http://localhost/SA/` (login) ou conforme estrutura local.
 
-*   **Back-end:** PHP
-*   **Front-end:** HTML, CSS, JavaScript
-*   **Banco de Dados:** MySQL (via `phpMyAdmin`)
-*   **Servidor Local:** XAMPP ou similar
+## Banco de Dados
+Modelo inclui entidades: usuario, trem, estacao, rota, segmento_rota, viagem, sensor (+ especializações), leitura_sensor, ordem_manutencao, alerta, alerta_usuario, relatorios.
 
-## Instalação e Execução
+## Autenticação e Segurança
+- Senhas armazenadas com `password_hash`.
+- Sessões PHP (`$_SESSION`) para manter estado do usuário.
+- Verificações de acesso nas páginas (`if (!isset($_SESSION['id_usuario']))`).
+- Recomendado: adicionar regeneração de sessão e filtros de perfil futuro.
 
-Para configurar e executar o projeto localmente, siga os passos abaixo:
-
-1.  **Servidor Web:** Certifique-se de ter um ambiente de servidor web local (como XAMPP, WAMP ou MAMP) instalado e configurado com PHP e MySQL.
-2.  **Clone o Repositório:**
-
-    ```bash
-    git clone https://github.com/Marco-Tomasini/SA.git
-    cd SA
-    ```
-
-3.  **Configuração do Banco de Dados:**
-    *   Crie um novo banco de dados MySQL, a partir do arquivo ```bd.sql```. no ```localhost:/phpmyadmin/``` (ou o caminho correspondente).
-
-4.  **Configuração da Conexão:**
-    *   O arquivo `public/db.php` é responsável pela conexão com o banco de dados. Certifique-se de que as credenciais (host, usuário, senha, nome do banco) estejam corretas para o seu ambiente local.
-
-5.  **Acesso à Aplicação:**
-    *   Mova a pasta `SA` para o diretório `htdocs` do seu XAMPP (ou equivalente).
-    *   Abra seu navegador e acesse `http://localhost/SA/public/index.php` (ou o caminho correspondente à sua configuração).
-
-## CPFHub.io API
-A API [CPFHub.io](https://cpfhub.io/) é utilizada para validação e consulta de informações de CPF de forma automatizada. No nosso projeto, ela é integrada para verificar a autenticidade dos CPFs informados pelos usuários durante o cadastro, garantindo maior segurança e confiabilidade dos dados.
-
-### Principais Características
-
-- **Validação de CPF:** Confirma se o número informado é válido e corresponde a um CPF existente.
-- **Consulta de Dados:** Permite obter informações básicas associadas ao CPF.
-
-### Exemplo de Uso
-
+## Integração API CPFHub
+Utiliza Guzzle para requisições. Configure a chave via variável de ambiente ou arquivo seguro (não versionado).
+Exemplo simplificado:
 ```php
-// Exemplo de requisição em PHP
-require 'vendor/autoload.php';
-use GuzzleHttp\Client;
-
-$cpf = "123.456.789-00";
-$birthDate = "15/06/1990";
-$apiKey = "96e10a4ccfe9d588ec0078ac93b86474cd7b358c57285f96a462a117f6511818";
-
-$client = new Client();
+$client = new \GuzzleHttp\Client();
 $response = $client->post('https://api.cpfhub.io/api/cpf', [
-    'headers' => [
-        'Content-Type' => 'application/json',
-        'x-api-key' => $apiKey
-    ],
-    'json' => [
-        'cpf' => $cpf,
-        'birthDate' => $birthDate
-    ]
+  'headers' => [
+    'Content-Type' => 'application/json',
+    'x-api-key' => getenv('CPFHUB_API_KEY')
+  ],
+  'json' => [ 'cpf' => $cpf, 'birthDate' => $birthDate ]
 ]);
-
-$result = json_decode($response->getBody(), true);
-print_r($result);
+$data = json_decode($response->getBody(), true);
 ```
 
-Consulte a [documentação oficial](https://cpfhub.io/docs) para mais detalhes.
+## Integração MQTT (HiveMQ) – Planejada
+- Ingestão em tempo real via broker HiveMQ para eventos de campo.
+- Fontes: sensores de presença nos trilhos e atuadores de servomotor nos mesmos.
+- Visualização: a aba Relatórios e Análises exibirá indicadores e eventos ao vivo (atualização periódica).
+- Segurança e QoS: uso de TLS, usuário/senha do broker, QoS 1 e mensagens retidas quando aplicável.
 
+## Gestão de Entidades (CRUD parcial)
+| Entidade              | Tela / Script                | Observações |
+|-----------------------|------------------------------|-------------|
+| Usuário               | create.php / upload_foto.php | Falta recuperação de senha. |
+| Trem                  | createTrem.php               | Completar edição/deleção. |
+| Estação               | createEstacao.php            |             |
+| Rota / Segmento       | cadastrorotas.php / createSegmentoRota.php | Relacionamento sequencial. |
+| Viagem                | createViagem.php / dashboard.php | Status e previsão mostrados. |
+| Ordem Manutenção      | createOrdemM.php             | Estados básicos. |
+| Alerta                | createAlerta.php / alertas.php | Associação a viagem. |
+| Relatórios            | relatorios.php               | Mostra Sensores e Status. |
 
 ## Contribuidores
-
-*   Marco-Tomasini
-*   Carlos-E-Bittencourt
-*   caetanoenzo
-*   Brayanhgodoy
+- Marco-Tomasini
+- Carlos-E-Bittencourt
+- caetanoenzo
+- Brayanhgodoy
 
 ## Licença
-
-Este projeto está licenciado sob a [Licença MIT](LICENSE).
-
+Licenciado sob [MIT](LICENSE).
