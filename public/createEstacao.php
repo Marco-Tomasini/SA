@@ -32,7 +32,7 @@ if (isset($_GET['id'])) {
             $error = $conn->errorInfo();
             echo "Erro na consulta: " . $error[2];
         }
-        }
+    }
 ?>
 
     <html lang="pt-br">
@@ -52,16 +52,17 @@ if (isset($_GET['id'])) {
 
         <main>
             <div class="container-fluid">
-                <div class="row navRelat d-flex align-items-center sticky-top">
-                    <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
-                        <div class="d-flex flex-column">
-                            <p class="mb-0">Atualização de Estações</p>
+                <div class="row headerDash d-flex align-items-center">
+                    <div class="col-8  welcome lh-1">
+                        <div class="col ms-4 fw-bold fs-5">
+                            <p class="mb-0">Atualização de Estação</p>
                         </div>
                     </div>
 
-                    <div>
-                        <?php include 'sidebar.php'; ?>
+                    <div class="col-4">
+                        <div class="col d-flex align-items-center justify-content-end">
+                            <?php include 'partials/sidebar.php'; ?>
+                        </div>
                     </div>
                 </div>
 
@@ -127,16 +128,17 @@ if (isset($_GET['id'])) {
 
         <main>
             <div class="container-fluid">
-                <div class="row navRelat d-flex align-items-center sticky-top">
-                    <div class="col-8 d-flex align-items-center mt-4 ms-2 welcome lh-1">
-                    <button type="button" class="btn me-4"><img src="../assets/icon/seta-curva-esquerda 1.png" alt="" onclick="location.href='listaCadastros.php'"></button>
-                        <div class="d-flex flex-column">
-                            <p class="mb-0">Cadastro de Estações</p>
+                <div class="row headerDash d-flex align-items-center">
+                    <div class="col-8  welcome lh-1">
+                        <div class="col ms-4 fw-bold fs-5">
+                            <p class="mb-0">Cadastro de Estação</p>
                         </div>
                     </div>
 
-                    <div>
-                        <?php include 'sidebar.php'; ?>
+                    <div class="col-4">
+                        <div class="col d-flex align-items-center justify-content-end">
+                            <?php include 'partials/sidebar.php'; ?>
+                        </div>
                     </div>
                 </div>
 

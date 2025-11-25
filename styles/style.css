@@ -16,6 +16,18 @@ body {
     background: linear-gradient(161deg, rgba(104, 58, 145, 1) 30%, rgba(52, 38, 56, 1) 100%);
 }
 
+.bodyDashboard {
+    background-color: #D9D9D9;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.bodyGeral {
+    background-color: #D9D9D9;
+    width: 100vw;
+}
+
 .main {
     background-color: #D9D9D9;
     width: 70vw;
@@ -65,9 +77,25 @@ body {
     background: linear-gradient(161deg, rgba(40, 24, 59, 1) 30%, rgba(67, 35, 79, 1) 100%);
 }
 
+.btnSidebar:hover {
+    background: #281638;
+    background: linear-gradient(161deg, rgba(40, 22, 56, 1) 30%, rgba(47, 22, 56, 1) 100%);
+}
+
 .btnAdminSidebar {
     background: #523142;
     background: linear-gradient(161deg, rgba(82, 49, 66, 1) 7%, rgba(31, 19, 25, 1) 100%);
+}
+
+.btnAdminSidebar:hover {
+    background: #402734;
+    background: linear-gradient(161deg, rgba(64, 39, 52, 1) 7%, rgba(20, 12, 16, 1) 100%);
+}
+
+.btnEditaViagem {
+    color: #D9D9D9;
+    background: #28183b;
+    background: linear-gradient(161deg, rgba(40, 24, 59, 1) 30%, rgba(67, 35, 79, 1) 100%);
 }
 
 .esqueci {
@@ -203,4 +231,9 @@ body {
 .tituloLight {
     color: #0f0f0f;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.cardViagem {
+    background-color: #D9D9D9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

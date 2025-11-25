@@ -35,7 +35,7 @@ if (!isset($_SESSION['id_usuario'])) {
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 
-<body class="overflow-y-hidden">
+<body class="overflow-y-hidden bodyDashboard">
     <main>
         <div class="container-fluid fullscreen p-0">
             <div class="row headerDash d-flex align-items-center">
