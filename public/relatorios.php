@@ -1,6 +1,7 @@
 <?php
 
 include 'db.php';
+include 'MQTT/insertDb.php';
 
 $sql = "SELECT nome_viagem FROM viagem";
 

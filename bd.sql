@@ -159,3 +159,12 @@ ALTER TABLE alerta modify data_hora DATETIME DEFAULT CURRENT_TIMESTAMP;
 
 ALTER TABLE ordem_manutencao modify data_abertura DATETIME DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE ordem_manutencao modify data_fechamento DATETIME DEFAULT NULL;
+
+
+CREATE TABLE sensor_data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sensor_id VARCHAR(50) NOT NULL,
+    sensor_type VARCHAR(50) NOT NULL,
+    value FLOAT,
+    received_at DATETIME NOT NULL
+);
