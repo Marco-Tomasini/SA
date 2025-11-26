@@ -3,7 +3,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "root";
-    $dbname = "smartcitiesv9";
+    $dbname = "smartcitiesv10";
 
     try{
         $conn = new PDO("mysql: host=$servername; dbname=$dbname", $username, $password);

@@ -1,6 +1,6 @@
-CREATE DATABASE SmartCitiesV9;
+CREATE DATABASE SmartCitiesV10;
 
-USE SmartCitiesV9;
+USE SmartCitiesV10;
 
 -- ===========================
 -- TABELAS PRINCIPAIS
@@ -73,35 +73,18 @@ CREATE TABLE viagem (
 
 CREATE TABLE sensor (
     id_sensor INT AUTO_INCREMENT PRIMARY KEY,
-    tipo ENUM('Trilho', 'Trem'),
+    tipo ENUM('S1', 'S2', 'S3', 'trem') NOT NULL,
+    topico VARCHAR(255) NOT NULL,
     descricao VARCHAR(100)
 );
 
-CREATE TABLE sensor_trilho (
-    id_sensor_trilho INT AUTO_INCREMENT PRIMARY KEY,
-    id_sensor_fk INT,
-    id_segmento_fk INT,
-    tipo_sensor ENUM('Peso', 'Temperatura', 'Presenca'),
-    FOREIGN KEY (id_sensor_fk) REFERENCES sensor(id_sensor),
-    FOREIGN KEY (id_segmento_fk) REFERENCES segmento_rota(id_segmento_rota)
-);
-
-CREATE TABLE sensor_trem (
-    id_sensor_trem INT AUTO_INCREMENT PRIMARY KEY,
-    id_sensor_fk INT,
-    id_trem_fk INT,
-    tipo_sensor ENUM('Motor', 'Freio'),
-    FOREIGN KEY (id_sensor_fk) REFERENCES sensor(id_sensor),
-    FOREIGN KEY (id_trem_fk) REFERENCES trem(id_trem)
-);
-
-CREATE TABLE leitura_sensor (
-    id_leitura INT AUTO_INCREMENT PRIMARY KEY,
-    id_sensor_fk INT,
-    data_hora DATETIME,
-    valor DECIMAL(10,2),
-    unidade VARCHAR(20),
-    FOREIGN KEY (id_sensor_fk) REFERENCES sensor(id_sensor)
+CREATE TABLE sensor_data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sensor_id INT,
+    sensor_type VARCHAR(50) NOT NULL,
+    value FLOAT,
+    received_at DATETIME NOT NULL,
+    FOREIGN KEY (sensor_id) REFERENCES sensor(id_sensor)
 );
 
 -- ===========================
@@ -111,8 +94,8 @@ CREATE TABLE leitura_sensor (
 CREATE TABLE ordem_manutencao (
     id_ordem INT AUTO_INCREMENT PRIMARY KEY,
     id_trem_fk INT,
-    data_abertura DATETIME,
-    data_fechamento DATETIME,
+    data_abertura DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_fechamento DATETIME DEFAULT NULL,
     tipo ENUM('Preventiva', 'Corretiva'),
     descricao TEXT,
     status_manutencao ENUM('Aberta', 'Em andamento', 'Fechada'),
@@ -127,7 +110,7 @@ CREATE TABLE alerta (
     id_alerta INT AUTO_INCREMENT PRIMARY KEY,
     tipo ENUM('Atraso', 'Falha Técnica', 'Segurança'),
     mensagem TEXT,
-    data_hora DATETIME,
+    data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
     criticidade ENUM('Baixa', 'Média', 'Alta'),
     id_viagem_fk INT,
     FOREIGN KEY (id_viagem_fk) REFERENCES viagem(id_viagem)
@@ -153,18 +136,4 @@ CREATE TABLE relatorios (
     taxa_pontualidade DECIMAL(5,2),
     causas_atraso TEXT,
     custo_medio_manutencao DECIMAL(10,2)
-);
-
-ALTER TABLE alerta modify data_hora DATETIME DEFAULT CURRENT_TIMESTAMP;
-
-ALTER TABLE ordem_manutencao modify data_abertura DATETIME DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE ordem_manutencao modify data_fechamento DATETIME DEFAULT NULL;
-
-
-CREATE TABLE sensor_data (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    sensor_id VARCHAR(50) NOT NULL,
-    sensor_type VARCHAR(50) NOT NULL,
-    value FLOAT,
-    received_at DATETIME NOT NULL
 );
