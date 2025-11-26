@@ -14,6 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+
+$sql2 = "SELECT * FROM sensor_data";
+$result = $conn->query($sql2);
+$sensorData = $result->fetchAll(PDO::FETCH_ASSOC); 
+
 ?>
 
 <html lang="en">
@@ -62,7 +67,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </div>
 
                                         <div class="col-6 d-flex justify-content-center align-items-center">
-                                            <p  class="mb-0">Em breve...</p>
+                                            <p  class="mb-0">Em breve...
+                                                <?php foreach($sensorData as $row): ?>
+                                                    <?php echo ($row['sensor_id']); ?>
+                                                    <?php echo ($row['sensor_type']); ?>
+                                                    <?php echo ($row['value']); ?>
+                                                    <?php echo ($row['received_at']); ?>
+                                                <?php endforeach; ?>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
