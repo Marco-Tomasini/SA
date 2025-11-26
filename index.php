@@ -58,7 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <label for="password" class="form-label tituloLight fs-5 fw-light">Senha</label>
                         <input type="password" class="form-control" name="password" id="senha">
                         <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn esqueci">Esqueci minha senha</button>
+                            <button type="" class="btn esqueci">Esqueci minha senha</button>
+                            <p class="btn esqueci mb-0" onclick="location.href='public/primeiroAcesso.php'">Primeiro Acesso</p>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-light btnLogin fs-5 fw-semibold rounded-4">Entrar</button>
