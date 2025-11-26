@@ -46,6 +46,7 @@ if ($row['user_count'] > 0) {
                     <div class="col-8  welcome lh-1">
                         <div class="col ms-4 fw-bold fs-5">
                             <p class="mb-0">Cadastro de Usuário</p>
+                            <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='../index.php'"></i>
                         </div>
                     </div>
 
