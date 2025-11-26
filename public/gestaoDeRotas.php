@@ -33,7 +33,7 @@ $segmentos = $result_segmentorota->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-8  welcome lh-1">
                     <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
                         <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='dashboard.php'"></i>
-                        <p class="mb-0">Atualização de Viagem</p>
+                        <p class="mb-0">Gestão de Rotas</p>
                     </div>
                 </div>
 
@@ -113,8 +113,8 @@ $segmentos = $result_segmentorota->fetchAll(PDO::FETCH_ASSOC);
                                             $nomeRota = $rota->fetch(PDO::FETCH_ASSOC)['nome'];
                                             ?>
 
-                                            <p class="mb-0 fw-semibold"><?php echo htmlspecialchars($nomeOrigem); ?></p>
-                                            <p class="mb-0 fw-semibold"><?php echo htmlspecialchars($nomeRota); ?></p>
+                                            <p class="mb-0 fw-semibold" onclick="window.location='createSegmentoRota.php?id=<?php echo htmlspecialchars($row['id_segmento_rota']); ?>'"><?php echo htmlspecialchars($nomeOrigem); ?></p>
+                                            <p class="mb-0 fw-semibold" onclick="window.location='cadastrorotas.php?id=<?php echo htmlspecialchars($row['id_rota_fk']); ?>'"><?php echo htmlspecialchars($nomeRota); ?></p>
                                         </div>
                                         <div class="col-1 d-flex flex-column justify-content-center align-items-center gap-2">
                                             <i class="bi bi-arrow-right"></i>
@@ -129,7 +129,7 @@ $segmentos = $result_segmentorota->fetchAll(PDO::FETCH_ASSOC);
                                             $nomeDestino = $estacaoDestino->fetch(PDO::FETCH_ASSOC)['nome'];
                                             ?>
 
-                                            <p class="mb-0 fw-semibold text-center"><?php echo htmlspecialchars($nomeDestino); ?></p>
+                                            <p class="mb-0 fw-semibold text-center" onclick="window.location='createSegmentoRota.php?id=<?php echo htmlspecialchars($row['id_segmento_rota']); ?>'"><?php echo htmlspecialchars($nomeDestino); ?></p>
                                             <p class="mb-0 fw-semibold text-center"><?php echo htmlspecialchars($row['distancia_km']); ?> km</p>
                                         </div>
                                     </div>

@@ -24,11 +24,6 @@ INSERT INTO trem (identificador, modelo, capacidade_passageiros, capacidade_carg
 -- USUARIOS
 -- ===========================
 INSERT INTO usuario (nome, email, senha, perfil, CPF, data_nascimento, endereco, contato, imagem_usuario) VALUES
-('Carlos Mendes', 'carlos.mendes@smartcity.com', 'senha123', 'Controlador', '123.456.789-00', '1985-03-14', 'Rua das Flores, 45', '11987654321', 'carlos.png'),
-('Ana Souza', 'ana.souza@smartcity.com', 'senha123', 'Engenheiro', '987.654.321-00', '1990-06-20', 'Av. Paulista, 200', '11999887766', 'ana.png'),
-('Pedro Lima', 'pedro.lima@smartcity.com', 'senha123', 'Planejador', '321.654.987-00', '1988-11-09', 'Rua Verde, 78', '11988776655', 'pedro.png'),
-('Mariana Alves', 'mariana.alves@smartcity.com', 'senha123', 'Maquinista', '654.987.321-00', '1995-02-02', 'Rua Azul, 12', '11977665544', 'mariana.png'),
-('Ricardo Torres', 'ricardo.torres@smartcity.com', 'senha123', 'Gerente', '741.852.963-00', '1980-12-11', 'Rua Central, 10', '11966554433', 'ricardo.png'),
 ('Admin', 'admin@admin.admin', 'admin', 'Gerente', '13105311963', '2008-02-19', 'Av. Central, 123, Centro', '554791097470', 'default.png'),
 ('Icaro Botelho', 'icaro.botelho@edu.sc.senai.br', 'dandomoles', 'Gerente', '13105311963', '2002-05-06', 'Av. Central, 123, Centro', '47992214358', 'default.png'),
 ('Enzo Caetano', 'enzo_caetano@estudante.sesisenai.org.br', '123', 'Gerente', '13105311963', '1979-07-22', 'R. das Acácias, 45, Norte', '554791097470', 'default.png'),
@@ -99,14 +94,6 @@ INSERT INTO alerta (tipo, mensagem, data_hora, criticidade, id_viagem_fk) VALUES
 ('Atraso', 'Viagem Linha Azul sofreu atraso de 2 minutos devido a alta carga.', '2025-11-06 06:47:00', 'Baixa', 1),
 ('Falha Técnica', 'Sensor de freio reportou falha intermitente.', '2025-11-06 06:50:00', 'Média', 1),
 ('Segurança', 'Presença detectada em trilho não autorizado.', '2025-11-06 06:40:00', 'Alta', 1);
-
--- ===========================
--- ALERTA_USUARIO
--- ===========================
-INSERT INTO alerta_usuario (id_alerta_fk, id_usuario_fk, lido) VALUES
-(1, 1, TRUE),
-(2, 2, FALSE),
-(3, 5, FALSE);
 
 -- ===========================
 -- RELATORIOS

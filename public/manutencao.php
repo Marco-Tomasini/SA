@@ -121,43 +121,41 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="scrollAlertas">
-                    <?php
-                    $ordens = array_filter($ordens, function ($row) {
-                        return !empty($row['tipo']) || !empty($row['mensagem']);
-                    });
-                    ?>
+                <?php
+                $ordens = array_filter($ordens, function ($row) {
+                    return !empty($row['tipo']) || !empty($row['mensagem']);
+                });
+                ?>
 
-                    <?php if (count($ordens) > 0): ?>
-                        <?php foreach ($ordens as $row): ?>
-                            <div class="row row-cols-1 border-bottom border-black">
-                                <div class="col-12 d-flex align-items-center mt-3 mb-3">
-                                    <div class="col-1 d-flex justify-content-center align-items-center">
-                                        <img src="../assets/icon/Ellipse 16.svg" alt="">
-                                    </div>
+                <?php if (count($ordens) > 0): ?>
+                    <?php foreach ($ordens as $row): ?>
+                        <div class="row row-cols-1 border-bottom border-black">
+                            <div class="col-12 d-flex align-items-center mt-3 mb-3">
+                                <div class="col-1 d-flex justify-content-center align-items-center">
+                                    <img src="../assets/icon/Ellipse 16.svg" alt="">
+                                </div>
 
-                                    <div class="col-9" onclick="location.href='manutencao.php?id=<?php echo $row['id_ordem']; ?>'" style="cursor: pointer;">
-                                        <?php
-                                        $sql_trem = "SELECT identificador FROM trem WHERE id_trem = :id_trem";
-                                        $stmt_trem = $conn->prepare($sql_trem);
-                                        $stmt_trem->bindParam(':id_trem', $row['id_trem_fk'], PDO::PARAM_INT);
-                                        $stmt_trem->execute();
-                                        $trem_row = $stmt_trem->fetch(PDO::FETCH_ASSOC);
-                                        $nome_trem = $trem_row ? $trem_row['identificador'] : 'Trem não encontrado';
-                                        ?>
-                                        <p class="mb-1"><strong>Trem:</strong> <?php echo htmlspecialchars($nome_trem); ?></p>
-                                        <p class="mb-1"><?php echo htmlspecialchars($row['descricao']); ?></p>
-                                        <p class="mb-1"><?php echo htmlspecialchars($row['tipo']); ?></p>
-                                    </div>
+                                <div class="col-9" onclick="location.href='manutencao.php?id=<?php echo $row['id_ordem']; ?>'" style="cursor: pointer;">
+                                    <?php
+                                    $sql_trem = "SELECT identificador FROM trem WHERE id_trem = :id_trem";
+                                    $stmt_trem = $conn->prepare($sql_trem);
+                                    $stmt_trem->bindParam(':id_trem', $row['id_trem_fk'], PDO::PARAM_INT);
+                                    $stmt_trem->execute();
+                                    $trem_row = $stmt_trem->fetch(PDO::FETCH_ASSOC);
+                                    $nome_trem = $trem_row ? $trem_row['identificador'] : 'Trem não encontrado';
+                                    ?>
+                                    <p class="mb-1"><strong>Trem:</strong> <?php echo htmlspecialchars($nome_trem); ?></p>
+                                    <p class="mb-1"><?php echo htmlspecialchars($row['descricao']); ?></p>
+                                    <p class="mb-1"><?php echo htmlspecialchars($row['tipo']); ?></p>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <div class="text-center mt-3 mb-3 text-muted">
-                            <p>Nenhum alerta disponível.</p>
                         </div>
-                    <?php endif; ?>
-                </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="text-center mt-3 mb-3 text-muted">
+                        <p>Nenhum alerta disponível.</p>
+                    </div>
+                <?php endif; ?>
             </div>
         </main>
     </body>
