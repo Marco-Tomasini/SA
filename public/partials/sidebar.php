@@ -25,7 +25,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <i class="btn bi bi-list mb-0 fs-3" type="button" data-bs-theme="dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
 
                 <div class="col d-flex flex-column offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                    <div class="col d-flex align-items-center justify-content-between ms-5">
+                    <div class="col d-flex align-items-center justify-content-between ms-5 mt-3">
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
 
@@ -42,7 +42,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <?php endif; ?>
                     </div>
 
-                    <div class="col d-flex flex-column p-5 mt-5">
+                    <div class="col d-flex flex-column p-5 mt-3">
                         <button type="button" class="btn btn-danger custom-height-btn fw-semibold" onclick="window.location.href='../src/logout.php?logout'">Sair</button>
                     </div>
                 </div>
