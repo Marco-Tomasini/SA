@@ -59,24 +59,14 @@ $sensorData = $result->fetchAll(PDO::FETCH_ASSOC);
 
                                 <div class="row row.cols-1 border-bottom border-black">
                                     <div class="col-12 d-flex align-items-center mt-3 mb-3">
-                                        <div class="col-4" onclick="location.href='relatorioDetalhado.php?nome_viagem=<?php echo urlencode($row['nome_viagem']); ?>'">
-                                            <p class="mb-0"><?php echo htmlspecialchars($row['nome_viagem']); ?></p>
-                                        </div>
-
-                                        <div class="col-2">
-                                            <img src="../assets/icon/train 1.svg" alt="" class="ms-3">
-                                        </div>
-
-                                        <div class="col-6 d-flex justify-content-center align-items-center">
-                                            <p  class="mb-0">Em breve...
-                                                <?php foreach($sensorData as $row): ?>
-                                                    <?php echo ($row['sensor_id']); ?>
-                                                    <?php echo ($row['sensor_type']); ?>
-                                                    <?php echo ($row['value']); ?>
-                                                    <?php echo ($row['received_at']); ?>
-                                                <?php endforeach; ?>
-                                            </p>
-                                        </div>
+                                        <p  class="mb-0">
+                                            <?php foreach($sensorData as $row): ?>
+                                                <?php echo ($row['sensor_id']); ?>
+                                                <?php echo ($row['sensor_type']); ?>
+                                                <?php echo ($row['value']); ?>
+                                                <?php echo ($row['received_at']); ?>
+                                            <?php endforeach; ?>
+                                        </p>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
