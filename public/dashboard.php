@@ -38,11 +38,11 @@ if (!isset($_SESSION['id_usuario'])) {
 <body class="overflow-y-hidden bodyDashboard">
     <main>
         <div class="container-fluid fullscreen p-0">
-            <div class="row headerDash d-flex align-items-center">
-                <div class="col-8  welcome lh-1">
-                    <div class="col ms-5">
-                        <p>Bem-vindo(a)</p>
-                        <p class="fw-bold fs-5 mb-0" onclick="window.location.href='upload_foto.php'" style="cursor: pointer;"><?php echo htmlspecialchars($_SESSION['nome']); ?></p>
+            <div class="row headerDash d-flex align-items-center sticky-top">
+                <div class="col-8 welcome lh-1">
+                    <div class="col ms-4">
+                        <p class="ms-md-4 ms-0 fw-semibold fs-6">Bem-vindo(a)</p>
+                        <p class="ms-md-4 ms-0 fw-bold fs-5 mb-0" onclick="window.location.href='upload_foto.php'" style="cursor: pointer;"><?php echo htmlspecialchars($_SESSION['nome']); ?></p>
                     </div>
                 </div>
 
@@ -56,15 +56,15 @@ if (!isset($_SESSION['id_usuario'])) {
                 <?php if (count($viagens) > 0): ?>
                     <?php foreach ($viagens as $row): ?>
                         <div class="row d-flex justify-content-between border-bottom border-black mt-2" onclick="window.location.href='createViagem.php?id=<?php echo $row['id_viagem']; ?>'" style="cursor: pointer;">
-                            <div class="col-4 d-flex flex-column justify-items-between align-items-start ms-3 ms-md-5">
-                                <div class="d-flex">
+                            <div class="col-4 d-flex flex-column justify-items-between align-items-start ms-md-4 ms-3">
+                                <div class="d-flex ms-md-4 ms-3">
                                     <?php $partida = new DateTime($row['data_partida']); ?>
                                     <p class="mb-1"><?php echo $partida->format('H:i'); ?></p>
                                     <p class="mb-1"> ··· </p>
                                     <?php $chegadaPrev = new DateTime($row['data_chegada_previsao']); ?>
                                     <p class="mb-1"><?php echo $chegadaPrev->format('H:i'); ?></p>
                                 </div>
-                                <div class="d-flex flex-column align-items-center previsaoDash">
+                                <div class="d-flex flex-column align-items-center previsaoDash ms-md-4 ms-3">
                                     <?php
                                     $intervalo = $partida->diff($chegadaPrev);
                                     $minutos = ($intervalo->h * 60) + $intervalo->i;
@@ -74,7 +74,7 @@ if (!isset($_SESSION['id_usuario'])) {
                                 </div>
                             </div>
 
-                            <div class="col-7 col- col-md-6 d-flex align-items-center justify-content-center me-3 me-md-5">
+                            <div class="col-7 col-md-6 d-flex align-items-center justify-content-center me-md-3 me-0">
                                 <div class=" col-4 col-md-2 d-flex flex-column align-items-center justify-content-center">
                                     <p class="mb-0">Status:</p>
                                     <p class="mb-0"><?php echo htmlspecialchars($row['status_viagem']); ?></p>
@@ -96,11 +96,8 @@ if (!isset($_SESSION['id_usuario'])) {
 
 
             <div class="row alertasDash d-flex align-items-center justify-content-between">
-                <div class="col-6 d-flex align-items-center justify-content-start ms-5">
-                    <p class="mb-0">Alertas e Notficações</p>
-                </div>
-                <div class="col-1 d-flex justify-content-center me-5">
-                    <img src="../assets/icon/seta-curva-esquerda 2.svg" alt="" height="32">
+                <div class="col-6 d-flex align-items-center justify-content-start ms-4">
+                    <p class="mb-0 ms-md-4 ms-0 fw-bold fs-5">Alertas e Notficações</p>
                 </div>
             </div>
             <div class="scrollAlertas">

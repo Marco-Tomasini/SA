@@ -91,76 +91,71 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center p-5">
+                <div class="row justify-content-center p-3">
                     <div class="col">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="id_trem_fk" class="form-label">Trem Responsável:</label>
-                                <select class="form-control" id="id_trem_fk" name="id_trem_fk" required>
-                                    <option value="">Selecione o Trem</option>
-                                    <?php
-                                    $sql = "SELECT id_trem, identificador FROM trem";
-                                    $stmt = $conn->prepare($sql);
-                                    $stmt->execute();
-                                    $trens = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                    foreach ($trens as $trem) {
-                                        echo "<option value=\"{$trem['id_trem']}\" " . ($trem['id_trem'] == $id_trem_fk ? 'selected' : '') . ">{$trem['identificador']}</option>";
-                                    }
-                                    ?>
-                                </select>
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="id_trem_fk" class="form-label tituloLight fs-5">Trem Responsável:</label>
+                                        <select class="form-control" id="id_trem_fk" name="id_trem_fk" required>
+                                            <option>Selecione o Trem</option>
+                                            <?php
+                                            $sql = "SELECT id_trem, identificador FROM trem";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->execute();
+                                            $trens = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                            foreach ($trens as $trem) {
+                                                echo "<option value=\"{$trem['id_trem']}\" " . ($trem['id_trem'] == $id_trem_fk ? 'selected' : '') . ">{$trem['identificador']}</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="id_rota_fk" class="form-label tituloLight fs-5">Rota Pertencente:</label>
+                                        <select class="form-control" id="id_rota_fk" name="id_rota_fk" required>
+                                            <option value="">Selecione a Rota</option>
+                                            <?php
+                                            $sql = "SELECT id_rota, nome FROM rota";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->execute();
+                                            $rotas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                            foreach ($rotas as $rota) {
+                                                echo "<option value=\"{$rota['id_rota']}\" " . ($rota['id_rota'] == $id_rota_fk ? 'selected' : '') . ">{$rota['nome']}</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="data_partida" class="form-label tituloLight fs-5">Data de Partida:</label>
+                                        <input type="datetime-local" class="form-control" id="data_partida" name="data_partida" value="<?php echo date('Y-m-d\TH:i', strtotime($data_partida)); ?>" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="data_chegada_previsao" class="form-label tituloLight fs-5">Data de Chegada Prevista:</label>
+                                        <input type="datetime-local" class="form-control" id="data_chegada_previsao" name="data_chegada_previsao" value="<?php echo date('Y-m-d\TH:i', strtotime($data_chegada_previsao)); ?>" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="data_chegada" class="form-label tituloLight fs-5">Data de Chegada:</label>
+                                        <input type="datetime-local" class="form-control" id="data_chegada" name="data_chegada" value="<?php echo date('Y-m-d\TH:i', strtotime($data_chegada)); ?>" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="status_viagem" class="form-label tituloLight fs-5">Status da Viagem:</label>
+                                        <select class="form-control" id="status_viagem" name="status_viagem" required>
+                                            <option value="Ok" <?php echo $status_viagem == 'Ok' ? 'selected' : ''; ?>>Ok</option>
+                                            <option value="Revisão" <?php echo $status_viagem == 'Revisão' ? 'selected' : ''; ?>>Revisão</option>
+                                            <option value="Reparo" <?php echo $status_viagem == 'Reparo' ? 'selected' : ''; ?>>Reparo</option>
+                                            <option value="Atraso" <?php echo $status_viagem == 'Atraso' ? 'selected' : ''; ?>>Atraso</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="nome_viagem" class="form-label tituloLight fs-5">Nome da Viagem:</label>
+                                        <input type="text" class="form-control" id="nome_viagem" name="nome_viagem" value="<?php echo $nome_viagem; ?>" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Atualizar</button>
+                                </form>
                             </div>
-
-                            <div class="mb-3">
-                                <label for="id_rota_fk" class="form-label">Rota Pertencente:</label>
-                                <select class="form-control" id="id_rota_fk" name="id_rota_fk" required>
-                                    <option value="">Selecione a Rota</option>
-                                    <?php
-                                    $sql = "SELECT id_rota, nome FROM rota";
-                                    $stmt = $conn->prepare($sql);
-                                    $stmt->execute();
-                                    $rotas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                    foreach ($rotas as $rota) {
-                                        echo "<option value=\"{$rota['id_rota']}\" " . ($rota['id_rota'] == $id_rota_fk ? 'selected' : '') . ">{$rota['nome']}</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="data_partida" class="form-label">Data de Partida:</label>
-                                <input type="datetime-local" class="form-control" id="data_partida" name="data_partida" value="<?php echo date('Y-m-d\TH:i', strtotime($data_partida)); ?>" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="data_chegada_previsao" class="form-label">Data de Chegada Prevista:</label>
-                                <input type="datetime-local" class="form-control" id="data_chegada_previsao" name="data_chegada_previsao" value="<?php echo date('Y-m-d\TH:i', strtotime($data_chegada_previsao)); ?>" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="data_chegada" class="form-label">Data de Chegada:</label>
-                                <input type="datetime-local" class="form-control" id="data_chegada" name="data_chegada" value="<?php echo date('Y-m-d\TH:i', strtotime($data_chegada)); ?>" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="status_viagem" class="form-label">Status da Viagem:</label>
-                                <select class="form-control" id="status_viagem" name="status_viagem" required>
-                                    <option value="Ok" <?php echo $status_viagem == 'Ok' ? 'selected' : ''; ?>>Ok</option>
-                                    <option value="Revisão" <?php echo $status_viagem == 'Revisão' ? 'selected' : ''; ?>>Revisão</option>
-                                    <option value="Reparo" <?php echo $status_viagem == 'Reparo' ? 'selected' : ''; ?>>Reparo</option>
-                                    <option value="Atraso" <?php echo $status_viagem == 'Atraso' ? 'selected' : ''; ?>>Atraso</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="nome_viagem" class="form-label">Nome da Viagem:</label>
-                                <input type="text" class="form-control" id="nome_viagem" name="nome_viagem" value="<?php echo $nome_viagem; ?>" required>
-                            </div>
-
-                            <button type="submit" class="btn btn-light btnLogin mt-5">Atualizar Viagem</button>
-                        </form>
+                        </div>
                     </div>
-
-
                 </div>
 
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
@@ -218,95 +213,90 @@ if (isset($_GET['id'])) {
 
     <body>
 
-        <main>
-            <div class="container-fluid">
-                <div class="row headerDash d-flex align-items-center">
-                    <div class="col-8  welcome lh-1">
-                        <div class="col ms-4 fw-bold fs-5">
-                            <p class="mb-0">Cadastro de Viagem</p>
-                        </div>
-                    </div>
-
-                    <div class="col-4">
-                        <div class="col d-flex align-items-center justify-content-end">
-                            <?php include 'partials/sidebar.php'; ?>
-                        </div>
+        <div class="container-fluid">
+            <div class="row headerDash d-flex align-items-center">
+                <div class="col-8  welcome lh-1">
+                    <div class="col ms-4 fw-bold fs-5">
+                        <p class="mb-0">Cadastro de Viagem</p>
                     </div>
                 </div>
 
-                <div class="row justify-content-center p-5">
-                    <div class="col">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="id_trem_fk" class="form-label">Trem Responsável:</label>
-                                <select class="form-control" id="id_trem_fk" name="id_trem_fk">
-                                    <option value="">Selecione o Trem</option>
-                                    <?php
-                                    $sql = "SELECT id_trem, identificador FROM trem";
-                                    $stmt = $conn->prepare($sql);
-                                    $stmt->execute();
-                                    $trens = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                    foreach ($trens as $trem) {
-                                        echo "<option value=\"{$trem['id_trem']}\">{$trem['identificador']}</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="id_rota_fk" class="form-label">Rota Pertencente:</label>
-                                <select class="form-control" id="id_rota_fk" name="id_rota_fk">
-                                    <option value="">Selecione a Rota</option>
-                                    <?php
-                                    $sql = "SELECT id_rota, nome FROM rota";
-                                    $stmt = $conn->prepare($sql);
-                                    $stmt->execute();
-                                    $rotas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                    foreach ($rotas as $rota) {
-                                        echo "<option value=\"{$rota['id_rota']}\">{$rota['nome']}</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="data_partida" class="form-label">Data de Partida:</label>
-                                <input type="datetime-local" class="form-control" id="data_partida" name="data_partida" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="data_chegada_previsao" class="form-label">Data de Chegada Prevista:</label>
-                                <input type="datetime-local" class="form-control" id="data_chegada_previsao" name="data_chegada_previsao" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="data_chegada" class="form-label">Data de Chegada:</label>
-                                <input type="datetime-local" class="form-control" id="data_chegada" name="data_chegada">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="status_viagem" class="form-label">Status da Viagem:</label>
-                                <select class="form-control" id="status_viagem" name="status_viagem" required>
-                                    <option value="Ok">Ok</option>
-                                    <option value="Revisão">Revisão</option>
-                                    <option value="Reparo">Reparo</option>
-                                    <option value="Atraso">Atraso</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="nome_viagem" class="form-label">Nome da Viagem:</label>
-                                <input type="text" class="form-control" id="nome_viagem" name="nome_viagem" required>
-                            </div>
-
-                            <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Viagem</button>
-                        </form>
+                <div class="col-4">
+                    <div class="col d-flex align-items-center justify-content-end">
+                        <?php include 'partials/sidebar.php'; ?>
                     </div>
-
-
                 </div>
+            </div>
 
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+            <div class="row justify-content-center p-3">
+                <div class="col">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                            <form method="POST">
+                                <div class="mb-3">
+                                    <label for="id_trem_fk" class="form-label tituloLight fs-5">Trem Responsável:</label>
+                                    <select class="form-control" id="id_trem_fk" name="id_trem_fk">
+                                        <option value="">Selecione o Trem</option>
+                                        <?php
+                                        $sql = "SELECT id_trem, identificador FROM trem";
+                                        $stmt = $conn->prepare($sql);
+                                        $stmt->execute();
+                                        $trens = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                        foreach ($trens as $trem) {
+                                            echo "<option value=\"{$trem['id_trem']}\">{$trem['identificador']}</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_rota_fk" class="form-label tituloLight fs-5">Rota Pertencente:</label>
+                                    <select class="form-control" id="id_rota_fk" name="id_rota_fk">
+                                        <option value="">Selecione a Rota</option>
+                                        <?php
+                                        $sql = "SELECT id_rota, nome FROM rota";
+                                        $stmt = $conn->prepare($sql);
+                                        $stmt->execute();
+                                        $rotas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                        foreach ($rotas as $rota) {
+                                            echo "<option value=\"{$rota['id_rota']}\">{$rota['nome']}</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="data_partida" class="form-label tituloLight fs-5">Data Partida:</label>
+                                    <input type="datetime-local" class="form-control" id="data_partida" name="data_partida" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="data_chegada_previsao" class="form-label tituloLight fs-5">Data de Chegada Prevista:</label>
+                                    <input type="datetime-local" class="form-control" id="data_chegada_previsao" name="data_chegada_previsao" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="data_chegada" class="form-label tituloLight fs-5">Data de Chegada:</label>
+                                    <input type="datetime-local" class="form-control" id="data_chegada" name="data_chegada">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="status_viagem" class="form-label tituloLight fs-5">Status da Viagem:</label>
+                                    <select class="form-control" id="status_viagem" name="status_viagem" required>
+                                        <option value="Ok">Ok</option>
+                                        <option value="Revisão">Revisão</option>
+                                        <option value="Reparo">Reparo</option>
+                                        <option value="Atraso">Atraso</option>
+                                    </select>
+                                </div>
+                                <div class="mb-5">
+                                    <label for="nome_viagem" class="form-label tituloLight fs-5">Nome da Viagem:</label>
+                                    <input type="text" class="form-control" id="nome_viagem" name="nome_viagem" required>
+                                </div>
+                                <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Cadastrar Viagem</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     </body>
 
     </html>

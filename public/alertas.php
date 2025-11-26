@@ -39,8 +39,9 @@ if (isset($_GET['id'])) {
         <main>
             <div class="container-fluid">
                 <div class="row headerDash d-flex align-items-center">
-                    <div class="col-8  welcome lh-1">
-                        <div class="col ms-4 fw-bold fs-5">
+                    <div class="col-8 welcome lh-1">
+                        <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
+                            <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='dashboard.php'"></i>
                             <p class="mb-0">Detalhes do Alerta</p>
                         </div>
                     </div>
@@ -51,14 +52,29 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
                 </div>
-
-                <div class="mt-4 mb-4">
-                    <h3>Tipo: <?php echo htmlspecialchars($tipo); ?></h3>
-                    <p><strong>Mensagem:</strong> <?php echo htmlspecialchars($mensagem); ?></p>
-                    <p><strong>Criticidade:</strong> <?php echo htmlspecialchars($criticidade); ?></p>
-                    <p><strong>Data e Hora:</strong> <?php echo htmlspecialchars($data_hora); ?></p>
+                <div class="row d-flex justify-content-center mt-5">
+                    <div class="col-11 col-md-7">
+                        <div class="card text-center rounded-4">
+                            <div class="card-header cardHeaderAlertas rounded-top-4">
+                                <p class=" text-center tituloDark fs-1 fw-medium mb-0">Tipo: <?php echo htmlspecialchars($tipo); ?></p>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-body-secondary">
+                                    <p class="tituloLight fs-5 mb-0">Mensagem: </p>
+                                    <p><?php echo htmlspecialchars($mensagem); ?></p>
+                                </div>
+                                <div class="text-body-secondary">
+                                    <p class="tituloLight fs-5 mb-0">Criticidade: </p>
+                                    <p><?php echo htmlspecialchars($criticidade); ?></p>
+                                </div>
+                                <div class="card-footer text-body-secondary">
+                                    <p class="tituloLight fs-5 mb-0">Data e Hora: </p>
+                                    <p class="mb-0"><?php echo htmlspecialchars($data_hora); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </main>
     </body>
 
@@ -95,7 +111,8 @@ if (isset($_GET['id'])) {
             <div class="container-fluid">
                 <div class="row headerDash d-flex align-items-center">
                     <div class="col-8  welcome lh-1">
-                        <div class="col ms-4 fw-bold fs-5">
+                        <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
+                            <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='dashboard.php'"></i>
                             <p class="mb-0">Alertas e Manutenção</p>
                         </div>
                     </div>
