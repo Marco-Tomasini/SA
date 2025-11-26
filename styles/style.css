@@ -225,7 +225,8 @@ body {
 }
 
 .custom-height-btn {
-    height: 7vh;
+    height: fit-content;
+    min-height: 7vh;
 }
 
 .tituloLight {
