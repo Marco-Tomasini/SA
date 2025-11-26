@@ -1,4 +1,4 @@
-USE SmartCitiesV9;
+USE SmartCitiesV10;
 
 -- ===========================
 -- ESTACOES
@@ -67,41 +67,22 @@ INSERT INTO viagem (id_trem_fk, id_rota_fk, data_partida, data_chegada_previsao,
 -- ===========================
 -- SENSORES
 -- ===========================
-INSERT INTO sensor (tipo, descricao) VALUES
-('Trilho', 'Sensor de peso para monitoramento de carga'),
-('Trilho', 'Sensor de temperatura de trilho'),
-('Trilho', 'Sensor de presença em segmento'),
-('Trem', 'Sensor de motor principal'),
-('Trem', 'Sensor de freio automático');
+INSERT INTO sensor (tipo, topico, descricao) VALUES
+('S1', 'S1/umidade', 'Sensor de umidade'),
+('S1', 'S1/temperatura', 'Sensor de temperatura'),
+('S1', 'S1/iluminacao', 'Sensor de iluminação'),
 
--- ===========================
--- SENSOR_TRILHO
--- ===========================
-INSERT INTO sensor_trilho (id_sensor_fk, id_segmento_fk, tipo_sensor) VALUES
-(1, 1, 'Peso'),
-(2, 1, 'Temperatura'),
-(3, 2, 'Presenca'),
-(1, 3, 'Peso'),
-(2, 4, 'Temperatura');
+('S2', 'Presenca1', 'Sensor de presença em trilho'),
+('S2', 'Presenca2', 'Sensor de presença em trilho'),
+('S2', 'ilum', 'Sensor de iluminação'),
 
--- ===========================
--- SENSOR_TREM
--- ===========================
-INSERT INTO sensor_trem (id_sensor_fk, id_trem_fk, tipo_sensor) VALUES
-(4, 1, 'Motor'),
-(5, 1, 'Freio'),
-(4, 2, 'Motor'),
-(5, 2, 'Freio');
+('S3', 'Presenca1', 'Sensor de presença em trilho'),
+('S3', 'Presenca2', 'Sensor de presença em trilho'),
+('S3', 'Presenca3', 'Sensor de presença em trilho'),
+('S3', 'Servo1', 'Servomotor para ajuste de trilho'),
+('S3', 'Servo2', 'Servomotor para ajuste de trilho'),
 
--- ===========================
--- LEITURAS DE SENSOR
--- ===========================
-INSERT INTO leitura_sensor (id_sensor_fk, data_hora, valor, unidade) VALUES
-(1, '2025-11-06 06:30:00', 9500.50, 'kg'),
-(2, '2025-11-06 06:35:00', 36.2, '°C'),
-(3, '2025-11-06 06:40:00', 1.00, 'Presença'),
-(4, '2025-11-06 06:45:00', 3200.00, 'RPM'),
-(5, '2025-11-06 06:50:00', 78.00, '%');
+('trem', 'trem_Carlos', 'Verifica se trem está para frente/trás ou desligado');
 
 -- ===========================
 -- ORDEM DE MANUTENCAO
