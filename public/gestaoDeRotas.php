@@ -28,8 +28,8 @@ $segmentos = $result_segmentorota->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
     <main>
-        <div class="container-fluid">
-            <div class="row headerDash d-flex align-items-center sticky-top">
+        <div class="container-fluid p-0">
+            <div class="row headerDash d-flex justify-content-between align-items-center sticky-top">
                 <div class="col-8  welcome lh-1">
                     <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
                         <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='dashboard.php'"></i>
@@ -37,8 +37,11 @@ $segmentos = $result_segmentorota->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
 
-                <div class="col-4">
-                    <div class="col d-flex align-items-center justify-content-end">
+                <div class="col-3 d-flex justify-content-end align-items-center">
+                    <div class="col-3 d-flex justify-content-end align-items-center">
+                        <i class="bi bi-bell fs-4 me-3 text-light" onclick="window.location.href='alertas.php'" style="cursor: pointer;"></i>
+                    </div>
+                    <div class="col-3 d-flex justify-content-end align-items-center">
                         <?php include 'partials/sidebar.php'; ?>
                     </div>
                 </div>
@@ -113,7 +116,7 @@ $segmentos = $result_segmentorota->fetchAll(PDO::FETCH_ASSOC);
                                             $nomeRota = $rota->fetch(PDO::FETCH_ASSOC)['nome'];
                                             ?>
 
-                                            <p class="mb-0 fw-semibold" onclick="window.location='createSegmentoRota.php?id=<?php echo htmlspecialchars($row['id_segmento_rota']); ?>'"><?php echo htmlspecialchars($nomeOrigem); ?></p>
+                                            <p class="mb-0 fw-semibold" onclick="window.location='createEstacao.php?id=<?php echo htmlspecialchars($row['id_estacao_origem']); ?>'"><?php echo htmlspecialchars($nomeOrigem); ?></p>
                                             <p class="mb-0 fw-semibold" onclick="window.location='cadastrorotas.php?id=<?php echo htmlspecialchars($row['id_rota_fk']); ?>'"><?php echo htmlspecialchars($nomeRota); ?></p>
                                         </div>
                                         <div class="col-1 d-flex flex-column justify-content-center align-items-center gap-2">
@@ -129,7 +132,7 @@ $segmentos = $result_segmentorota->fetchAll(PDO::FETCH_ASSOC);
                                             $nomeDestino = $estacaoDestino->fetch(PDO::FETCH_ASSOC)['nome'];
                                             ?>
 
-                                            <p class="mb-0 fw-semibold text-center" onclick="window.location='createSegmentoRota.php?id=<?php echo htmlspecialchars($row['id_segmento_rota']); ?>'"><?php echo htmlspecialchars($nomeDestino); ?></p>
+                                            <p class="mb-0 fw-semibold text-center" onclick="window.location='createEstacao.php?id=<?php echo htmlspecialchars($row['id_estacao_destino']); ?>'"><?php echo htmlspecialchars($nomeDestino); ?></p>
                                             <p class="mb-0 fw-semibold text-center"><?php echo htmlspecialchars($row['distancia_km']); ?> km</p>
                                         </div>
                                     </div>

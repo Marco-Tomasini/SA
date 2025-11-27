@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $sql2 = "SELECT * FROM sensor_data";
 $result = $conn->query($sql2);
-$sensorData = $result->fetchAll(PDO::FETCH_ASSOC); 
+$sensorData = $result->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -35,21 +35,24 @@ $sensorData = $result->fetchAll(PDO::FETCH_ASSOC);
 
 <body class="overflow-y-hidden bodyGeral">
     <main>
-        <div class="container-fluid">
-            <div class="row headerDash d-flex align-items-center sticky-top">
-                    <div class="col-8  welcome lh-1">
-                        <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
-                            <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='dashboard.php'"></i>
-                            <p class="mb-0">Relatórios e Análises</p>
-                        </div>
-                    </div>
-
-                    <div class="col-4">
-                        <div class="col d-flex align-items-center justify-content-end">
-                            <?php include 'partials/sidebar.php'; ?>
-                        </div>
+        <div class="container-fluid p-0">
+            <div class="row headerDash d-flex justify-content-between align-items-center sticky-top">
+                <div class="col-8 welcome lh-1">
+                    <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
+                        <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='dashboard.php'"></i>
+                        <p class="mb-0">Relatórios e Análises</p>
                     </div>
                 </div>
+
+                <div class="col-3 d-flex justify-content-end align-items-center">
+                    <div class="col-3 d-flex justify-content-end align-items-center">
+                        <i class="bi bi-bell fs-4 me-3 text-light" onclick="window.location.href='alertas.php'" style="cursor: pointer;"></i>
+                    </div>
+                    <div class="col-3 d-flex justify-content-end align-items-center">
+                        <?php include 'partials/sidebar.php'; ?>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col">
@@ -59,8 +62,8 @@ $sensorData = $result->fetchAll(PDO::FETCH_ASSOC);
 
                                 <div class="row row.cols-1 border-bottom border-black">
                                     <div class="col-12 d-flex align-items-center mt-3 mb-3">
-                                        <p  class="mb-0">
-                                            <?php foreach($sensorData as $row): ?>
+                                        <p class="mb-0">
+                                            <?php foreach ($sensorData as $row): ?>
                                                 <?php echo ($row['sensor_id']); ?>
                                                 <?php echo ($row['sensor_type']); ?>
                                                 <?php echo ($row['value']); ?>
