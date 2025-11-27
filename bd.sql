@@ -1,6 +1,6 @@
-CREATE DATABASE SmartCitiesV10;
+CREATE DATABASE SmartCitiesV11;
 
-USE SmartCitiesV10;
+USE SmartCitiesV11;
 
 -- ===========================
 -- TABELAS PRINCIPAIS
@@ -82,8 +82,9 @@ CREATE TABLE sensor_data (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sensor_id INT,
     sensor_type VARCHAR(50) NOT NULL,
-    value FLOAT,
-    received_at DATETIME NOT NULL,
+    topico VARCHAR(255) NOT NULL,
+    valor INT NOT NULL,
+    received_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (sensor_id) REFERENCES sensor(id_sensor)
 );
 
