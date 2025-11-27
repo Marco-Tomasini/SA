@@ -76,11 +76,11 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
 
-                    <div class="col-3 d-flex justify-content-end align-items-center">
-                        <div class="col-3 d-flex justify-content-end align-items-center">
-                            <i class="bi bi-bell fs-4 me-3 text-light" onclick="window.location.href='alertas.php'" style="cursor: pointer;"></i>
+                    <div class="col-4 col-lg-3 d-flex justify-content-end align-items-center">
+                        <div class="col-5 col-md-3 d-flex justify-content-start align-items-center">
+                            <i class="bi bi-bell fs-4 me-2 text-light" onclick="window.location.href='alertas.php'" style="cursor: pointer;"></i>
                         </div>
-                        <div class="col-3 d-flex justify-content-end align-items-center">
+                        <div class="col-5 col-md-3 d-flex justify-content-end align-items-center">
                             <?php include 'partials/sidebar.php'; ?>
                         </div>
                     </div>
@@ -190,28 +190,10 @@ if (isset($_GET['id'])) {
 
         <main>
             <div class="container-fluid p-0">
-                <div class="row headerDash d-flex justify-content-between align-items-center sticky-top">
-                    <div class="col-8 welcome lh-1">
-                        <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
-                            <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='listaCadastros.php'"></i>
-                            <p class="mb-0">Cadastro de Alerta</p>
-                        </div>
-                    </div>
-
-                    <div class="col-3 d-flex justify-content-end align-items-center">
-                        <div class="col-3 d-flex justify-content-end align-items-center">
-                            <i class="bi bi-bell fs-4 me-3 text-light" onclick="window.location.href='alertas.php'" style="cursor: pointer;"></i>
-                        </div>
-                        <div class="col-3 d-flex justify-content-end align-items-center">
-                            <?php include 'partials/sidebar.php'; ?>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row justify-content-center p-3">
+                <div class="row justify-content-center ">
                     <div class="col">
                         <div class="row d-flex justify-content-center align-items-center">
-                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                            <div class="col main p-3 p-md-5 align-items-center p-3">
                                 <form method="POST">
                                     <div class="mb-3">
                                         <label for="tipo" class="form-label tituloLight fs-5">Tipo:</label>

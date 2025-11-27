@@ -72,6 +72,12 @@ body {
     background: linear-gradient(161deg, rgba(104, 58, 145, 1) 30%, rgba(52, 38, 56, 1) 100%);
 }
 
+.btnMobileCadastros {
+    color: #D9D9D9;
+    min-width: fit-content;
+    background: linear-gradient(161deg, rgba(104, 58, 145, 1) 30%, rgba(52, 38, 56, 1) 100%);
+}
+
 .btnUploadFoto {
     color: #D9D9D9;
     width: 10vw;
@@ -285,4 +291,50 @@ body {
     text-shadow:
         0 0 1px #df0016,
         0 0 1px #df0016;
+}
+
+.full-height-container {
+    height: calc(100vh - 80px);
+    /* 80px é uma estimativa da altura do header */
+}
+
+.sidebar-menu {
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    overflow-y: auto;
+}
+
+.content-area {
+    background-color: #ffffff;
+    padding: 0;
+}
+
+/* Estilo do Iframe para parecer nativo */
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* Estilo dos botões do menu */
+.list-group-item-action {
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    border-radius: 8px !important;
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+.list-group-item-action:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+}
+
+.list-group-item-action.active {
+    background-color: #212529 !important;
+    /* Cor Dark do seu tema */
+    color: white;
+    border-color: #212529;
 }

@@ -46,11 +46,11 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
 
-                    <div class="col-3 d-flex justify-content-end align-items-center">
-                        <div class="col-3 d-flex justify-content-end align-items-center">
-                            <i class="bi bi-bell fs-4 me-3 text-light" onclick="window.location.href='alertas.php'" style="cursor: pointer;"></i>
+                    <div class="col-4 col-lg-3 d-flex justify-content-end align-items-center">
+                        <div class="col-5 col-md-3 d-flex justify-content-start align-items-center">
+                            <i class="bi bi-bell fs-4 me-2 text-light" onclick="window.location.href='alertas.php'" style="cursor: pointer;"></i>
                         </div>
-                        <div class="col-3 d-flex justify-content-end align-items-center">
+                        <div class="col-5 col-md-3 d-flex justify-content-end align-items-center">
                             <?php include 'partials/sidebar.php'; ?>
                         </div>
                     </div>
@@ -120,11 +120,11 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
 
-                    <div class="col-3 d-flex justify-content-end align-items-center">
-                        <div class="col-3 d-flex justify-content-end align-items-center">
+                    <div class="col-4 col-lg-3 d-flex justify-content-end align-items-center">
+                        <div class="col-5 col-md-3 d-flex justify-content-start align-items-center">
                             <i class="bi bi-bell-fill fs-4 me-3 text-light"></i>
                         </div>
-                        <div class="col-3 d-flex justify-content-end align-items-center">
+                        <div class="col-5 col-md-3 d-flex justify-content-end align-items-center">
                             <?php include 'partials/sidebar.php'; ?>
                         </div>
                     </div>

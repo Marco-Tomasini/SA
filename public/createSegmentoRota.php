@@ -58,8 +58,8 @@ if (isset($_GET['id'])) {
     <body>
 
         <main>
-            <div class="container-fluid">
-                <div class="row headerDash d-flex align-items-center sticky-top">
+            <div class="container-fluid p-0">
+                <div class="row headerDash d-flex justify-content-between align-items-center sticky-top">
                     <div class="col-8  welcome lh-1">
                         <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
                             <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='gestaoDeRotas.php'"></i>
@@ -67,8 +67,11 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
 
-                    <div class="col-4">
-                        <div class="col d-flex align-items-center justify-content-end">
+                    <div class="col-4 col-lg-3 d-flex justify-content-end align-items-center">
+                        <div class="col-5 col-md-3 d-flex justify-content-start align-items-center">
+                            <i class="bi bi-bell fs-4 me-2 text-light" onclick="window.location.href='alertas.php'" style="cursor: pointer;"></i>
+                        </div>
+                        <div class="col-5 col-md-3 d-flex justify-content-end align-items-center">
                             <?php include 'partials/sidebar.php'; ?>
                         </div>
                     </div>
@@ -221,25 +224,7 @@ if (isset($_GET['id'])) {
     <body>
 
         <main>
-            <div class="container-fluid">
-                <div class="row headerDash d-flex justify-content-between align-items-center sticky-top">
-                    <div class="col-8 welcome lh-1">
-                        <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
-                            <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='listaCadastros.php'"></i>
-                            <p class="mb-0">Cadastro de Segmento de Rota</p>
-                        </div>
-                    </div>
-
-                    <div class="col-3 d-flex justify-content-end align-items-center">
-                        <div class="col-3 d-flex justify-content-end align-items-center">
-                            <i class="bi bi-bell fs-4 me-3 text-light" onclick="window.location.href='alertas.php'" style="cursor: pointer;"></i>
-                        </div>
-                        <div class="col-3 d-flex justify-content-end align-items-center">
-                            <?php include 'partials/sidebar.php'; ?>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="container-fluid p-0">
                 <div class="row justify-content-center p-3">
                     <div class="col">
                         <div class="row d-flex justify-content-center align-items-center">
@@ -256,7 +241,7 @@ if (isset($_GET['id'])) {
                                             echo "Erro ao buscar rotas: " . $e->getMessage();
                                         }
                                         ?>
-                                        <select class="form-select" id="id_rota_fk" name="id_rota_fk">
+                                        <select class="form-control" id="id_rota_fk" name="id_rota_fk">
                                             <option value="">Selecione a rota</option>
                                             <?php foreach ($rotas as $rota): ?>
                                                 <option value="<?= htmlspecialchars($rota['id_rota']) ?>">
@@ -267,7 +252,7 @@ if (isset($_GET['id'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="ordem" class="form-label tituloLight fs-5">Ordem:</label>
-                                        <select class="form-select" id="ordem" name="ordem">
+                                        <select class="form-control" id="ordem" name="ordem">
                                             <?php for ($i = 1; $i <= 5; $i++): ?>
                                                 <option value="<?= $i ?>"><?= $i ?></option>
                                             <?php endfor; ?>
@@ -275,7 +260,7 @@ if (isset($_GET['id'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="id_estacao_origem" class="form-label tituloLight fs-5">Estação de Origem:</label>
-                                        <select class="form-select" id="id_estacao_origem" name="id_estacao_origem">
+                                        <select class="form-control" id="id_estacao_origem" name="id_estacao_origem">
                                             <option value="">Selecione a estação de origem</option>
                                             <?php
                                             $estacoes = [];
@@ -295,7 +280,7 @@ if (isset($_GET['id'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="id_estacao_destino" class="form-label tituloLight fs-5">Estação de Destino:</label>
-                                        <select class="form-select" id="id_estacao_destino" name="id_estacao_destino">
+                                        <select class="form-control" id="id_estacao_destino" name="id_estacao_destino">
                                             <option value="">Selecione a estação de destino</option>
                                             <?php foreach ($estacoes as $estacao): ?>
                                                 <option value="<?= htmlspecialchars($estacao['id_estacao']) ?>">
