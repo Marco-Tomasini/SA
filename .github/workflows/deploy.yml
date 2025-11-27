@@ -1,0 +1,31 @@
+name: Deploy para InfinityFree
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy via FTP
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Obter código mais recente
+        uses: actions/checkout@v4
+
+      - name: 📂 Sincronizar arquivos com InfinityFree
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          
+          # IMPORTANTE: A pasta pública no InfinityFree é a htdocs.
+          server-dir: /htdocs/ 
+          
+          # Evita subir arquivos de configuração ou backups de banco para o site público
+          exclude: |
+            **/.git*
+            **/.github*
+            **/*.sql
+            README.md
