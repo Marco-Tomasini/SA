@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <button type="submit" class="btn btn-light btnLogin fs-5 fw-semibold rounded-4">Entrar</button>
                     <?php
                     if ($_SERVER['REQUEST_METHOD'] == "POST" && !$loggedInUser) {
-                        echo "<div class='text-center'>Login Falhou</div>";
+                        echo "<div class='text-center textFalha fw-lighter mt-2'>Login Falhou</div>";
                     }
                     ?>
                 </form>
