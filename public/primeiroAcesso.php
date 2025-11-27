@@ -42,7 +42,7 @@ if ($row['user_count'] > 0) {
     <body>
         <main>
             <div class="container-fluid">
-                <div class="row headerDash d-flex align-items-center">
+                <div class="row headerDash d-flex align-items-center sticky-top">
                     <div class="col welcome lh-1">
                         <div class="col ms-4 fw-bold fs-5">
                             <p class="mb-0">Cadastro de Usuário</p>

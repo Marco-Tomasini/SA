@@ -36,7 +36,7 @@ $sensorData = $result->fetchAll(PDO::FETCH_ASSOC);
 <body class="overflow-y-hidden bodyGeral">
     <main>
         <div class="container-fluid">
-            <div class="row headerDash d-flex align-items-center">
+            <div class="row headerDash d-flex align-items-center sticky-top">
                     <div class="col-8  welcome lh-1">
                         <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
                             <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='dashboard.php'"></i>

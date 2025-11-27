@@ -40,7 +40,7 @@ if (isset($_GET['id'])) {
     <body>
         <main>
             <div class="container-fluid">
-                <div class="row headerDash d-flex align-items-center">
+                <div class="row headerDash d-flex align-items-center sticky-top">
                     <div class="col-8  welcome lh-1">
                         <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
                             <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='manutencao.php'"></i>
@@ -130,7 +130,7 @@ if (isset($_GET['id'])) {
     <body>
         <main>
             <div class="container-fluid">
-                <div class="row headerDash d-flex align-items-center">
+                <div class="row headerDash d-flex align-items-center sticky-top">
                     <div class="col-8  welcome lh-1">
                         <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
                             <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='dashboard.php'"></i>
