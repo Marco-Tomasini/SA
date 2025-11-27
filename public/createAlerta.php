@@ -190,7 +190,7 @@ if (isset($_GET['id'])) {
 
         <main>
             <div class="container-fluid p-0">
-                <div class="row justify-content-center ">
+                <div class="row justify-content-center">
                     <div class="col">
                         <div class="row d-flex justify-content-center align-items-center">
                             <div class="col main p-3 p-md-5 align-items-center p-3">
