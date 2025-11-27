@@ -49,24 +49,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col d-flex flex-wrap justify-content-between mt-4 ms-5 me-5 gap-3">
-                    <?php foreach ($funcionarios as $row): ?>
-                        <div class="profile" onclick="window.location='upload_foto.php?id=<?php echo urlencode($row['id_usuario']); ?>'">
-                            <img src="../assets/img/<?php echo ($row['imagem_usuario']); ?>" alt="user-icon">
-                            <h2><?php echo ($row['nome']); ?></h2>
-                            <h3><?php echo ($row['data_nascimento']); ?></h3>
-                            <h3><?php echo ($row['cpf']); ?></h3>
-                        </div>
-                    <?php endforeach; ?>
+            <div class="row d-flex justify-content-center">
+                <div class="col-10 col-md-6 col-lg-4">
+                    <p type="submit" class="btn btn-dark btnLogin fs-5 mt-5 fw-semibold rounded-4 d-flex align-items-center justify-content-center mb-0" onclick="location.href='create.php'">Adicionar Funcionários</p>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col d-flex justify-content-center fixed-bottom mb-3">
-                    <i class="bi bi-person-fill-add botaoAdd" onclick="location.href='create.php'"></i>
-                </div>
+            <div class="row row-cols-1 row-cols-md-3 row-cols-xl-4 d-flex flex-wrap justify-content-center align-items-center gy-4 mt-5 mb-5">
+                <?php foreach ($funcionarios as $row): ?>
+                    <div class="col d-flex justify-content-center">
+                        <div class="col-10 card cardFuncionario" onclick="window.location='upload_foto.php?id=<?php echo urlencode($row['id_usuario']); ?>'">
+                            <div class="row g-0">
+                                <img src="../assets/img/<?php echo ($row['imagem_usuario']); ?>" class="img-fluid rounded-start" alt="user-icon">
+                                <div class="col d-flex flex-column justify-content-center">
+                                    <div class="card-body d-flex flex-column justify-content-center">
+                                        <div class="col d-flex justify-content-center">
+                                            <p class="card-title tituloLight fs-4 mb-0 text-center"><?php echo ($row['nome']); ?></p>
+                                        </div>
+                                        <div class="col d-flex flex-column align-items-start justify-content-end mt-4">
+                                            <div class="col">
+                                                <p class="tituloLight fs-6 mb-0">Data de Nascimento: </p>
+                                                <p class=" fs-6 mb-0"><?php echo ($row['data_nascimento']); ?></p>
+                                            </div>
+                                            <div class="col">
+                                                <p class="tituloLight fs-6 mb-0">CPF: </p>
+                                                <p class=" fs-6 mb-0"><?php echo ($row['cpf']); ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
 

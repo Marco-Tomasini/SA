@@ -74,93 +74,91 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center p-5">
+                <div class="row justify-content-center p-3">
                     <div class="col">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="id_rota_fk" class="form-label" selected=''>Rota Pertencente:</label>
-                                <?php
-                                $rotas = [];
-                                try {
-                                    $stmtRotas = $conn->query("SELECT id_rota, nome FROM rota");
-                                    $rotas = $stmtRotas->fetchAll(PDO::FETCH_ASSOC);
-                                } catch (Exception $e) {
-                                    echo "Erro ao buscar rotas: " . $e->getMessage();
-                                }
-                                ?>
-                                <select class="form-select" id="id_rota_fk" name="id_rota_fk" required>
-                                    <option value="">Selecione a rota</option>
-                                    <?php foreach ($rotas as $rota): ?>
-                                        <option value="<?= htmlspecialchars($rota['id_rota']) ?>"
-                                            <?= (isset($segmento_rota_row['id_rota_fk']) && $segmento_rota_row['id_rota_fk'] == $rota['id_rota']) ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($rota['nome']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="id_rota_fk" class="form-label tituloLight fs-5">Rota Pertencente:</label>
+                                        <?php
+                                        $rotas = [];
+                                        try {
+                                            $stmtRotas = $conn->query("SELECT id_rota, nome FROM rota");
+                                            $rotas = $stmtRotas->fetchAll(PDO::FETCH_ASSOC);
+                                        } catch (Exception $e) {
+                                            echo "Erro ao buscar rotas: " . $e->getMessage();
+                                        }
+                                        ?>
+                                        <select class="form-select" id="id_rota_fk" name="id_rota_fk" required>
+                                            <option value="">Selecione a rota</option>
+                                            <?php foreach ($rotas as $rota): ?>
+                                                <option value="<?= htmlspecialchars($rota['id_rota']) ?>"
+                                                    <?= (isset($segmento_rota_row['id_rota_fk']) && $segmento_rota_row['id_rota_fk'] == $rota['id_rota']) ? 'selected' : '' ?>>
+                                                    <?= htmlspecialchars($rota['nome']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="id_estacao_origem" class="form-label tituloLight fs-5">Estação de Origem:</label>
+                                        <?php
+                                        $estacoes = [];
+                                        try {
+                                            $stmtEstacoes = $conn->query("SELECT id_estacao, nome FROM estacao");
+                                            $estacoes = $stmtEstacoes->fetchAll(PDO::FETCH_ASSOC);
+                                        } catch (Exception $e) {
+                                            echo "Erro ao buscar estações: " . $e->getMessage();
+                                        }
+                                        ?>
+                                        <select class="form-select" id="id_estacao_origem" name="id_estacao_origem" required>
+                                            <option value="">Selecione a estação de origem</option>
+                                            <?php foreach ($estacoes as $estacao): ?>
+                                                <option value="<?= htmlspecialchars($estacao['id_estacao']) ?>"
+                                                    <?= (isset($segmento_rota_row['id_estacao_origem']) && $segmento_rota_row['id_estacao_origem'] == $estacao['id_estacao']) ? 'selected' : '' ?>>
+                                                    <?= htmlspecialchars($estacao['nome']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="id_estacao_destino" class="form-label tituloLight fs-5">Estação de Destino:</label>
+                                        <?php
+                                        $estacoes = [];
+                                        try {
+                                            $stmtEstacoes = $conn->query("SELECT id_estacao, nome FROM estacao");
+                                            $estacoes = $stmtEstacoes->fetchAll(PDO::FETCH_ASSOC);
+                                        } catch (Exception $e) {
+                                            echo "Erro ao buscar estações: " . $e->getMessage();
+                                        }
+                                        ?>
+                                        <select class="form-select" id="id_estacao_destino" name="id_estacao_destino" required>
+                                            <option value="">Selecione a estação de destino</option>
+                                            <?php foreach ($estacoes as $estacao): ?>
+                                                <option value="<?= htmlspecialchars($estacao['id_estacao']) ?>"
+                                                    <?= (isset($segmento_rota_row['id_estacao_destino']) && $segmento_rota_row['id_estacao_destino'] == $estacao['id_estacao']) ? 'selected' : '' ?>>
+                                                    <?= htmlspecialchars($estacao['nome']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="ordem" class="form-label tituloLight fs-5">Ordem:</label>
+                                        <select class="form-select" id="ordem" name="ordem" required>
+                                            <?php for ($i = 1; $i <= 5; $i++): ?>
+                                                <option value="<?= $i ?>" <?= (isset($segmento_rota_row['ordem']) && $segmento_rota_row['ordem'] == $i) ? 'selected' : '' ?>><?= $i ?></option>
+                                            <?php endfor; ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="distancia_km" class="form-label tituloLight fs-5">Distância (km):</label>
+                                        <input type="number" class="form-control" id="distancia_km" name="distancia_km" required value="<?php echo isset($segmento_rota_row['distancia_km']) ? htmlspecialchars($segmento_rota_row['distancia_km']) : ''; ?>">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Atualizar Segmento de Rota</button>
+                                </form>
                             </div>
-
-
-                            <div class="mb-3">
-                                <label for="id_estacao_origem" class="form-label">Estação de Origem:</label>
-                                <?php
-                                $estacoes = [];
-                                try {
-                                    $stmtEstacoes = $conn->query("SELECT id_estacao, nome FROM estacao");
-                                    $estacoes = $stmtEstacoes->fetchAll(PDO::FETCH_ASSOC);
-                                } catch (Exception $e) {
-                                    echo "Erro ao buscar estações: " . $e->getMessage();
-                                }
-                                ?>
-                                <select class="form-select" id="id_estacao_origem" name="id_estacao_origem" required>
-                                    <option value="">Selecione a estação de origem</option>
-                                    <?php foreach ($estacoes as $estacao): ?>
-                                        <option value="<?= htmlspecialchars($estacao['id_estacao']) ?>"
-                                            <?= (isset($segmento_rota_row['id_estacao_origem']) && $segmento_rota_row['id_estacao_origem'] == $estacao['id_estacao']) ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($estacao['nome']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-
-
-                            <div class="mb-3">
-                                <label for="id_estacao_destino" class="form-label">Estação de Destino:</label>
-                                <?php
-                                $estacoes = [];
-                                try {
-                                    $stmtEstacoes = $conn->query("SELECT id_estacao, nome FROM estacao");
-                                    $estacoes = $stmtEstacoes->fetchAll(PDO::FETCH_ASSOC);
-                                } catch (Exception $e) {
-                                    echo "Erro ao buscar estações: " . $e->getMessage();
-                                }
-                                ?>
-                                <select class="form-select" id="id_estacao_destino" name="id_estacao_destino" required>
-                                    <option value="">Selecione a estação de destino</option>
-                                    <?php foreach ($estacoes as $estacao): ?>
-                                        <option value="<?= htmlspecialchars($estacao['id_estacao']) ?>"
-                                            <?= (isset($segmento_rota_row['id_estacao_destino']) && $segmento_rota_row['id_estacao_destino'] == $estacao['id_estacao']) ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($estacao['nome']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="ordem" class="form-label">Ordem:</label>
-                                <select class="form-select" id="ordem" name="ordem" required>
-                                    <?php for ($i = 1; $i <= 5; $i++): ?>
-                                        <option value="<?= $i ?>" <?= (isset($segmento_rota_row['ordem']) && $segmento_rota_row['ordem'] == $i) ? 'selected' : '' ?>><?= $i ?></option>
-                                    <?php endfor; ?>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="distancia_km" class="form-label">Distância (km):</label>
-                                <input type="number" class="form-control" id="distancia_km" name="distancia_km" required value="<?php echo isset($segmento_rota_row['distancia_km']) ? htmlspecialchars($segmento_rota_row['distancia_km']) : ''; ?>">
-                            </div>
-
-                            <button type="submit" class="btn btn-dark btnLogin mt-5">Atualizar Segmento de Rota</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
 
@@ -239,75 +237,79 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center p-5">
+                <div class="row justify-content-center p-3">
                     <div class="col">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="id_rota_fk" class="form-label">Rota Pertencente:</label>
-                                <?php
-                                $rotas = [];
-                                try {
-                                    $stmtRotas = $conn->query("SELECT id_rota, nome FROM rota");
-                                    $rotas = $stmtRotas->fetchAll(PDO::FETCH_ASSOC);
-                                } catch (Exception $e) {
-                                    echo "Erro ao buscar rotas: " . $e->getMessage();
-                                }
-                                ?>
-                                <select class="form-select" id="id_rota_fk" name="id_rota_fk">
-                                    <option value="">Selecione a rota</option>
-                                    <?php foreach ($rotas as $rota): ?>
-                                        <option value="<?= htmlspecialchars($rota['id_rota']) ?>">
-                                            <?= htmlspecialchars($rota['nome']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="id_rota_fk" class="form-label tituloLight fs-5">Rota Pertencente:</label>
+                                        <?php
+                                        $rotas = [];
+                                        try {
+                                            $stmtRotas = $conn->query("SELECT id_rota, nome FROM rota");
+                                            $rotas = $stmtRotas->fetchAll(PDO::FETCH_ASSOC);
+                                        } catch (Exception $e) {
+                                            echo "Erro ao buscar rotas: " . $e->getMessage();
+                                        }
+                                        ?>
+                                        <select class="form-select" id="id_rota_fk" name="id_rota_fk">
+                                            <option value="">Selecione a rota</option>
+                                            <?php foreach ($rotas as $rota): ?>
+                                                <option value="<?= htmlspecialchars($rota['id_rota']) ?>">
+                                                    <?= htmlspecialchars($rota['nome']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="ordem" class="form-label tituloLight fs-5">Ordem:</label>
+                                        <select class="form-select" id="ordem" name="ordem">
+                                            <?php for ($i = 1; $i <= 5; $i++): ?>
+                                                <option value="<?= $i ?>"><?= $i ?></option>
+                                            <?php endfor; ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="id_estacao_origem" class="form-label tituloLight fs-5">Estação de Origem:</label>
+                                        <select class="form-select" id="id_estacao_origem" name="id_estacao_origem">
+                                            <option value="">Selecione a estação de origem</option>
+                                            <?php
+                                            $estacoes = [];
+                                            try {
+                                                $stmtEstacoes = $conn->query("SELECT id_estacao, nome FROM estacao");
+                                                $estacoes = $stmtEstacoes->fetchAll(PDO::FETCH_ASSOC);
+                                            } catch (Exception $e) {
+                                                echo "Erro ao buscar estações: " . $e->getMessage();
+                                            }
+                                            ?>
+                                            <?php foreach ($estacoes as $estacao): ?>
+                                                <option value="<?= htmlspecialchars($estacao['id_estacao']) ?>">
+                                                    <?= htmlspecialchars($estacao['nome']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="id_estacao_destino" class="form-label tituloLight fs-5">Estação de Destino:</label>
+                                        <select class="form-select" id="id_estacao_destino" name="id_estacao_destino">
+                                            <option value="">Selecione a estação de destino</option>
+                                            <?php foreach ($estacoes as $estacao): ?>
+                                                <option value="<?= htmlspecialchars($estacao['id_estacao']) ?>">
+                                                    <?= htmlspecialchars($estacao['nome']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="distancia_km" class="form-label tituloLight fs-5">Distância (km):</label>
+                                        <input type="number" class="form-control" id="distancia_km" name="distancia_km" placeholder="Insira a distância em km">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Cadastrar Segmento de Rota</button>
+                                </form>
                             </div>
-                            <div class="mb-3">
-                                <label for="ordem" class="form-label">Ordem:</label>
-                                <select class="form-select" id="ordem" name="ordem">
-                                    <option value="">Selecione a ordem</option>
-                                    <?php for ($i = 1; $i <= 5; $i++): ?>
-                                        <option value="<?= $i ?>"><?= $i ?></option>
-                                    <?php endfor; ?>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="id_estacao_origem" class="form-label">Estação de Origem:</label>
-                                <select class="form-select" id="id_estacao_origem" name="id_estacao_origem">
-                                    <option value="">Selecione a estação de origem</option>
-                                    <?php
-                                    $estacoes = [];
-                                    try {
-                                        $stmtEstacoes = $conn->query("SELECT id_estacao, nome FROM estacao");
-                                        $estacoes = $stmtEstacoes->fetchAll(PDO::FETCH_ASSOC);
-                                    } catch (Exception $e) {
-                                        echo "Erro ao buscar estações: " . $e->getMessage();
-                                    }
-                                    ?>
-                                    <?php foreach ($estacoes as $estacao): ?>
-                                        <option value="<?= htmlspecialchars($estacao['id_estacao']) ?>">
-                                            <?= htmlspecialchars($estacao['nome']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="id_estacao_destino" class="form-label">Estação de Destino:</label>
-                                <select class="form-select" id="id_estacao_destino" name="id_estacao_destino">
-                                    <option value="">Selecione a estação de destino</option>
-                                    <?php foreach ($estacoes as $estacao): ?>
-                                        <option value="<?= htmlspecialchars($estacao['id_estacao']) ?>">
-                                            <?= htmlspecialchars($estacao['nome']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="distancia_km" class="form-label">Distância (km):</label>
-                                <input type="number" class="form-control" id="distancia_km" name="distancia_km" placeholder="Insira a distância em km">
-                            </div>
-                            <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Segmento de Rota</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
 

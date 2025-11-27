@@ -55,24 +55,48 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="mt-4 mb-4">
-                    <h3>Ordem de Manutenção ID: <?php echo htmlspecialchars($id_ordem); ?></h3>
-
-                    <?php
-                    $sql_trem = "SELECT identificador FROM trem WHERE id_trem = :id_trem";
-                    $stmt_trem = $conn->prepare($sql_trem);
-                    $stmt_trem->bindValue(':id_trem', (int)$id_trem_fk, PDO::PARAM_INT);
-                    $stmt_trem->execute();
-                    $trem_row = $stmt_trem->fetch(PDO::FETCH_ASSOC);
-                    $nome_trem = $trem_row ? $trem_row['identificador'] : 'Trem não encontrado';
-                    ?>
-
-                    <p><strong>Trem:</strong> <?php echo htmlspecialchars($nome_trem); ?></p>
-                    <p><strong>Descrição:</strong> <?php echo htmlspecialchars($descricao); ?></p>
-                    <p><strong>Data de Abertura:</strong> <?php echo htmlspecialchars($data_abertura); ?></p>
-                    <p><strong>Data de Fechamento:</strong> <?php echo htmlspecialchars($data_fechamento); ?></p>
-                    <p><strong>Tipo:</strong> <?php echo htmlspecialchars($tipo); ?></p>
-                    <p><strong>Status:</strong> <?php echo htmlspecialchars($status_manutencao); ?></p>
+                <div class="row d-flex justify-content-center mt-5">
+                    <div class="col-11 col-md-7">
+                        <div class="card text-center rounded-4">
+                            <div class="card-header cardHeaderAlertas rounded-top-4">
+                                <p class=" text-center tituloDark fs-1 fw-medium mb-0">Ordem de Manutenção ID: <?php echo htmlspecialchars($id_ordem); ?></p>
+                            </div>
+                            <div class="card-body">
+                                <?php
+                                $sql_trem = "SELECT identificador FROM trem WHERE id_trem = :id_trem";
+                                $stmt_trem = $conn->prepare($sql_trem);
+                                $stmt_trem->bindValue(':id_trem', (int)$id_trem_fk, PDO::PARAM_INT);
+                                $stmt_trem->execute();
+                                $trem_row = $stmt_trem->fetch(PDO::FETCH_ASSOC);
+                                $nome_trem = $trem_row ? $trem_row['identificador'] : 'Trem não encontrado';
+                                ?>
+                                <div class="text-body-secondary">
+                                    <p class="tituloLight fs-5 mb-0">Trem: </p>
+                                    <p><?php echo htmlspecialchars($nome_trem); ?></p>
+                                </div>
+                                <div class="text-body-secondary">
+                                    <p class="tituloLight fs-5 mb-0">Descrição: </p>
+                                    <p><?php echo htmlspecialchars($descricao); ?></p>
+                                </div>
+                                <div class="text-body-secondary">
+                                    <p class="tituloLight fs-5 mb-0">Data de Abertura: </p>
+                                    <p><?php echo htmlspecialchars($data_abertura); ?></p>
+                                </div>
+                                <div class="text-body-secondary">
+                                    <p class="tituloLight fs-5 mb-0">Data de Fechamento: </p>
+                                    <p><?php echo htmlspecialchars($data_fechamento); ?></p>
+                                </div>
+                                <div class="text-body-secondary">
+                                    <p class="tituloLight fs-5 mb-0">Tipo: </p>
+                                    <p><?php echo htmlspecialchars($tipo); ?></p>
+                                </div>
+                                <div class="text-body-secondary">
+                                    <p class="tituloLight fs-5 mb-0">Status: </p>
+                                    <p><?php echo htmlspecialchars($status_manutencao); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>

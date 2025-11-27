@@ -58,7 +58,7 @@ if (isset($_GET['id'])) {
                 <div class="row headerDash d-flex align-items-center">
                     <div class="col-8  welcome lh-1">
                         <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
-                            <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='dashboard.php'"></i>
+                            <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='gestaoDeRotas.php'"></i>
                             <p class="mb-0">Atualização de Rotas</p>
                         </div>
                     </div>
@@ -70,21 +70,23 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center p-5">
+                <div class="row justify-content-center p-3">
                     <div class="col">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="nome" class="form-label">Nome da Rota:</label>
-                                <input required type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da rota" value="<?php echo isset($nome) ? $nome : ''; ?>">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="nome" class="form-label tituloLight fs-5">Nome da Rota:</label>
+                                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da rota" value="<?php echo isset($nome) ? $nome : ''; ?>" required>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="descricao" class="form-label tituloLight fs-5">Descrição:</label>
+                                        <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Insira a descrição da rota" required><?php echo isset($descricao) ? $descricao : ''; ?>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Atualizar Rota</button>
+                                </form>
                             </div>
-
-                            <div>
-                                <label for="descricao" class="form-label">Descrição:</label>
-                                <textarea required class="form-control" id="descricao" name="descricao" rows="4" placeholder="Insira a descrição da rota"><?php echo isset($descricao) ? $descricao : ''; ?></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-light btnLogin mt-5">Atualizar Rota</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
 
@@ -149,19 +151,23 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center p-5">
+                <div class="row justify-content-center p-3">
                     <div class="col">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="nome" class="form-label">Nome da Rota:</label>
-                                <input type="text" class="form-control" name="nome" id="nome" placeholder="Insira o nome da rota" aria-describedby="Nome da Rota" required>
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="nome" class="form-label tituloLight fs-5">Nome da Rota:</label>
+                                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da rota" aria-describedby="Nome da Rota" required>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="descricao" class="form-label tituloLight fs-5">Descrição:</label>
+                                        <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Insira a descrição da rota" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Atualizar Rota</button>
+                                </form>
                             </div>
-                            <div>
-                                <label for="descricao" class="form-label">Descrição:</label>
-                                <textarea class="form-control" id="descricao" name="descricao" placeholder="Insira a descrição da rota" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Rota</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
 

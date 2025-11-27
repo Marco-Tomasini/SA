@@ -75,35 +75,39 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div>
-                    <div>
-                        <form method="POST">
-                            <div>
-                                <label for="identificador" class="form-label">Identificador:</label>
-                                <input type="text" class="form-control" id="identificador" name="identificador" placeholder="Insira o identificador do trem" value="<?= htmlspecialchars($identificador) ?>">
+                <div class="row justify-content-center p-3">
+                    <div class="col">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="identificador" class="form-label">Identificador:</label>
+                                        <input type="text" class="form-control" id="identificador" name="identificador" placeholder="Insira o identificador do trem" value="<?= htmlspecialchars($identificador) ?>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="modelo" class="form-label">Modelo:</label>
+                                        <input type="text" class="form-control" id="modelo" name="modelo" rows="4" placeholder="Insira o modelo do trem"><?= htmlspecialchars($modelo) ?>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="capacidade_passageiros" class="form-label">Capacidade de Passageiros:</label>
+                                        <input type="number" class="form-control" id="capacidade_passageiros" name="capacidade_passageiros" placeholder="Insira a capacidade de passageiros" value="<?= htmlspecialchars($capacidade_passageiros) ?>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="capacidade_carga_kg" class="form-label">Capacidade de Carga (kg):</label>
+                                        <input type="number" class="form-control" id="capacidade_carga_kg" name="capacidade_carga_kg" placeholder="Insira a capacidade de carga em kg" value="<?= htmlspecialchars($capacidade_carga_kg) ?>">
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="status_trem" class="form-label">Status do Trem:</label>
+                                        <select class="form-control" id="status_trem" name="status_trem">
+                                            <option value="Operacional" <?= (isset($status_trem) && $status_trem == 'Operacional') ? 'selected' : '' ?>>Operacional</option>
+                                            <option value="Manutenção" <?= (isset($status_trem) && $status_trem == 'Manutenção') ? 'selected' : '' ?>>Manutenção</option>
+                                            <option value="Fora de Serviço" <?= (isset($status_trem) && $status_trem == 'Fora de Serviço') ? 'selected' : '' ?>>Fora de Serviço</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Atualizar Trem</button>
+                                </form>
                             </div>
-                            <div>
-                                <label for="modelo" class="form-label">Modelo:</label>
-                                <textarea class="form-control" id="modelo" name="modelo" rows="4" placeholder="Insira o modelo do trem"><?= htmlspecialchars($modelo) ?></textarea>
-                            </div>
-                            <div>
-                                <label for="capacidade_passageiros" class="form-label">Capacidade de Passageiros:</label>
-                                <input type="number" class="form-control" id="capacidade_passageiros" name="capacidade_passageiros" placeholder="Insira a capacidade de passageiros" value="<?= htmlspecialchars($capacidade_passageiros) ?>">
-                            </div>
-                            <div>
-                                <label for="capacidade_carga_kg" class="form-label">Capacidade de Carga (kg):</label>
-                                <input type="number" class="form-control" id="capacidade_carga_kg" name="capacidade_carga_kg" placeholder="Insira a capacidade de carga em kg" value="<?= htmlspecialchars($capacidade_carga_kg) ?>">
-                            </div>
-                            <div>
-                                <label for="status_trem" class="form-label">Status do Trem:</label>
-                                <select class="form-control" id="status_trem" name="status_trem">
-                                    <option value="Operacional" <?= (isset($status_trem) && $status_trem == 'Operacional') ? 'selected' : '' ?>>Operacional</option>
-                                    <option value="Manutenção" <?= (isset($status_trem) && $status_trem == 'Manutenção') ? 'selected' : '' ?>>Manutenção</option>
-                                    <option value="Fora de Serviço" <?= (isset($status_trem) && $status_trem == 'Fora de Serviço') ? 'selected' : '' ?>>Fora de Serviço</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Atualizar Trem</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
 
@@ -175,35 +179,39 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center p-5">
+                <div class="row justify-content-center p-3">
                     <div class="col">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="identificador" class="form-label">Identificador:</label>
-                                <input type="text" class="form-control" id="identificador" name="identificador" placeholder="Insira o identificador do trem">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="identificador" class="form-label tituloLight fs-5">Identificador:</label>
+                                        <input type="text" class="form-control" id="identificador" name="identificador" placeholder="Insira o identificador do trem" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="modelo" class="form-label tituloLight fs-5">Modelo:</label>
+                                        <input type="text" class="form-control" id="modelo" name="modelo" placeholder="Insira o modelo do trem" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="capacidade_passageiros" class="form-label tituloLight fs-5">Capacidade de Passageiros:</label>
+                                        <input type="number" class="form-control" id="capacidade_passageiros" name="capacidade_passageiros" placeholder="Insira a capacidade de passageiros" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="capacidade_carga_kg" class="form-label tituloLight fs-5">Capacidade de Carga (kg):</label>
+                                        <input type="number" class="form-control" id="capacidade_carga_kg" name="capacidade_carga_kg" placeholder="Insira a capacidade de carga em kg" required>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="status_trem" class="form-label tituloLight fs-5">Status do Trem:</label>
+                                        <select class="form-control" id="status_trem" name="status_trem">
+                                            <option value="Operacional">Operacional</option>
+                                            <option value="Manutenção">Manutenção</option>
+                                            <option value="Fora de Serviço">Fora de Serviço</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Cadastrar Trem</button>
+                                </form>
                             </div>
-                            <div class="mb-3">
-                                <label for="modelo" class="form-label">Modelo:</label>
-                                <input type="text" class="form-control" id="modelo" name="modelo" rows="4" placeholder="Insira o modelo do trem"></input>
-                            </div>
-                            <div class="mb-3">
-                                <label for="capacidade_passageiros" class="form-label">Capacidade de Passageiros:</label>
-                                <input type="number" class="form-control" id="capacidade_passageiros" name="capacidade_passageiros" placeholder="Insira a capacidade de passageiros">
-                            </div>
-                            <div class="mb-3">
-                                <label for="capacidade_carga_kg" class="form-label">Capacidade de Carga (kg):</label>
-                                <input type="number" class="form-control" id="capacidade_carga_kg" name="capacidade_carga_kg" placeholder="Insira a capacidade de carga em kg">
-                            </div>
-                            <div>
-                                <label for="status_trem" class="form-label">Status do Trem:</label>
-                                <select class="form-control" id="status_trem" name="status_trem">
-                                    <option value="Operacional">Operacional</option>
-                                    <option value="Manutenção">Manutenção</option>
-                                    <option value="Fora de Serviço">Fora de Serviço</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Trem</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
 

@@ -83,54 +83,56 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div>
-                    <div>
-                        <form method="POST">
-                            <div>
-                                <label for="tipo" class="form-label">Tipo:</label>
-                                <select class="form-control" id="tipo" name="tipo" required>
-                                    <option value="Atraso" <?= (isset($tipo) && $tipo == 'Atraso') ? 'selected' : '' ?>>Atraso</option>
-                                    <option value="Falha Técnica" <?= (isset($tipo) && $tipo == 'Falha Técnica') ? 'selected' : '' ?>>Falha Técnica</option>
-                                    <option value="Segurança" <?= (isset($tipo) && $tipo == 'Segurança') ? 'selected' : '' ?>>Segurança</option>
-                                </select>
+                <div class="row justify-content-center p-3">
+                    <div class="col">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="tipo" class="form-label tituloLight fs-5">Tipo:</label>
+                                        <select class="form-control" id="tipo" name="tipo" required>
+                                            <option value="Atraso" <?= (isset($tipo) && $tipo == 'Atraso') ? 'selected' : '' ?>>Atraso</option>
+                                            <option value="Falha Técnica" <?= (isset($tipo) && $tipo == 'Falha Técnica') ? 'selected' : '' ?>>Falha Técnica</option>
+                                            <option value="Segurança" <?= (isset($tipo) && $tipo == 'Segurança') ? 'selected' : '' ?>>Segurança</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="mensagem" class="form-label tituloLight fs-5">Mensagem:</label>
+                                        <textarea class="form-control" id="mensagem" name="mensagem" placeholder="Insira a mensagem do alerta" required><?= htmlspecialchars($mensagem) ?></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="criticidade" class="form-label tituloLight fs-5">Criticidade:</label>
+                                        <select class="form-control" id="criticidade" name="criticidade" required>
+                                            <option value="Baixa" <?= (isset($criticidade) && $criticidade == 'Baixa') ? 'selected' : '' ?>>Baixa</option>
+                                            <option value="Média" <?= (isset($criticidade) && $criticidade == 'Média') ? 'selected' : '' ?>>Média</option>
+                                            <option value="Alta" <?= (isset($criticidade) && $criticidade == 'Alta') ? 'selected' : '' ?>>Alta</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="id_viagem_fk" class="form-label tituloLight fs-5">Viagem Referente:</label>
+                                        <?php
+                                        $viagens = [];
+                                        try {
+                                            $stmtViagens = $conn->query("SELECT id_viagem, nome_viagem FROM viagem");
+                                            $viagens = $stmtViagens->fetchAll(PDO::FETCH_ASSOC);
+                                        } catch (Exception $e) {
+                                            echo "Erro ao buscar viagens: " . $e->getMessage();
+                                        }
+                                        ?>
+                                        <select class="form-select" id="id_viagem_fk" name="id_viagem_fk" required>
+                                            <option value="">Selecione a viagem</option>
+                                            <?php foreach ($viagens as $viagem): ?>
+                                                <option value="<?= htmlspecialchars($viagem['id_viagem']) ?>"
+                                                    <?= (isset($id_viagem_fk) && $id_viagem_fk == $viagem['id_viagem']) ? 'selected' : '' ?>>
+                                                    <?= htmlspecialchars($viagem['nome_viagem']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Atualizar Alerta</button>
+                                </form>
                             </div>
-                            <div>
-                                <label for="modelo" class="form-label">Modelo:</label>
-                                <textarea class="form-control" id="mensagem" name="mensagem" rows="4" placeholder="Insira a mensagem do alerta" required><?= htmlspecialchars($mensagem) ?></textarea>
-                            </div>
-
-                            <div>
-                                <label for="criticidade" class="form-label">Criticidade:</label>
-                                <select class="form-control" id="criticidade" name="criticidade" required>
-                                    <option value="Baixa" <?= (isset($criticidade) && $criticidade == 'Baixa') ? 'selected' : '' ?>>Baixa</option>
-                                    <option value="Média" <?= (isset($criticidade) && $criticidade == 'Média') ? 'selected' : '' ?>>Média</option>
-                                    <option value="Alta" <?= (isset($criticidade) && $criticidade == 'Alta') ? 'selected' : '' ?>>Alta</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="id_viagem_fk" class="form-label">Viagem Referente:</label>
-                                <?php
-                                $viagens = [];
-                                try {
-                                    $stmtViagens = $conn->query("SELECT id_viagem, nome_viagem FROM viagem");
-                                    $viagens = $stmtViagens->fetchAll(PDO::FETCH_ASSOC);
-                                } catch (Exception $e) {
-                                    echo "Erro ao buscar viagens: " . $e->getMessage();
-                                }
-                                ?>
-                                <select class="form-select" id="id_viagem_fk" name="id_viagem_fk" required>
-                                    <option value="">Selecione a viagem</option>
-                                    <?php foreach ($viagens as $viagem): ?>
-                                        <option value="<?= htmlspecialchars($viagem['id_viagem']) ?>"
-                                            <?= (isset($id_viagem_fk) && $id_viagem_fk == $viagem['id_viagem']) ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($viagem['nome_viagem']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-
-                            </div>
-                            <button type="submit" class="btn btn-primary">Atualizar Alerta</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
 
@@ -200,58 +202,55 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div>
-                    <div>
-                        <form method="POST">
-
-                            <div>
-                                <label for="tipo" class="form-label">Tipo:</label>
-                                <select type="text" class="form-control" id="tipo" name="tipo" placeholder="Insira o tipo do alerta" required>
-                                    <option value="Atraso">Atraso</option>
-                                    <option value="Falha Técnica">Falha Técnica</option>
-                                    <option value="Segurança">Segurança</option>
-                                </select>
+                <div class="row justify-content-center p-3">
+                    <div class="col">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="tipo" class="form-label tituloLight fs-5">Tipo:</label>
+                                        <select class="form-control" id="tipo" name="tipo" required>
+                                            <option value="Atraso">Atraso</option>
+                                            <option value="Falha Técnica">Falha Técnica</option>
+                                            <option value="Segurança">Segurança</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="mensagem" class="form-label tituloLight fs-5">Mensagem:</label>
+                                        <input type="text" class="form-control" id="mensagem" name="mensagem" placeholder="Insira a mensagem do alerta" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="criticidade" class="form-label tituloLight fs-5">Criticidade:</label>
+                                        <select class="form-control" id="criticidade" name="criticidade" required>
+                                            <option value="Baixa">Baixa</option>
+                                            <option value="Média">Média</option>
+                                            <option value="Alta">Alta</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="id_viagem_fk" class="form-label tituloLight fs-5">Viagem Referente:</label>
+                                        <?php
+                                        $viagens = [];
+                                        try {
+                                            $stmtViagens = $conn->query("SELECT id_viagem, nome_viagem FROM viagem");
+                                            $viagens = $stmtViagens->fetchAll(PDO::FETCH_ASSOC);
+                                        } catch (Exception $e) {
+                                            echo "Erro ao buscar viagens: " . $e->getMessage();
+                                        }
+                                        ?>
+                                        <select class="form-control" id="id_viagem_fk" name="id_viagem_fk" required>
+                                            <option value="">Selecione a viagem</option>
+                                            <?php foreach ($viagens as $viagem): ?>
+                                                <option value="<?= htmlspecialchars($viagem['id_viagem']) ?>">
+                                                    <?= htmlspecialchars($viagem['nome_viagem']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Cadastrar Alerta</button>
+                                </form>
                             </div>
-
-                            <div>
-                                <label for="mensagem" class="form-label">Mensagem:</label>
-                                <textarea class="form-control" id="mensagem" name="mensagem" rows="4" placeholder="Insira a mensagem do alerta" required></textarea>
-                            </div>
-
-                            <div>
-                                <label for="criticidade" class="form-label">Criticidade:</label>
-                                <select class="form-control" id="criticidade" name="criticidade" placeholder="Insira a criticidade" required>
-                                    <option value="Baixa">Baixa</option>
-                                    <option value="Média">Média</option>
-                                    <option value="Alta">Alta</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="id_viagem_fk" class="form-label">Viagem Referente:</label>
-                                <?php
-                                $viagens = [];
-                                try {
-                                    $stmtViagens = $conn->query("SELECT id_viagem, nome_viagem FROM viagem");
-                                    $viagens = $stmtViagens->fetchAll(PDO::FETCH_ASSOC);
-                                } catch (Exception $e) {
-                                    echo "Erro ao buscar viagens: " . $e->getMessage();
-                                }
-                                ?>
-                                <select class="form-select" id="id_viagem_fk" name="id_viagem_fk" required>
-                                    <option value="">Selecione a viagem</option>
-                                    <?php foreach ($viagens as $viagem): ?>
-                                        <option value="<?= htmlspecialchars($viagem['id_viagem']) ?>"
-                                            <?= (isset($id_viagem_fk) && $id_viagem_fk == $viagem['id_viagem']) ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($viagem['nome_viagem']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-
-
-                            <button type="submit" class="btn btn-primary">Cadastrar Alerta</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
 

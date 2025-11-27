@@ -61,7 +61,6 @@ if (isset($_GET['id'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Visualizar e Atualizar Dados do Usuário</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
         <link rel="stylesheet" href="../styles/style.css">
@@ -72,7 +71,8 @@ if (isset($_GET['id'])) {
             <div class="container-fluid">
                 <div class="row headerDash d-flex align-items-center">
                     <div class="col-8  welcome lh-1">
-                        <div class="col ms-4 fw-bold fs-5">
+                        <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
+                            <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='funcionarios.php'"></i>
                             <p class="mb-0">Dados do Usuário</p>
                         </div>
                     </div>
@@ -84,50 +84,53 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="row">
-                    <form action="upload_foto.php?id=<?php echo urlencode($_GET['id']); ?>" method="POST" enctype="multipart/form-data" class="p-5">
-                        <?php
-                        $fotoNome = !empty($dadosusuario['imagem_usuario']) ? htmlspecialchars($dadosusuario['imagem_usuario'], ENT_QUOTES) : 'default.png';
-                        $fotoPath = '../assets/img/' . $fotoNome;
-                        ?>
-                        <img src="<?php echo $fotoPath; ?>" alt="foto_perfil" class="mb-3" style="width: 150px; height: 150px; border-radius: 50%;">
-                        <div class="mb-3 d-flex flex-column">
-
-                            <label for="nome" class="form-label fs-5">Nome:</label>
-                            <input type="text" class="form-control" id="nome" name="nome" value="<?php echo htmlspecialchars($dadosusuario['nome'], ENT_QUOTES); ?>">
-
-                            <label for="email" class="form-label fs-5">Email:</label>
-                            <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($dadosusuario['email'], ENT_QUOTES); ?>">
-
-                            <label for="cpf" class="form-label fs-5">CPF:</label>
-                            <input type="text" class="form-control" id="cpf" name="CPF" value="<?php echo htmlspecialchars($dadosusuario['CPF'], ENT_QUOTES); ?>">
-
-                            <label for="contato" class="form-label fs-5">Contato:</label>
-                            <input type="text" class="form-control" id="contato" name="contato" value="<?php echo htmlspecialchars($dadosusuario['contato'], ENT_QUOTES); ?>">
-
-                            <label for="data_nascimento" class="form-label fs-5">Data de Nascimento:</label>
-                            <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" value="<?php echo htmlspecialchars($dadosusuario['data_nascimento'], ENT_QUOTES); ?>">
-
-                            <label for="endereco" class="form-label fs-5">Endereço:</label>
-                            <input type="text" class="form-control" id="endereco" name="endereco" value="<?php echo htmlspecialchars($dadosusuario['endereco'], ENT_QUOTES); ?>">
-
-                            <label for="perfil" class="form-label fs-5">Perfil:</label>
-                            <select class="form-control" id="perfil" name="perfil">
-                                <option value="Gerente" <?php if ($dadosusuario['perfil'] === 'Gerente') echo 'selected'; ?>>Gerente</option>
-                                <option value="controlador" <?php if ($dadosusuario['perfil'] === 'Controlador') echo 'selected'; ?>>Controlador</option>
-                                <option value="engenheiro" <?php if ($dadosusuario['perfil'] === 'Engenheiro') echo 'selected'; ?>>Engenheiro</option>
-                                <option value="planejador" <?php if ($dadosusuario['perfil'] === 'Planejador') echo 'selected'; ?>>Planejador</option>
-                                <option value="maquinista" <?php if ($dadosusuario['perfil'] === 'Maquinista') echo 'selected'; ?>>Maquinista</option>
-                            </select>
-
-                            <button type="button" class="btn btn-danger" onclick="location.href='delete_usuario.php?id=<?php echo $dadosusuario['id_usuario']; ?>'">Demitir</button>
-                            <button type="submit" class="btn btn-primary">Salvar</button>
+                <div class="row justify-content-center p-3">
+                    <div class="col">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form action="upload_foto.php" method="POST" enctype="multipart/form-data">
+                                    <?php
+                                    $fotoNome = !empty($dadosusuario['imagem_usuario']) ? htmlspecialchars($dadosusuario['imagem_usuario'], ENT_QUOTES) : 'default.png';
+                                    $fotoPath = '../assets/img/' . $fotoNome;
+                                    ?>
+                                    <div class="mb-3 d-flex justify-content-start align-items-center gap-4">
+                                        <img src="<?php echo $fotoPath; ?>" alt="foto_perfil" class="rounded-circle" width="100vw" height="100vw">
+                                        <button type="submit" class="btn btn-dark btnDemitir fs-5 fw-semibold rounded-4" onclick="location.href='delete_usuario.php?id=<?php echo $dadosusuario['id_usuario']; ?>'">Demitir</button>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nome" class="form-label tituloLight fs-5">Nome:</label>
+                                        <input type="text" class="form-control" id="nome" name="nome" value="<?php echo htmlspecialchars($dadosusuario['nome'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label tituloLight fs-5">Email:</label>
+                                        <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($dadosusuario['email'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cpf" class="form-label tituloLight fs-5">CPF:</label>
+                                        <input type="text" class="form-control" id="cpf" name="CPF" value="<?php echo htmlspecialchars($dadosusuario['CPF'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="contato" class="form-label tituloLight fs-5">Contato:</label>
+                                        <input type="text" class="form-control" id="contato" name="contato" value="<?php echo htmlspecialchars($dadosusuario['contato'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="data_nascimento" class="form-label tituloLight fs-5">Data de Nascimento:</label>
+                                        <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" value="<?php echo htmlspecialchars($dadosusuario['data_nascimento'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="endereco" class="form-label tituloLight fs-5">Endereço:</label>
+                                        <input type="text" class="form-control" id="endereco" name="endereco" value="<?php echo htmlspecialchars($dadosusuario['endereco'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="perfil" class="form-label tituloLight fs-5">Perfil:</label>
+                                        <input type="text" class="form-control" id="perfil" name="perfil" value="<?php echo htmlspecialchars($dadosusuario['perfil'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Salvar</button>
+                                </form>
+                            </div>
                         </div>
+                    </div>
                 </div>
-                </form>
-                </form>
-            </div>
-            </div>
             </div>
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
@@ -213,7 +216,8 @@ if (isset($_GET['id'])) {
             <div class="container-fluid">
                 <div class="row headerDash d-flex align-items-center">
                     <div class="col-8  welcome lh-1">
-                        <div class="col ms-4 fw-bold fs-5">
+                        <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
+                            <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='dashboard.php'"></i>
                             <p class="mb-0">Dados do Usuário</p>
                         </div>
                     </div>
@@ -225,44 +229,56 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col d-flex flex-column">
-                        <form action="upload_foto.php" method="POST" enctype="multipart/form-data" class="p-5">
-                            <?php
-                            $fotoNome = !empty($dadosusuario['imagem_usuario']) ? htmlspecialchars($dadosusuario['imagem_usuario'], ENT_QUOTES) : 'default.png';
-                            $fotoPath = '../assets/img/' . $fotoNome;
-                            ?>
-                            <img src="<?php echo $fotoPath; ?>" alt="foto_perfil" class="mb-3" style="width: 150px; height: 150px; border-radius: 50%;">
-                            <div class="mb-3 d-flex flex-column">
-
-                                <label for="nome" class="form-label fs-5">Nome:</label>
-                                <input type="text" class="form-control" id="nome" name="nome" value="<?php echo htmlspecialchars($dadosusuario['nome'], ENT_QUOTES); ?>" disabled>
-
-                                <label for="email" class="form-label fs-5">Email:</label>
-                                <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($dadosusuario['email'], ENT_QUOTES); ?>" disabled>
-
-                                <label for="cpf" class="form-label fs-5">CPF:</label>
-                                <input type="text" class="form-control" id="cpf" name="CPF" value="<?php echo htmlspecialchars($dadosusuario['CPF'], ENT_QUOTES); ?>" disabled>
-
-                                <label for="contato" class="form-label fs-5">Contato:</label>
-                                <input type="text" class="form-control" id="contato" name="contato" value="<?php echo htmlspecialchars($dadosusuario['contato'], ENT_QUOTES); ?>" disabled>
-
-                                <label for="data_nascimento" class="form-label fs-5">Data de Nascimento:</label>
-                                <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" value="<?php echo htmlspecialchars($dadosusuario['data_nascimento'], ENT_QUOTES); ?>" disabled>
-
-                                <label for="endereco" class="form-label fs-5">Endereço:</label>
-                                <input type="text" class="form-control" id="endereco" name="endereco" value="<?php echo htmlspecialchars($dadosusuario['endereco'], ENT_QUOTES); ?>" disabled>
-
-                                <label for="perfil" class="form-label fs-5">Perfil:</label>
-                                <input type="text" class="form-control" id="perfil" name="perfil" value="<?php echo htmlspecialchars($dadosusuario['perfil'], ENT_QUOTES); ?>" disabled>
-
-                                <label for="formFile" class="form-label fs-5">Envie sua foto de perfil abaixo:</label>
-                                <div class="col d-lg-flex gap-2">
-                                    <input class="form-control" type="file" name="foto_perfil" id="formFile" accept="image/*" required>
-                                    <button type="submit" class="btn botaoCreate mt-2 mt-lg-0">Upload</button>
-                                </div>
+                <div class="row justify-content-center p-3">
+                    <div class="col">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form action="upload_foto.php" method="POST" enctype="multipart/form-data">
+                                    <?php
+                                    $fotoNome = !empty($dadosusuario['imagem_usuario']) ? htmlspecialchars($dadosusuario['imagem_usuario'], ENT_QUOTES) : 'default.png';
+                                    $fotoPath = '../assets/img/' . $fotoNome;
+                                    ?>
+                                    <div class="mb-3 d-flex justify-content-center align-items-center">
+                                        <img src="<?php echo $fotoPath; ?>" alt="foto_perfil" class="rounded-circle" width="100vw" height="100vw">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nome" class="form-label tituloLight fs-5">Nome:</label>
+                                        <input type="text" class="form-control" id="nome" name="nome" value="<?php echo htmlspecialchars($dadosusuario['nome'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label tituloLight fs-5">Email:</label>
+                                        <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($dadosusuario['email'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cpf" class="form-label tituloLight fs-5">CPF:</label>
+                                        <input type="text" class="form-control" id="cpf" name="CPF" value="<?php echo htmlspecialchars($dadosusuario['CPF'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="contato" class="form-label tituloLight fs-5">Contato:</label>
+                                        <input type="text" class="form-control" id="contato" name="contato" value="<?php echo htmlspecialchars($dadosusuario['contato'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="data_nascimento" class="form-label tituloLight fs-5">Data de Nascimento:</label>
+                                        <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" value="<?php echo htmlspecialchars($dadosusuario['data_nascimento'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="endereco" class="form-label tituloLight fs-5">Endereço:</label>
+                                        <input type="text" class="form-control" id="endereco" name="endereco" value="<?php echo htmlspecialchars($dadosusuario['endereco'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="perfil" class="form-label tituloLight fs-5">Perfil:</label>
+                                        <input type="text" class="form-control" id="perfil" name="perfil" value="<?php echo htmlspecialchars($dadosusuario['perfil'], ENT_QUOTES); ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label tituloLight fs-5">Envie sua foto de perfil abaixo:</label>
+                                        <div class="col d-lg-flex gap-2">
+                                            <input class="form-control" type="file" name="foto_perfil" id="formFile" accept="image/*" required>
+                                            <button type="submit" class="btn btn-dark btnUploadFoto fs-6 fw-semibold rounded-4">Upload</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

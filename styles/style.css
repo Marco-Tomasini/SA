@@ -72,6 +72,21 @@ body {
     background: linear-gradient(161deg, rgba(104, 58, 145, 1) 30%, rgba(52, 38, 56, 1) 100%);
 }
 
+.btnUploadFoto {
+    color: #D9D9D9;
+    width: 10vw;
+    background: linear-gradient(161deg, rgba(104, 58, 145, 1) 30%, rgba(52, 38, 56, 1) 100%);
+}
+
+.btnDemitir {
+    color: #D9D9D9;
+    width: 10vw;
+    height: 5vh;
+    border: none !important;
+    background: #b02a37;
+    background: linear-gradient(161deg, rgba(176, 42, 55, 1) 30%, rgba(112, 20, 30, 1) 100%);
+}
+
 .btnSidebar {
     background: #28183b;
     background: linear-gradient(161deg, rgba(40, 24, 59, 1) 30%, rgba(67, 35, 79, 1) 100%);
@@ -247,4 +262,17 @@ body {
 .cardHeaderAlertas {
     background: #28183b;
     background: linear-gradient(161deg, rgba(40, 24, 59, 1) 30%, rgba(67, 35, 79, 1) 100%);
+}
+
+.cardFuncionario {
+    height: 50vh !important;
+    min-height: 460px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cardFuncionario img {
+    height: 25vh;
+    min-height: 250px !important;
+    object-fit: cover;
+    object-position: top;
 }

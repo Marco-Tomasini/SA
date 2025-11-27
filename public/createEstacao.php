@@ -67,19 +67,23 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center p-5">
+                <div class="row justify-content-center p-3">
                     <div class="col">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="nome" class="form-label">Nome da Estação:</label>
-                                <input required type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da estação" value="<?php echo isset($nome) ? $nome : ''; ?>">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="nome" class="form-label tituloLight fs-5">Nome da Estação:</label>
+                                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da rota" value="<?php echo isset($nome) ? $nome : ''; ?>" required>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="localizacao" class="form-label tituloLight fs-5">Localização:</label>
+                                        <input type="text" required class="form-control" id="localizacao" name="localizacao" placeholder="Insira a localização da estação"><?php echo isset($localizacao) ? $localizacao : ''; ?>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Atualizar Estação</button>
+                                </form>
                             </div>
-                            <div>
-                                <label for="localizacao" class="form-label">Localização:</label>
-                                <textarea required class="form-control" id="localizacao" name="localizacao" rows="4" placeholder="Insira a localização da estação"><?php echo isset($localizacao) ? $localizacao : ''; ?></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-light btnLogin mt-5">Atualizar Estação</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
 
@@ -144,19 +148,23 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center p-5">
+                <div class="row justify-content-center p-3">
                     <div class="col">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="nome" class="form-label">Nome da Estação:</label>
-                                <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da estação" required>
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="nome" class="form-label tituloLight fs-5">Nome da Estação:</label>
+                                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da estação" required>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="localizacao" class="form-label tituloLight fs-5">Localização:</label>
+                                        <input type="text" required class="form-control" id="localizacao" name="localizacao" placeholder="Insira a localização da estação">
+                                    </div>
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Cadastrar Estação</button>
+                                </form>
                             </div>
-                            <div>
-                                <label for="localizacao" class="form-label">Localização:</label>
-                                <textarea required class="form-control" id="localizacao" name="localizacao" rows="4" placeholder="Insira a localização da estação"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Estação</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
 

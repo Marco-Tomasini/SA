@@ -90,52 +90,52 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div>
-                    <div>
-                        <form method="POST">
-                            <div>
-                                <label for="id_trem_fk" class="form-label">Trem:</label>
-                                <select class="form-control" id="id_trem_fk" name="id_trem_fk">
-                                    <option value="">Selecione o trem</option>
-                                    <?php
-                                    $stmtTrem = $conn->query("SELECT id_trem, identificador FROM trem");
-                                    $trens = $stmtTrem->fetchAll(PDO::FETCH_ASSOC);
-                                    foreach ($trens as $trem) {
-                                        echo "<option value=\"" . htmlspecialchars($trem['id_trem']) . "\"" . (($trem['id_trem'] == $id_trem_fk) ? " selected" : "") . ">" . htmlspecialchars($trem['identificador']) . "</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
+                <div class="row justify-content-center p-3">
+                    <div class="col">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="id_trem_fk" class="form-label tituloLight fs-5">Trem:</label>
+                                        <select class="form-control" id="id_trem_fk" name="id_trem_fk">
+                                            <option value="">Selecione o trem</option>
+                                            <?php
+                                            $stmtTrem = $conn->query("SELECT id_trem, identificador FROM trem");
+                                            $trens = $stmtTrem->fetchAll(PDO::FETCH_ASSOC);
+                                            foreach ($trens as $trem) {
+                                                echo "<option value=\"" . htmlspecialchars($trem['id_trem']) . "\"" . (($trem['id_trem'] == $id_trem_fk) ? " selected" : "") . ">" . htmlspecialchars($trem['identificador']) . "</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="data_fechamento" class="form-label tituloLight fs-5">Data de Fechamento:</label>
+                                        <input type="date" class="form-control" id="data_fechamento" name="data_fechamento" value="<?= htmlspecialchars($data_fechamento) ?>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="tipo" class="form-label tituloLight fs-5">Tipo:</label>
+                                        <select class="form-control" id="tipo" name="tipo">
+                                            <option value="Preventiva" <?= (isset($tipo) && $tipo == 'Preventiva') ? 'selected' : '' ?>>Preventiva</option>
+                                            <option value="Corretiva" <?= (isset($tipo) && $tipo == 'Corretiva') ? 'selected' : '' ?>>Corretiva</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="descricao" class="form-label tituloLight fs-5">Descrição:</label>
+                                        <input type="text" class="form-control" id="descricao" name="descricao"><?= htmlspecialchars($descricao) ?>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="status_manutencao" class="form-label tituloLight fs-5">Status:</label>
+                                        <select class="form-control" id="status_manutencao" name="status_manutencao">
+                                            <option value="Aberta" <?= (isset($status_manutencao) && $status_manutencao == 'Aberta') ? 'selected' : '' ?>>Aberta</option>
+                                            <option value="Em Andamento" <?= (isset($status_manutencao) && $status_manutencao == 'Em Andamento') ? 'selected' : '' ?>>Em Andamento</option>
+                                            <option value="Fechada" <?= (isset($status_manutencao) && $status_manutencao == 'Fechada') ? 'selected' : '' ?>>Fechada</option>
+                                        </select>
+                                    </div>
 
-                            <div>
-                                <label for="data_fechamento" class="form-label">Data de Fechamento:</label>
-                                <input type="date" class="form-control" id="data_fechamento" name="data_fechamento" value="<?= htmlspecialchars($data_fechamento) ?>">
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Atualizar Trem</button>
+                                </form>
                             </div>
-
-                            <div>
-                                <label for="tipo" class="form-label">Tipo:</label>
-                                <select class="form-control" id="tipo" name="tipo">
-                                    <option value="Preventiva" <?= (isset($tipo) && $tipo == 'Preventiva') ? 'selected' : '' ?>>Preventiva</option>
-                                    <option value="Corretiva" <?= (isset($tipo) && $tipo == 'Corretiva') ? 'selected' : '' ?>>Corretiva</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="descricao" class="form-label">Descrição:</label>
-                                <textarea class="form-control" id="descricao" name="descricao"><?= htmlspecialchars($descricao) ?></textarea>
-                            </div>
-
-                            <div>
-                                <label for="status_manutencao" class="form-label">Status:</label>
-                                <select class="form-control" id="status_manutencao" name="status_manutencao">
-                                    <option value="Aberta" <?= (isset($status_manutencao) && $status_manutencao == 'Aberta') ? 'selected' : '' ?>>Aberta</option>
-                                    <option value="Em Andamento" <?= (isset($status_manutencao) && $status_manutencao == 'Em Andamento') ? 'selected' : '' ?>>Em Andamento</option>
-                                    <option value="Fechada" <?= (isset($status_manutencao) && $status_manutencao == 'Fechada') ? 'selected' : '' ?>>Fechada</option>
-                                </select>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Atualizar Trem</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
 
@@ -207,58 +207,57 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center p-5">
+                <div class="row justify-content-center p-3">
                     <div class="col">
-                        <form method="POST">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col main p-3 p-md-5 align-items-center rounded-4">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="id_trem_fk" class="form-label tituloLight fs-5">Trem da Ordem:</label>
+                                        <select class="form-control" id="id_trem_fk" name="id_trem_fk">
+                                            <option value="">Selecione o trem</option>
+                                            <?php
+                                            $stmtTrens = $conn->query("SELECT id_trem, identificador FROM trem");
+                                            $trens = $stmtTrens->fetchAll(PDO::FETCH_ASSOC);
+                                            foreach ($trens as $trem): ?>
+                                                <option value="<?= htmlspecialchars($trem['id_trem']) ?>">
+                                                    <?= htmlspecialchars($trem['identificador']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="data_abertura" class="form-label tituloLight fs-5">Data Abertura:</label>
+                                        <input type="date" class="form-control" id="data_abertura" name="data_abertura" placeholder="Insira a data de abertura">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="data_fechamento" class="form-label tituloLight fs-5">Data de Fechamento:</label>
+                                        <input type="date" class="form-control" id="data_fechamento" name="data_fechamento" placeholder="Insira a data de fechamento">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="tipo" class="form-label tituloLight fs-5">Tipo:</label>
+                                        <select class="form-control" id="tipo" name="tipo">
+                                            <option value="Preventiva">Preventiva</option>
+                                            <option value="Corretiva">Corretiva</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="descricao" class="form-label tituloLight fs-5">Descrição:</label>
+                                        <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Insira a descrição da ordem de manutenção">
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="status_manutencao" class="form-label tituloLight fs-5">Status:</label>
+                                        <select class="form-control" id="status_manutencao" name="status_manutencao">
+                                            <option value="Aberta">Aberta</option>
+                                            <option value="Em Andamento">Em Andamento</option>
+                                            <option value="Fechada">Fechada</option>
+                                        </select>
+                                    </div>
 
-                            <div class="mb-3">
-                                <label for="id_trem_fk" class="form-label">Trem da Ordem:</label>
-                                <select class="form-control" id="id_trem_fk" name="id_trem_fk">
-                                    <option value="">Selecione o trem</option>
-                                    <?php
-                                    $stmtTrens = $conn->query("SELECT id_trem, identificador FROM trem");
-                                    $trens = $stmtTrens->fetchAll(PDO::FETCH_ASSOC);
-                                    foreach ($trens as $trem): ?>
-                                        <option value="<?= htmlspecialchars($trem['id_trem']) ?>">
-                                            <?= htmlspecialchars($trem['identificador']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Cadastrar Ordem</button>
+                                </form>
                             </div>
-
-                            <div class="mb-3">
-                                <label for="data_abertura" class="form-label">Data Abertura:</label>
-                                <input type="date" class="form-control" id="data_abertura" name="data_abertura" placeholder="Insira a data de abertura">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="data_fechamento" class="form-label">Data de Fechamento:</label>
-                                <input type="date" class="form-control" id="data_fechamento" name="data_fechamento" placeholder="Insira a data de fechamento">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="tipo" class="form-label">Tipo:</label>
-                                <select class="form-control" id="tipo" name="tipo">
-                                    <option value="Preventiva">Preventiva</option>
-                                    <option value="Corretiva">Corretiva</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="descricao" class="form-label">Descrição:</label>
-                                <textarea class="form-control" id="descricao" name="descricao" rows="4" placeholder="Insira a descrição da ordem de manutenção"></textarea>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="status_manutencao" class="form-label">Status:</label>
-                                <select class="form-control" id="status_manutencao" name="status_manutencao">
-                                    <option value="Aberta">Aberta</option>
-                                    <option value="Em Andamento">Em Andamento</option>
-                                    <option value="Fechada">Fechada</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-light btnLogin mt-5">Cadastrar Ordem</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
 
