@@ -1,4 +1,4 @@
-USE SmartCitiesV10;
+USE SmartCitiesV11;
 
 -- ===========================
 -- ESTACOES
