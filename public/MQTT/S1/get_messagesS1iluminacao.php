@@ -1,15 +1,15 @@
 <?php
-require("phpMQTT.php");
-include 'dbbrokerconnect.php';   
+require("../phpMQTT.php");
+include '../dbbrokerconnect.php';   
 
 $server = "81e7fafe091e4b09b0b93bf45fb52950.s1.eu.hivemq.cloud";
 $port = 8883;
-$topic = "S1/umidade";
+$topic = "S1/iluminacao";
 $client_id = "phpmqtt-" . rand();
 
 $username = "s1_Brayan";
 $password = "Loscrias#67";
-$cafile = __DIR__ . "/cacert.pem";
+$cafile = __DIR__ . "../cacert.pem";
 $message = 0;
 
 $mqtt = new Bluerhinos\phpMQTT($server, $port, $client_id);
@@ -43,7 +43,7 @@ echo $message;
 if($message <> 0 && $message <> ""){
     $sensor_id = 1;
     $sensor_type = "S1";
-    $topico = "S1/umidade";
+    $topico = "S1/iluminacao";
 
     $stmt = $conn->prepare("INSERT INTO sensor_data (sensor_id, sensor_type, topico, valor) VALUES (?, ?, ?, ?)");
     

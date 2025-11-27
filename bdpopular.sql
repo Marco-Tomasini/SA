@@ -23,13 +23,6 @@ INSERT INTO trem (identificador, modelo, capacidade_passageiros, capacidade_carg
 -- ===========================
 -- USUARIOS
 -- ===========================
-INSERT INTO usuario (nome, email, senha, perfil, CPF, data_nascimento, endereco, contato, imagem_usuario) VALUES
-('Admin', 'admin@admin.admin', 'admin', 'Gerente', '13105311963', '2008-02-19', 'Av. Central, 123, Centro', '554791097470', 'default.png'),
-('Icaro Botelho', 'icaro.botelho@edu.sc.senai.br', 'dandomoles', 'Gerente', '13105311963', '2002-05-06', 'Av. Central, 123, Centro', '47992214358', 'default.png'),
-('Enzo Caetano', 'enzo_caetano@estudante.sesisenai.org.br', '123', 'Gerente', '13105311963', '1979-07-22', 'R. das Acácias, 45, Norte', '554791097470', 'default.png'),
-('Marco Tomasini', 'marco_tomasini@estudante.sesisenai.org.br', '123', 'Gerente', '10486527930', '1990-01-05', 'Praça Azul, 10, Sul', '554799900003', 'default.png'),
-('Carlos Bittencourt', 'carlos_bittencourt2@estudante.sesisenai.org.br', '123', 'Gerente', '08564946904', '1988-11-30', 'Av. do Trabalho, 210, Oeste', '554799900004', 'default.png'),
-('Brayan Godoy', 'brayan_godoy@estudante.sesisenai.org.br', '123', 'Gerente', '333.444.555-66', '1975-06-15', 'R. Nova, 78, Leste', '554799900005', 'default.png');
 
 -- ===========================
 -- ROTAS
