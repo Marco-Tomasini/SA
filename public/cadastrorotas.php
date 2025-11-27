@@ -164,7 +164,7 @@ if (isset($_GET['id'])) {
                                         <label for="descricao" class="form-label tituloLight fs-5">Descrição:</label>
                                         <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Insira a descrição da rota" required>
                                     </div>
-                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Atualizar Rota</button>
+                                    <button type="submit" class="btn btn-dark btnLogin fs-5 fw-semibold rounded-4">Cadastrar Rota</button>
                                 </form>
                             </div>
                         </div>
