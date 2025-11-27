@@ -21,7 +21,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <body class="bodyDashboard">
     <div class="container-fluid p-0">
         <div class="row d-flex justify-content-end m-0">
-            <div class="col-1 d-flex align-items-between justify-content-end p-0 me-md-4 me-3">
+            <div class="col-1 d-flex align-items-between justify-content-end p-0 me-md-4 me-1 me-md-3">
                 <i class="btn bi bi-list mb-0 fs-3" type="button" data-bs-theme="dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
 
                 <div class="col d-flex flex-column offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
