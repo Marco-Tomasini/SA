@@ -1,6 +1,6 @@
 <?php
 require("phpMQTT.php");
-include '../db.php';
+include 'dbbrokerconnect.php';   
 
 $server = "81e7fafe091e4b09b0b93bf45fb52950.s1.eu.hivemq.cloud";
 $port = 8883;
@@ -10,9 +10,7 @@ $client_id = "phpmqtt-" . rand();
 $username = "s1_Brayan";
 $password = "Loscrias#67";
 $cafile = __DIR__ . "/cacert.pem";
-$message = "";
-
-
+$message = 0;
 
 $mqtt = new Bluerhinos\phpMQTT($server, $port, $client_id);
 $mqtt->cafile = $cafile;
@@ -42,22 +40,20 @@ $mqtt->close();
 
 echo $message;
 
+if($message <> 0 && $message <> ""){
+    $sensor_id = 1;
+    $sensor_type = "S1";
+    $topico = "S1/umidade";
 
-if ($message <> 0) {
-        $sql = "INSERT INTO sensor_data (sensor_id, sensor_type, valor, topico) 
-                VALUES (:sensor_id, :sensor_type, :valor, :topico)";
-        
-        $sensor_id = 1;
-        $sensor_type = 'S1';
-        $valor = (float)$message; // Cast to float, change to (int) if 'valor' is INT in DB
-        $topico = $topic;
+    $stmt = $conn->prepare("INSERT INTO sensor_data (sensor_id, sensor_type, topico, valor) VALUES (?, ?, ?, ?)");
+    
+    $stmt->bind_param("issi",$sensor_id, $sensor_type, $topico,$message);
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':sensor_id', $sensor_id, PDO::PARAM_INT);
-        $stmt->bindParam(':sensor_type', $sensor_type, PDO::PARAM_STR);
-        $stmt->bindParam(':valor', $valor, PDO::PARAM_STR); // Use PARAM_INT if 'valor' is INT
-        $stmt->bindParam(':topico', $topico, PDO::PARAM_STR);
-        $stmt->execute();
-        
-        echo "Dados inseridos com sucesso!";
+    if ($stmt->execute()) {
+        echo "teste" . $message;
+    } else {
+        echo "Erro ao inserir dados: " . $stmt->error;
+    }
+
+    $stmt->close();
 }
