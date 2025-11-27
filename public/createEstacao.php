@@ -55,7 +55,7 @@ if (isset($_GET['id'])) {
                 <div class="row headerDash d-flex justify-content-between align-items-center sticky-top">
                     <div class="col-8 welcome lh-1">
                         <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
-                            <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='dashboard.php'"></i>
+                            <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='gestaoDeRotas.php'"></i>
                             <p class="mb-0">Atualização de Estação</p>
                         </div>
                     </div>
