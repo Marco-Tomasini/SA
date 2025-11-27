@@ -93,7 +93,7 @@ if (isset($_GET['id'])) {
                                     $fotoNome = !empty($dadosusuario['imagem_usuario']) ? htmlspecialchars($dadosusuario['imagem_usuario'], ENT_QUOTES) : 'default.png';
                                     $fotoPath = '../assets/img/' . $fotoNome;
                                     ?>
-                                    <div class="mb-3 d-flex justify-content-start align-items-center gap-4">
+                                    <div class="col mb-3 d-flex justify-content-start align-items-center gap-4">
                                         <img src="<?php echo $fotoPath; ?>" alt="foto_perfil" class="rounded-circle" width="100vw" height="100vw">
                                         <button type="submit" class="btn btn-dark btnDemitir fs-5 fw-semibold rounded-4" onclick="location.href='delete_usuario.php?id=<?php echo $dadosusuario['id_usuario']; ?>'">Demitir</button>
                                     </div>
@@ -277,7 +277,7 @@ if (isset($_GET['id'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label tituloLight fs-5">Envie sua foto de perfil abaixo:</label>
-                                        <div class="col d-lg-flex gap-2">
+                                        <div class="col d-flex gap-2">
                                             <input class="form-control" type="file" name="foto_perfil" id="formFile" accept="image/*" required>
                                             <button type="submit" class="btn btn-dark btnUploadFoto fs-6 fw-semibold rounded-4">Upload</button>
                                         </div>

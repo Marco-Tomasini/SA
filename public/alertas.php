@@ -113,7 +113,7 @@ if (isset($_GET['id'])) {
                     <div class="col-8  welcome lh-1">
                         <div class="col ms-4 fw-bold fs-5 d-flex align-items-center">
                             <i class="bi bi-box-arrow-in-left fs-3 me-3" onclick="window.location.href='dashboard.php'"></i>
-                            <p class="mb-0">Alertas e Manutenção</p>
+                            <p class="mb-0">Alertas e Notificações</p>
                         </div>
                     </div>
 
@@ -140,7 +140,7 @@ if (isset($_GET['id'])) {
                                     </div>
 
                                     <div class="col-9" onclick="location.href='alertas.php?id=<?php echo $row['id_alerta']; ?>'" style="cursor: pointer;">
-                                        <p class="mb-1"><?php echo htmlspecialchars($row['tipo']); ?></p>
+                                        <p class="mb-1 tituloLight fs-5"><?php echo htmlspecialchars($row['tipo']); ?></p>
                                         <p class="mb-1"><?php echo htmlspecialchars($row['mensagem']); ?></p>
                                     </div>
                                 </div>
