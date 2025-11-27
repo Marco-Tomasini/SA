@@ -278,3 +278,11 @@ body {
     object-fit: cover;
     object-position: top;
 }
+
+.textFalha {
+    color: #df0016;
+    font-size: 0.8rem;
+    text-shadow:
+        0 0 1px #df0016,
+        0 0 1px #df0016;
+}
