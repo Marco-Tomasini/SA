@@ -15,8 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($loggedInUser) {
         $auth->loginUser($loggedInUser);
         header("Location: public/dashboard.php");
-    } else {
-        echo "Login Falhou";
     }
 }
 
@@ -63,6 +61,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         </div>
                     </div>
                     <button type="submit" class="btn btn-light btnLogin fs-5 fw-semibold rounded-4">Entrar</button>
+                    <?php
+                    if ($_SERVER['REQUEST_METHOD'] == "POST" && !$loggedInUser) {
+                        echo "<div class='text-center'>Login Falhou</div>";
+                    }
+                    ?>
                 </form>
             </div>
         </div>
