@@ -20,10 +20,10 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           
-          # IMPORTANTE: A pasta pública no InfinityFree é a htdocs.
-          server-dir: /htdocs/ 
+          # Pasta de destino no servidor (pública)
+          server-dir: /htdocs/
           
-          # Evita subir arquivos de configuração ou backups de banco para o site público
+          # Arquivos e pastas para NÃO enviar
           exclude: |
             **/.git*
             **/.github*
