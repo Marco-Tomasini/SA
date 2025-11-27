@@ -75,12 +75,14 @@ body {
 .btnUploadFoto {
     color: #D9D9D9;
     width: 10vw;
+    min-width: fit-content;
     background: linear-gradient(161deg, rgba(104, 58, 145, 1) 30%, rgba(52, 38, 56, 1) 100%);
 }
 
 .btnDemitir {
     color: #D9D9D9;
     width: 10vw;
+    min-width: fit-content;
     height: 5vh;
     border: none !important;
     background: #b02a37;
