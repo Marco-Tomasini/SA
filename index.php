@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <div class="container-fluid d-flex justify-content-center">
                 <a class="navbar-brand fs-4" href="#"></a>
-                <img src="assets/icon/logoSite.svg" width="auto" height="auto" class="img-fluid d-inline-block align-top d-none d-md-block" alt="">
+                <img src="assets/icon/logoSite.svg" width="auto" height="150" class="d-inline-block align-top d-none d-md-block" alt="">
             </div>
         </nav>
 
