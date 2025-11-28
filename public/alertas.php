@@ -130,7 +130,7 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
 
-                <div class="scrollAlertas">
+                <div class="row">
                     <?php
                     $alertas = array_filter($alertas, function ($row) {
                         return !empty($row['tipo']) || !empty($row['mensagem']);
