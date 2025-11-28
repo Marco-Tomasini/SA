@@ -98,7 +98,7 @@ if (isset($_GET['id'])) {
                                     ?>
                                     <div class="col mb-3 d-flex justify-content-start align-items-center gap-4">
                                         <img src="<?php echo $fotoPath; ?>" alt="foto_perfil" class="rounded-circle" width="100vw" height="100vw">
-                                        <button type="submit" class="btn btn-dark btnDemitir fs-5 fw-semibold rounded-4" onclick="location.href='delete_usuario.php?id=<?php echo $dadosusuario['id_usuario']; ?>'">Excluir</button>
+                                        <p class="btn btn-dark btnDemitir fs-5 fw-semibold rounded-4" onclick="location.href='delete_usuario.php?id=<?php echo $dadosusuario['id_usuario']; ?>'">Excluir</p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="nome" class="form-label tituloLight fs-5">Nome:</label>
