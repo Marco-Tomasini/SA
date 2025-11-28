@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['email
 
     $user->register($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['perfil'], $_POST['cpf'], $_POST['nascimento'], $_POST['endereco'], $_POST['contato']);
     echo "<script>alert('Usuário Criado com sucesso.');</script>";
-    echo "<script>window.location.href = 'dashboard.php';</script>";
+    echo "<script>window.location.href = 'listaCadastro.php';</script>";
 }
 
 ?>
