@@ -195,7 +195,7 @@ if (isset($_GET['id'])) {
 
             if ($stmt->execute()) {
                 echo "<script>alert('Segmento de Rota cadastrado com sucesso.');</script>";
-                echo "<script>window.location.href = 'dashboard.php';</script>";
+                echo "<script>window.location.href = 'listaCadastro.php';</script>";
             } else {
                 $error = $stmt->errorInfo();
                 echo "Erro na consulta: " . $error[2];

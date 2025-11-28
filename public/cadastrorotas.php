@@ -113,7 +113,7 @@ if (isset($_GET['id'])) {
 
         if ($stmt !== false) {
             echo "<script>alert('Rota Cadastrada com sucesso.');</script>";
-            echo "<script>window.location.href = 'dashboard.php';</script>";
+            echo "<script>window.location.href = 'listaCadastro.php';</script>";
         } else {
             $error = $conn->errorInfo();
             echo "Erro na consulta: " . $error[2];
