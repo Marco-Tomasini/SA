@@ -20,13 +20,17 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           
-          # Pasta de destino no servidor (pública)
-          server-dir: /htdocs/
+          # Use ponto barra ./ para ajudar o robô a achar a pasta certa
+          server-dir: ./htdocs/
           
-          # Arquivos e pastas para NÃO enviar
+          # Lista de bloqueio reforçada para evitar o erro 553
           exclude: |
             **/.git*
-            **/.github*
+            **/.git/**
+            **/.github/**
+            **/documentacao/**
             **/*.sql
             README.md
-            **/documentacao/**
+            LICENSE
+            composer.lock
+            composer.json

@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validar_cpf')
   <meta charset="UTF-8">
   <title>Validação de CPF com API</title>
   <script src="../scripts/validar_cpf.js"></script>
+  <link rel="icon" type="image/svg+xml" href="../assets/icon/logoSite.svg">
 </head>
 <body>
   <h2>Validação de CPF via API</h2>
